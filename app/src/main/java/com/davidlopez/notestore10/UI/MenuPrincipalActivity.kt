@@ -1,5 +1,6 @@
 package com.davidlopez.notestore10.UI
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Adapter
@@ -21,25 +22,34 @@ class MenuPrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMenuPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    setup()
-
-//CONTACTOS-----------------------------------------------------------------------------------------
-
-
-    }
-    // funcion setup()------------------------------------------------------------------------------
-    private fun setup(){
         title="Menu Principal"
 
+        // boton contactos-----------------------------------------------------
+        binding.btnContactos.setOnClickListener {
+           startActivity(Intent(this,ContactosActivity::class.java))
+            finish()
+        }
+        // boton notas-----------------------------------------------------
+        binding.btnNotas.setOnClickListener {
+            startActivity(Intent(this,NotasActivity::class.java))
+            finish()
+        }
+        // boton documentos-----------------------------------------------------
+        binding.btnDocs.setOnClickListener {
+            startActivity(Intent(this,DocumentosActivity::class.java))
+            finish()
+        }
+        // boton about-----------------------------------------------------
+        binding.btnAbout.setOnClickListener {
+            startActivity(Intent(this,AboutActivity::class.java))
+            finish()
+        }
+
+
+        //botn salir----------------------------------------------------------
         binding.buttonSalir3.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             onBackPressed() }
-
-        /*val BotonSalir=findViewById<Button>(R.id.button_salir3)
-        BotonSalir.setOnClickListener{
-            FirebaseAuth.getInstance().signOut()
-            onBackPressed()
-        }*/
     }
 
 

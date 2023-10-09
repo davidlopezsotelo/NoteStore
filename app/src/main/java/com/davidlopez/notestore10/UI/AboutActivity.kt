@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.davidlopez.notestore10.R
 
-class ContactosActivity : AppCompatActivity() {
+class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contactos)
+        setContentView(R.layout.activity_about)
     }
 
     //configuramos boton atras---------------------------------------

@@ -22,8 +22,9 @@
         android:id="@+id/button_salir3"
         android:layout_width="278dp"
         android:layout_height="65dp"
-        android:backgroundTint="#E040FB"
+        android:backgroundTint="@color/note_red"
         android:text="SALIR"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +37,12 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="36dp"
-        android:text="Contactos"
+        android:backgroundTint="@color/blue"
+        android:text="CONTACTOS"
+        android:textSize="19sp"
         app:cornerRadius="10sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_notas"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_menu_principal" />
 
@@ -49,7 +53,9 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
         android:text="NOTAS"
+        android:backgroundTint="@color/blue"
         app:cornerRadius="10sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_menu_principal" />
 
@@ -60,8 +66,10 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="36dp"
-        android:text="Documentos"
+        android:text="DOCUMENTOS"
+        android:backgroundTint="@color/blue"
         app:cornerRadius="10sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_notas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_contactos" />
@@ -72,8 +80,10 @@
         android:layout_height="120dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
-        android:text="about"
+        android:text="ABOUT"
+        android:backgroundTint="@color/blue"
         app:cornerRadius="10sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_notas" />
 
