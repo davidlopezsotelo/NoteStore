@@ -2,11 +2,12 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.davidlopez.notestore10"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.davidlopez.notestore10"
@@ -34,9 +35,23 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    //Habilitamos el biewbindng
+    buildFeatures{
+        viewBinding=true
+    }
 }
 
+val room_version = "2.5.2"
 dependencies {
+
+    //Room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    // optional - Test helpers
+    //testImplementation("androidx.room:room-testing:$room_version")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

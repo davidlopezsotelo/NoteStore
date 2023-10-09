@@ -1,4 +1,4 @@
-package com.davidlopez.notestore10
+package com.davidlopez.notestore10.Log
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.davidlopez.notestore10.R
 import com.google.firebase.auth.FirebaseAuth
 
 class RegistroActivity : AppCompatActivity() {
@@ -50,7 +51,7 @@ class RegistroActivity : AppCompatActivity() {
         // funciones del boton LOGIN.........
 
         botonLogin.setOnClickListener(){
-            val logIntent= Intent(this,LoginActivity::class.java)
+            val logIntent= Intent(this, LoginActivity::class.java)
             startActivity(logIntent)
             finish()
         }

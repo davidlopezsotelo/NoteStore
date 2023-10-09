@@ -1,4 +1,4 @@
-package com.davidlopez.notestore10
+package com.davidlopez.notestore10.Log
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.davidlopez.notestore10.UI.MenuPrincipalActivity
+import com.davidlopez.notestore10.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -172,4 +174,4 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(i)
     }
-}//END Class commit
+}//END Class
