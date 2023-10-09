@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002887525337",
+    "project_id": "notestore-970e6",
+    "storage_bucket": "notestore-970e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002887525337:android:6a720edeca18c788525fc8",
+        "android_client_info": {
+          "package_name": "com.davidlopez.notestore10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJyDtoZbsUkAOqdjFo7D_nDRBshmmNlj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

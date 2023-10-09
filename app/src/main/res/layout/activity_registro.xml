@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistroActivity">
+
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="275dp"
+        android:layout_height="72dp"
+        android:text="REGISTRO "
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:hint="Introduce email" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="39dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/contraseña"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:hint="Introduce contraseña"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintVertical_bias="0.146" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonAceptar"
+        android:layout_width="175dp"
+        android:layout_height="54dp"
+        android:backgroundTint="#FF018786"
+        android:text="ACEPTAR"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.153" />
+
+    <Button
+        android:id="@+id/buttonAtrasLog"
+        android:layout_width="175dp"
+        android:layout_height="54dp"
+        android:backgroundTint="#FF018786"
+        android:text="LOGIN"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAceptar"
+        app:layout_constraintVertical_bias="0.121" />
+
+    <Button
+        android:id="@+id/buttonSalir2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9F9D9D"
+        android:onClick="ejecutar_BotonSalir"
+        android:text="Salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAtrasLog"
+        app:layout_constraintVertical_bias="0.27" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button_green_stile">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">56dp</item>
+        <item name="android:backgroundTint">#FF018786</item>
+    </style>
+</resources>
