@@ -172,4 +172,4 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(i)
     }
-}//END Class
+}//END Class commit
