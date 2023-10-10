@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             //creamos el alert Dialog
             val dialog= AlertDialog.Builder(this)
             //creamos el mensaje que aparecera
-            dialog.setMessage("Quieres salir de GestShop ???")
+            dialog.setMessage("Quieres salir de la aplicacion ???")
                 //si el dialog es cancelable
                 .setCancelable(false)
                 //accion y texto del boton positivo
