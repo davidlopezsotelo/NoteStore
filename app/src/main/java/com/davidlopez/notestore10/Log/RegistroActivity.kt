@@ -1,18 +1,28 @@
 package com.davidlopez.notestore10.Log
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.davidlopez.notestore10.R
+import com.davidlopez.notestore10.UI.MenuPrincipalActivity
+import com.davidlopez.notestore10.databinding.ActivityRegistroBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.concurrent.thread
 
 class RegistroActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRegistroBinding
+    private var mActivity:RegistroActivity?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registro)
+        binding=ActivityRegistroBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setup()
     }
@@ -20,15 +30,15 @@ class RegistroActivity : AppCompatActivity() {
     // funcion setup()----------------------------------------------------------------------------------
     private fun setup(){
 
-        val textEmail = findViewById<EditText>(R.id.email)
-        val textContraseña = findViewById<EditText>(R.id.contraseña)
-        val botonAceptar=findViewById<Button>(R.id.buttonAceptar)
-        val botonLogin=findViewById<Button>(R.id.buttonAtrasLog)
-        val botonSalir=findViewById<Button>(R.id.buttonSalir2)
+        val textEmail = binding.email
+        val textContraseña = binding.contraseA
+        val botonAceptar=binding.buttonAceptar
+        val botonLogin=binding.buttonAtrasLog
+        val botonSalir=binding.buttonSalir2
 
         //Funciones de boton REGISTRARSE
         botonAceptar.setOnClickListener {
-            if (textEmail.text.isNotEmpty() && textContraseña.text.isNotEmpty()) {
+            if (textEmail.text!!.isNotEmpty() && textContraseña.text!!.isNotEmpty()) {
                 FirebaseAuth.getInstance()
                     .createUserWithEmailAndPassword(
                         textEmail.text.toString(),
@@ -36,7 +46,11 @@ class RegistroActivity : AppCompatActivity() {
                     )
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
+                            //ocultar teclado ??
+
                             showRegistro()
+
+
 
                         } else {
                             showAlert()// mensaje de alerta
@@ -88,6 +102,10 @@ class RegistroActivity : AppCompatActivity() {
         builder.setPositiveButton("aceptar",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()
+
+        //Toast.makeText(this,"Te has registrado correctamente",Toast.LENGTH_LONG)
+        Thread.sleep(3000L)
+        startActivity(Intent(this,MenuPrincipalActivity::class.java))
     }
 
     //creamos una funcion que mostrara un  mensaje de alerta mediante un cuadro de dialogo---------
