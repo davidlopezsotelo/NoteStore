@@ -29,10 +29,10 @@
             android:name=".UI.MenuPrincipalActivity"
             android:exported="false" />
         <activity
-            android:name=".Log.RegistroActivity"
+            android:name=".Login.RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".Log.LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

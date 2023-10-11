@@ -1,4 +1,4 @@
-package com.davidlopez.notestore10.Log
+package com.davidlopez.notestore10.Login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

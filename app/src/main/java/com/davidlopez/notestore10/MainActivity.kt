@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
-import com.davidlopez.notestore10.Log.LoginActivity
+import com.davidlopez.notestore10.Login.LoginActivity
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics

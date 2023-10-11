@@ -18,13 +18,13 @@ import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
  fun getContactoById(id: Long):ContactosEntity
 
  @Insert
- fun addNota(contactos: ContactosEntity):Long // contactosEntity :Long
+ fun addContacto(contactos: ContactosEntity):Long
 
  @Update
- fun updateNota(ncontactos: ContactosEntity)
+ fun updateContacto(contactos: ContactosEntity)
 
  @Delete
- fun deleteAll(contactos: ContactosEntity)
+ fun deleteAllContacto(contactos: ContactosEntity)
 
 
 
