@@ -21,7 +21,7 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, privat
             with(binding.root) {
                 setOnClickListener { listener.onClick(contactosEntity) }
                 setOnLongClickListener { // borrar contacto pulsando largo, modificar con boton???
-                    listener.onUpdateContacto(contactosEntity)
+                    listener.onDeleteContacto(contactosEntity)
                     true
                 }
             }
