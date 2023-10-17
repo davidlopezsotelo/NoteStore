@@ -6,6 +6,7 @@ import com.davidlopez.notestore10.DataBase.RoomDB
 
 class ContactosApp:Application() {
 
+// aplicacion del patron singleton , para poder acceder a la base de datos desde cualquier punto de la aplicacion.
     companion object{
         lateinit var db:RoomDB
     }

@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 data class ContactosEntity(@PrimaryKey(autoGenerate = true)
                             var id:Long=0,
                            var name:String,
-                           var surname:String,
                            var email:String,
                            var phone:Int)
 
