@@ -9,7 +9,7 @@ import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.UI.ContactosActivity
 import com.davidlopez.notestore10.databinding.ItemContactosBinding
 
-class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, private var listener: OnClickListenerContactos):
+class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, private var listener: ContactosActivity):
         RecyclerView.Adapter<ContactosAdapter.ViewHolder>(){
 
     private lateinit var mContex: Context
@@ -21,10 +21,11 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, privat
             with(binding.root) {
                 setOnClickListener { listener.onClick(contactosEntity) }
                 setOnLongClickListener { // borrar contacto pulsando largo, modificar con boton???
-                    listener.onDeleteContacto(contactosEntity)
+                    listener.onUpdateContacto(contactosEntity)
                     true
                 }
             }
+            //todo pulsar para actualizar
         }
 
     }

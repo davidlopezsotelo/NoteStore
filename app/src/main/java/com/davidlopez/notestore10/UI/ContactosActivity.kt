@@ -46,7 +46,7 @@ import java.util.concurrent.LinkedBlockingQueue
         fragmentTransaction.addToBackStack(null)
 
         // ocultamos el boton despues de pulsarlo
-       // mBinding.fab.hide()
+         mBinding.fab.hide()
         hideFab()//este metodo lo oculta y lo vuelve a mostrar al pulsar atras
     }
 
@@ -100,9 +100,7 @@ import java.util.concurrent.LinkedBlockingQueue
         mAdapter.add(contactosEntity)
     }
 
-    override fun updateContact(contactosEntity: ContactosEntity) {
 
-    }
 
      override fun onClick(contactosEntity: ContactosEntity) {
 
@@ -116,6 +114,10 @@ import java.util.concurrent.LinkedBlockingQueue
              queue.add(contactosEntity)
          }.start()
          mAdapter.delete(queue.take())
+     }
+
+     override fun onUpdateContacto(contactosEntity: ContactosEntity) {
+
      }
 
 

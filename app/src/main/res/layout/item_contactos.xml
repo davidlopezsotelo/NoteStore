@@ -44,6 +44,8 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="nombre del contacto">
 
+            
+
         </TextView>
 
 

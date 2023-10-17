@@ -7,4 +7,6 @@ interface OnClickListenerContactos {
     fun onClick(contactosEntity: ContactosEntity)
     fun onDeleteContacto(contactosEntity: ContactosEntity)
 
+    fun onUpdateContacto(contactosEntity: ContactosEntity)
+
 }

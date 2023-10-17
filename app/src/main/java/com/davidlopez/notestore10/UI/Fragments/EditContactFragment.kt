@@ -65,7 +65,7 @@ class EditContactFragment : Fragment() {
 
             // guardar en la base de datos---------------------------------------------------------
             R.id.action_save -> {
-                //cambiar entity a contactosEntity*************
+
 
                 val contacto=ContactosEntity(
                     name = mBinding.etName.text.toString().trim(),
