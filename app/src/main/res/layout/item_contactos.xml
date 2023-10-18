@@ -16,7 +16,11 @@
 
         <!--añadir info del contacto-->
 
+
+        <!--añadir boton enviar y guardar y cambio de color-->
+
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/color_white_t"
@@ -28,26 +32,48 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-
-        <!--añadir boton enviar y guardar y cambio de color-->
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="54dp"
             android:background="@color/turquesa"
             android:ellipsize="end"
+
             android:padding="@dimen/common_padding_min"
             android:textAppearance="?attr/textAppearanceBody2"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="nombre del contacto">
 
-            
 
         </TextView>
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="99dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_person" />
+
+        <Button
+            android:id="@+id/editar"
+            android:layout_width="92dp"
+            android:layout_height="55dp"
+
+            android:text="editar"
+
+            app:iconPadding="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

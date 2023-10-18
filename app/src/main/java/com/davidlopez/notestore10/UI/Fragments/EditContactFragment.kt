@@ -59,7 +59,7 @@ class EditContactFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             android.R.id.home -> {
-                hideKeyboard()//ocukta el teclado al volver a la vista
+                hideKeyboard()//oculta el teclado al volver a la vista
                 mActivity?.onBackPressedDispatcher?.onBackPressed() //ir hacia atras con el boton??revisar
                 true
 
@@ -76,6 +76,7 @@ class EditContactFragment : Fragment() {
 
                 val queue = LinkedBlockingQueue<Long?>()
                 Thread{
+                    mActivity?.addContact(contacto)
                     hideKeyboard()//para ocultar el teclado
                     val id =ContactosApp.db.ContactosDao().addContacto(contacto)// añadir id al contacto para poder ser actualizado
                     queue.add(id)

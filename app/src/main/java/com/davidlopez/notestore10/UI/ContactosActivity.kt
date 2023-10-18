@@ -104,6 +104,10 @@ import java.util.concurrent.LinkedBlockingQueue
         mAdapter.add(contactosEntity)
     }
 
+     override fun updateContact(contactosEntity: ContactosEntity) {
+
+     }
+
 
      override fun onClick(contactosEntity: ContactosEntity) {
 
