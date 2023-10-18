@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="counter_max_phone">75</integer>
+    <integer name="counter_max_phone">9</integer>
 </resources>
