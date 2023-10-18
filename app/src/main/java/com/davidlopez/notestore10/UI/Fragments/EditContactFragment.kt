@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
@@ -83,11 +84,11 @@ class EditContactFragment : Fragment() {
                 }.start()
 
                 //mostrar mensaje---------------------------------
-                queue.take()?.let{
-                    Snackbar.make(mBinding.root,
-                        R.string.edit_message_save_sucess,
-                        Snackbar.LENGTH_SHORT)
-                        .show()
+               queue.take()?.let{
+
+                   //mostramos mensaje cotacto agregado
+                   Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_SHORT).show()
+
                     mActivity?.onBackPressedDispatcher?.onBackPressed()
 
                     // mostrar el nuevo contacto despues de añadirlo, al regresar a la pantalla anterior
