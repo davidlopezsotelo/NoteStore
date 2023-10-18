@@ -1,8 +1,11 @@
 package com.davidlopez.notestore10.UI
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
+import androidx.annotation.ContentView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.ContactosAdapter
@@ -94,12 +97,12 @@ import java.util.concurrent.LinkedBlockingQueue
 
     override fun hideFab(isVisible: Boolean) {
 
+        if (isVisible)mBinding.fab.show() else mBinding.fab.hide()
     }
 
     override fun addContact(contactosEntity: ContactosEntity) {
         mAdapter.add(contactosEntity)
     }
-
 
 
      override fun onClick(contactosEntity: ContactosEntity) {

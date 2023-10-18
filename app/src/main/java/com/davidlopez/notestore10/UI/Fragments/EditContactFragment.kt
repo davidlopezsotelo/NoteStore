@@ -25,7 +25,7 @@ class EditContactFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,): View? {
+        savedInstanceState: Bundle?): View {
        mBinding=FragmentEditContactBinding.inflate(inflater,container,false)
         return mBinding.root
     }
@@ -59,15 +59,17 @@ class EditContactFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             android.R.id.home -> {
-                mActivity?.onBackPressedDispatcher?.onBackPressed()//ir hacia atras con el boton??revisar
+                hideKeyboard()//ocukta el teclado al volver a la vista
+                mActivity?.onBackPressedDispatcher?.onBackPressed() //ir hacia atras con el boton??revisar
                 true
+
             }
 
             // guardar en la base de datos---------------------------------------------------------
             R.id.action_save -> {
 
-                //TODO controlar nulos en iserciones
                 val contacto=ContactosEntity(
+
                     name = mBinding.etName.text.toString().trim(),
                     phone = mBinding.etPhone.text.toString().toInt(),
                     email = mBinding.etEmail.text.toString() )
@@ -102,18 +104,13 @@ class EditContactFragment : Fragment() {
     // no funciona correctamente, mejorar el metodo en toda la app********
     private fun hideKeyboard(){
         val imm=mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE)as InputMethodManager
-
         imm.hideSoftInputFromWindow(requireView().windowToken,0)
     }
 
     //ciclo de vida del fragment-----------------------------------------------
 
-    override fun onDestroyView() {
-        hideKeyboard()
-        super.onDestroyView()
-    }
-
     override fun onDestroy() {
+
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mActivity?.supportActionBar?.title=getString(R.string.app_name)
         mActivity?.hideFab(true)

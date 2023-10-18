@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class ContactosEntity(@PrimaryKey(autoGenerate = true)
                             var id:Long=0,
                            var name:String,
-                           var email:String,
+                           var email:String="",//inicializamos el mail a vacio por si no se quiere ingresar
                            var phone:Int)
 

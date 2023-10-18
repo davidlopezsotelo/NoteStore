@@ -11,4 +11,5 @@ interface ContactosAux {
     fun addContact(contactosEntity: ContactosEntity)
    // fun updateContact(contactosEntity: ContactosEntity)
 
+
 }
