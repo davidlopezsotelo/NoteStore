@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="80dp"
     android:layout_marginTop="@dimen/common_padding_min"
     android:layout_marginHorizontal="@dimen/common_padding_min"
+    android:layout_marginRight="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
@@ -30,14 +31,16 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            />
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="274dp"
-            android:layout_height="51dp"
+            android:layout_width="279dp"
+            android:layout_height="62dp"
             android:background="@color/turquesa"
             android:ellipsize="end"
+            android:gravity="bottom"
 
             android:padding="@dimen/common_padding_min"
             android:textAppearance="?attr/textAppearanceBody2"
@@ -45,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView_photo"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.0"
             tools:text="nombre del contacto">
@@ -54,25 +57,17 @@
         </TextView>
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="99dp"
-            android:layout_height="116dp"
+            android:id="@+id/imageView_photo"
+            android:layout_width="94dp"
+            android:layout_height="77dp"
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_person" />
 
-        <Button
-            android:id="@+id/editar"
-            android:layout_width="80dp"
-            android:layout_height="57dp"
-            android:text="EDIT"
-            android:backgroundTint="@color/black"
-            app:iconPadding="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

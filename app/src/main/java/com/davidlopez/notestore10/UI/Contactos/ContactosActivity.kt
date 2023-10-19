@@ -3,6 +3,7 @@ package com.davidlopez.notestore10.UI.Contactos
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
@@ -107,6 +108,16 @@ import java.util.concurrent.LinkedBlockingQueue
 
 
      override fun onClick(contactosEntity: ContactosEntity) {
+
+
+
+         //pasar a ContactDetailActivity
+
+         val intent=Intent(this,ContactDetailActivity::class.java)
+         intent.putExtra("nombre",contactosEntity.name)
+         intent.putExtra("telefono",contactosEntity.phone)
+         intent.putExtra("email",contactosEntity.email)
+         startActivity(intent)
 
 
      }
