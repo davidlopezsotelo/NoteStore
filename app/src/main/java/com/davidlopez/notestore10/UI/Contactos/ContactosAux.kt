@@ -1,11 +1,10 @@
-package com.davidlopez.notestore10.UI.Fragments
+package com.davidlopez.notestore10.UI.Contactos
 
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 
 
 
 interface ContactosAux {
-
     fun hideFab(isVisible:Boolean=false)
     // actualizar la vista desde el fragment
     fun addContact(contactosEntity: ContactosEntity)

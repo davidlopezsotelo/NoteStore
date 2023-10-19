@@ -1,4 +1,4 @@
-package com.davidlopez.notestore10.UI.Fragments
+package com.davidlopez.notestore10.UI.Contactos
 
 import android.content.Context
 import android.os.Bundle
@@ -14,27 +14,22 @@ import android.widget.Toast
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.ContactosActivity
 import com.davidlopez.notestore10.databinding.FragmentEditContactBinding
-import com.google.android.material.snackbar.Snackbar
 import java.util.concurrent.LinkedBlockingQueue
 
 class EditContactFragment : Fragment() {
 
-    private var mActivity:ContactosActivity?=null
+    private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
        mBinding=FragmentEditContactBinding.inflate(inflater,container,false)
         return mBinding.root
     }
-
     //creamos el menu------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         /*
         * para que aparezca el action bar
         * ir a la carpeta res/values/themes/themes.xml
@@ -56,17 +51,15 @@ class EditContactFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             android.R.id.home -> {
                 hideKeyboard()//oculta el teclado al volver a la vista
                 mActivity?.onBackPressedDispatcher?.onBackPressed() //ir hacia atras con el boton??revisar
                 true
-
             }
 
-            // guardar en la base de datos---------------------------------------------------------
+// guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
                 val contacto=ContactosEntity(
@@ -83,17 +76,14 @@ class EditContactFragment : Fragment() {
                     queue.add(id)
                 }.start()
 
-                //mostrar mensaje---------------------------------
                queue.take()?.let{
 
                    //mostramos mensaje cotacto agregado
                    Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_SHORT).show()
-
                     mActivity?.onBackPressedDispatcher?.onBackPressed()
 
                     // mostrar el nuevo contacto despues de añadirlo, al regresar a la pantalla anterior
                     mActivity?.addContact(contacto)
-
                 }
                 true
             }
@@ -102,24 +92,18 @@ class EditContactFragment : Fragment() {
         //return super.onOptionsItemSelected(item) , se lo pasamos al else
     }
 
-    //ocultar el teclado------------------------------------------------------------------------
-    // no funciona correctamente, mejorar el metodo en toda la app********
+//ocultar el teclado------------------------------------------------------------------------
     private fun hideKeyboard(){
         val imm=mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE)as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken,0)
     }
 
-    //ciclo de vida del fragment-----------------------------------------------
-
+//ciclo de vida del fragment-----------------------------------------------------------------
     override fun onDestroy() {
-
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mActivity?.supportActionBar?.title=getString(R.string.app_name)
         mActivity?.hideFab(true)
-
         setHasOptionsMenu(false)
         super.onDestroy()
     }
-
-
 }

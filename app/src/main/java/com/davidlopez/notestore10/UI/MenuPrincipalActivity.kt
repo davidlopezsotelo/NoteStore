@@ -3,11 +3,7 @@ package com.davidlopez.notestore10.UI
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Adapter
-import android.widget.Button
-import android.widget.GridLayout
-import androidx.appcompat.app.AlertDialog
-import com.davidlopez.notestore10.R
+import com.davidlopez.notestore10.UI.Contactos.ContactosActivity
 import com.davidlopez.notestore10.databinding.ActivityMenuPrincipalBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -26,7 +22,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
 
         // boton contactos-----------------------------------------------------
         binding.btnContactos.setOnClickListener {
-           startActivity(Intent(this,ContactosActivity::class.java))
+           startActivity(Intent(this, ContactosActivity::class.java))
             finish()
         }
         // boton notas-----------------------------------------------------

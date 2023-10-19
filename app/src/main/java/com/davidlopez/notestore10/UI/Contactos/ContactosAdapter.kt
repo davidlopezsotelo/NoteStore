@@ -1,4 +1,4 @@
-package com.davidlopez.notestore10
+package com.davidlopez.notestore10.UI.Contactos
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
-import com.davidlopez.notestore10.UI.ContactosActivity
+import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.ItemContactosBinding
 
 class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, private var listener: OnClickListenerContactos):

@@ -1,25 +1,19 @@
-package com.davidlopez.notestore10.UI
+package com.davidlopez.notestore10.UI.Contactos
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
-import androidx.annotation.ContentView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
-import com.davidlopez.notestore10.ContactosAdapter
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
-import com.davidlopez.notestore10.OnClickListenerContactos
 import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.Fragments.ContactosAux
-import com.davidlopez.notestore10.UI.Fragments.EditContactFragment
+import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityContactosBinding
 import java.util.concurrent.LinkedBlockingQueue
 
 //main-----
 
- class ContactosActivity : AppCompatActivity() ,ContactosAux,OnClickListenerContactos {
+ class ContactosActivity : AppCompatActivity() , ContactosAux, OnClickListenerContactos {
 
     private lateinit var mBinding: ActivityContactosBinding
     private lateinit var mAdapter: ContactosAdapter
@@ -86,13 +80,16 @@ import java.util.concurrent.LinkedBlockingQueue
 
     mAdapter.setContactos(queue.take())
 
-
     }
+
+     // Clic en contactos----------------------------------------
+
+
 
 //configuramos boton atras---------------------------------------
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this,MenuPrincipalActivity::class.java))
+        startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
 
     override fun hideFab(isVisible: Boolean) {
@@ -110,6 +107,7 @@ import java.util.concurrent.LinkedBlockingQueue
 
 
      override fun onClick(contactosEntity: ContactosEntity) {
+
 
      }
 
