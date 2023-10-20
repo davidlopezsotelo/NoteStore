@@ -106,17 +106,14 @@ import java.util.concurrent.LinkedBlockingQueue
 
      }
 
-
      override fun onClick(contactosEntity: ContactosEntity) {
 
-
-
          //pasar a ContactDetailActivity
-
          val intent=Intent(this,ContactDetailActivity::class.java)
          intent.putExtra("nombre",contactosEntity.name)
          intent.putExtra("telefono",contactosEntity.phone)
          intent.putExtra("email",contactosEntity.email)
+         intent.putExtra("id",contactosEntity.id)
          startActivity(intent)
 
 

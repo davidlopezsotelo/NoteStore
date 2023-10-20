@@ -17,10 +17,15 @@ import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.FragmentEditContactBinding
 import java.util.concurrent.LinkedBlockingQueue
 
+@Suppress("DEPRECATION")
 class EditContactFragment : Fragment() {
 
     private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
+
+    // actualizar-----------------------------------------
+    private var isEditMode:Boolean=false
+    private var mContactosEntity:ContactosEntity?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -30,6 +35,15 @@ class EditContactFragment : Fragment() {
     //creamos el menu------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //actualizar-----------------------------------
+        val id=arguments?.getLong(getString(R.string.arg_id),0)
+        if (id !=null && id != 0L){
+            isEditMode=true
+            getContacto(id)
+        }
+
+
         /*
         * para que aparezca el action bar
         * ir a la carpeta res/values/themes/themes.xml
@@ -43,6 +57,27 @@ class EditContactFragment : Fragment() {
 
         //mostrar menu
         setHasOptionsMenu(true)
+    }
+
+    // actualizar-------------------
+    private fun getContacto(id: Long) {
+        val queue =LinkedBlockingQueue<ContactosEntity?>()
+        Thread{
+            mContactosEntity=ContactosApp.db.ContactosDao().getContactoById(id)
+            queue.add(mContactosEntity)
+        }.start()
+        queue.take()?.let {
+            setUiContacto(it)
+        }
+    }
+
+    //le pasamos los datos seleccionados
+    private fun setUiContacto(contactosEntity: ContactosEntity) {
+        with(mBinding){
+            etName.setText(contactosEntity.name)
+            etPhone.setText(contactosEntity.phone)
+            etEmail.setText(contactosEntity.email)
+        }
     }
 
     //sobreescribimos los metodos para el menu:

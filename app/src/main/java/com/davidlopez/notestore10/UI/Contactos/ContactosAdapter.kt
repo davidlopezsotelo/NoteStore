@@ -28,10 +28,11 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
             with(binding.root) {
                 setOnClickListener { listener.onClick(contactosEntity) }
 
-               /* setOnLongClickListener { // borrar contacto pulsando largo, modificar con boton???
+                // borrar esta fincion !!!!!!!!!!!!!!!!!!!!
+               setOnLongClickListener { // borrar contacto pulsando largo, modificar con boton???
                     listener.onDeleteContacto(contactosEntity)
                     true
-                }*/
+                }
             }
         }
     }

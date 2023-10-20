@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 
 import com.davidlopez.notestore10.databinding.ActivityContactDetailBinding
 
+// CONVERTIR EN UN FRAGMENT PARA COMUNICARSE CON EL OTRO FRAGMENT
+
 class ContactDetailActivity : AppCompatActivity() {
 
     lateinit var mBinding: ActivityContactDetailBinding
@@ -38,8 +40,15 @@ class ContactDetailActivity : AppCompatActivity() {
 
         datos()
 
+        // boton llamar
         mBinding.btLlamar.setOnClickListener {
             requestPermission()
+        }
+
+        // Boton editar
+        mBinding.btEditar.setOnClickListener {
+            // accion
+
         }
     }
 
@@ -51,10 +60,12 @@ class ContactDetailActivity : AppCompatActivity() {
         val nombre= datos?.getString("nombre")
         val phone= datos?.getInt("telefono")
         val email=datos?.getString("email")
+        val id=datos?.getLong("id")
 
         mBinding.tvNombre.text=nombre.toString()
         mBinding.tvTelefono.text=phone.toString()
         mBinding.tvEmail.text=email.toString()
+        mBinding.tvid.text=id.toString()//eliminar el texfield !!!!!
     }
 
     //  funcion que otorga los permisos
@@ -84,6 +95,8 @@ class ContactDetailActivity : AppCompatActivity() {
         startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$phone")))
 
     }
+
+
 
 
 

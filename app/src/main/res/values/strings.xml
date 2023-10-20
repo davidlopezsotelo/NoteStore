@@ -10,4 +10,5 @@
     <string name="edit_title_add_contactos">Crear Contacto</string>
     <string name="menu_save_contacto">Guardar Contacto</string>
     <string name="edit_message_save_sucess">Contacto Agregado</string>
+    <string name="arg_id">arg_id</string>
 </resources>

@@ -51,11 +51,30 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         />
+    <TextView
+        android:id="@+id/tvid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
 
     <Button
         android:id="@+id/btLlamar"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="LLAMAR" />
+        android:layout_marginTop="@dimen/common_padding_default"
+        android:text="LLAMAR"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btEditar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_padding_default"
+        android:text="EDITAR"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
