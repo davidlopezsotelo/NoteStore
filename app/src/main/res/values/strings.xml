@@ -11,4 +11,7 @@
     <string name="menu_save_contacto">Guardar Contacto</string>
     <string name="edit_message_save_sucess">Contacto Agregado</string>
     <string name="arg_id">arg_id</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
+    <string name="edit_message_update_sucess">Contacto actualizado</string>
 </resources>

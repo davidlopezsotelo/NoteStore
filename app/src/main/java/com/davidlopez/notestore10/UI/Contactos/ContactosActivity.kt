@@ -10,6 +10,7 @@ import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityContactosBinding
+import com.google.android.gms.common.internal.ServiceSpecificExtraArgs.CastExtraArgs
 import java.util.concurrent.LinkedBlockingQueue
 
 //main-----
@@ -25,20 +26,25 @@ import java.util.concurrent.LinkedBlockingQueue
         mBinding=ActivityContactosBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+
 // FRAGMENT---------------------------------------------------------------------------
 
         mBinding.fab.setOnClickListener { launchEditFragment() }//creamos esta funcion en esta misma actividad.
         setupRecyclerView()
     }
 
-    private fun launchEditFragment(){
+    private fun launchEditFragment(args: Bundle?=null){
         // creamos una instancia al fragment
         val fragment= EditContactFragment()
+
+        if (args!=null) fragment.arguments=args//verificar el id
+
         val fragmentManager =supportFragmentManager
         val fragmentTransaction=fragmentManager.beginTransaction()
 
         fragmentTransaction.add(R.id.containerContactos,fragment)
         fragmentTransaction.commit()
+
 
         //retroceder al pulsar el boton atras
         fragmentTransaction.addToBackStack(null)
@@ -83,8 +89,6 @@ import java.util.concurrent.LinkedBlockingQueue
 
     }
 
-     // Clic en contactos----------------------------------------
-
 
 
 //configuramos boton atras---------------------------------------
@@ -104,6 +108,9 @@ import java.util.concurrent.LinkedBlockingQueue
 
      override fun updateContact(contactosEntity: ContactosEntity) {
 
+         mAdapter.update(contactosEntity)
+
+
      }
 
      override fun onClick(contactosEntity: ContactosEntity) {
@@ -115,7 +122,7 @@ import java.util.concurrent.LinkedBlockingQueue
          intent.putExtra("email",contactosEntity.email)
          intent.putExtra("id",contactosEntity.id)
          startActivity(intent)
-
+         finish()
 
      }
 
@@ -129,8 +136,14 @@ import java.util.concurrent.LinkedBlockingQueue
          mAdapter.delete(queue.take())
      }
 
-     override fun onUpdateContacto(contactosEntity: ContactosEntity) {
+     override fun onUpdateContacto(contactosId: Long) {
 
+         // pasamos los datos al fragment
+         val args=Bundle()
+         args.putLong(getString(R.string.arg_id),contactosId)
+
+         //llamamos al metodo que lanza el fragment
+         launchEditFragment(args)
      }
 
 

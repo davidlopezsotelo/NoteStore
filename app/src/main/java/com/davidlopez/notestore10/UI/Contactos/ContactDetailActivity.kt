@@ -10,6 +10,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import android.window.OnBackInvokedDispatcher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 
@@ -58,7 +59,7 @@ class ContactDetailActivity : AppCompatActivity() {
     private fun datos(){
         val datos=intent.extras
         val nombre= datos?.getString("nombre")
-        val phone= datos?.getInt("telefono")
+        val phone= datos?.getString("telefono")
         val email=datos?.getString("email")
         val id=datos?.getLong("id")
 
@@ -94,6 +95,11 @@ class ContactDetailActivity : AppCompatActivity() {
     private fun call(phone:String) {
         startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$phone")))
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this,ContactosActivity::class.java))
     }
 
 

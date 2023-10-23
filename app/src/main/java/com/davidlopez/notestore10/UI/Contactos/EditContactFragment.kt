@@ -2,6 +2,7 @@ package com.davidlopez.notestore10.UI.Contactos
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,6 +16,7 @@ import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.FragmentEditContactBinding
+import com.google.android.material.snackbar.Snackbar
 import java.util.concurrent.LinkedBlockingQueue
 
 @Suppress("DEPRECATION")
@@ -23,7 +25,7 @@ class EditContactFragment : Fragment() {
     private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
 
-    // actualizar-----------------------------------------
+    // actualizar contacto--------------------------------------------------------------------------
     private var isEditMode:Boolean=false
     private var mContactosEntity:ContactosEntity?=null
 
@@ -32,15 +34,21 @@ class EditContactFragment : Fragment() {
        mBinding=FragmentEditContactBinding.inflate(inflater,container,false)
         return mBinding.root
     }
-    //creamos el menu------------------------------------------------------
+
+
+    //creamos el menu-------------------------------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //actualizar-----------------------------------
+        //actualizar contacto -----------------------------------
         val id=arguments?.getLong(getString(R.string.arg_id),0)
         if (id !=null && id != 0L){
             isEditMode=true
             getContacto(id)
+
+        } else{
+            isEditMode=false
+            mContactosEntity =  ContactosEntity(name="", phone="", email = "")
         }
 
 
@@ -49,6 +57,7 @@ class EditContactFragment : Fragment() {
         * ir a la carpeta res/values/themes/themes.xml
         * y borrar donde pone NoActionBar, en la linea 3
         * */
+
         mActivity=activity as? ContactosActivity
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -59,26 +68,28 @@ class EditContactFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    // actualizar-------------------
+    // actualizar contacto ------------------------------------------------------------------------
     private fun getContacto(id: Long) {
         val queue =LinkedBlockingQueue<ContactosEntity?>()
         Thread{
+
             mContactosEntity=ContactosApp.db.ContactosDao().getContactoById(id)
             queue.add(mContactosEntity)
         }.start()
-        queue.take()?.let {
-            setUiContacto(it)
-        }
+        queue.take()?.let { setUiContacto(it) }
     }
 
-    //le pasamos los datos seleccionados
+    //le pasamos los datos seleccionados del contacto
     private fun setUiContacto(contactosEntity: ContactosEntity) {
         with(mBinding){
             etName.setText(contactosEntity.name)
-            etPhone.setText(contactosEntity.phone)
-            etEmail.setText(contactosEntity.email)
+           // etPhone.setText(contactosEntity.phone)
+            etPhone.text=contactosEntity.phone.editable()
+            etEmail.setText(contactosEntity.email).toString()
         }
     }
+    private fun String.editable():Editable=Editable.Factory.getInstance().newEditable(this)
+
 
     //sobreescribimos los metodos para el menu:
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -97,28 +108,36 @@ class EditContactFragment : Fragment() {
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
-                val contacto=ContactosEntity(
+                if (mContactosEntity !=null){
+                    with(mContactosEntity!!){
+                        name = mBinding.etName.text.toString().trim()
+                        phone = mBinding.etPhone.text.toString().trim()
+                        email = mBinding.etEmail.text.toString().trim()
+                    }
 
-                    name = mBinding.etName.text.toString().trim(),
-                    phone = mBinding.etPhone.text.toString().toInt(),
-                    email = mBinding.etEmail.text.toString() )
+                    val queue = LinkedBlockingQueue<ContactosEntity>()
+                    Thread{
 
-                val queue = LinkedBlockingQueue<Long?>()
-                Thread{
-                    mActivity?.addContact(contacto)
-                    hideKeyboard()//para ocultar el teclado
-                    val id =ContactosApp.db.ContactosDao().addContacto(contacto)// añadir id al contacto para poder ser actualizado
-                    queue.add(id)
-                }.start()
+                        if (isEditMode){
+                            ContactosApp.db.ContactosDao().updateContacto(mContactosEntity!!)
+                            Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
+                        } else mContactosEntity!!.id=ContactosApp.db.ContactosDao().addContacto(mContactosEntity!!)
+                        queue.add(mContactosEntity)
+                    }.start()
 
-               queue.take()?.let{
+                    with(queue.take()){
+                        hideKeyboard()//para ocultar el teclado
 
-                   //mostramos mensaje cotacto agregado
-                   Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_SHORT).show()
-                    mActivity?.onBackPressedDispatcher?.onBackPressed()
-
-                    // mostrar el nuevo contacto despues de añadirlo, al regresar a la pantalla anterior
-                    mActivity?.addContact(contacto)
+                        if (isEditMode){
+                            mActivity?.updateContact(this)
+                            Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
+                        }else{
+                            mActivity?.addContact(this)
+                            Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_LONG).show()
+                            //mActivity?.onBackPressedDispatcher?.onBackPressed()
+                            requireActivity().onBackPressedDispatcher.onBackPressed()
+                        }
+                    }
                 }
                 true
             }

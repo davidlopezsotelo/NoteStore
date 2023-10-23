@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
@@ -24,18 +25,46 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
         val binding= ItemContactosBinding.bind(view)
 
         fun setListener(contactosEntity: ContactosEntity){
+            //boton popup
+            fun showPopUpMenu(view: View?) {
+                val popupMenu = view?.let { PopupMenu(mContex, it) }
+                if (popupMenu != null) {
+                    popupMenu.inflate(R.menu.popup_menu)
+                    popupMenu.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.item_1 -> {
+                                // editar
+                                listener.onUpdateContacto(contactosEntity.id)
 
-            with(binding.root) {
-                setOnClickListener { listener.onClick(contactosEntity) }
+                                true
+                            }
 
-                // borrar esta fincion !!!!!!!!!!!!!!!!!!!!
-               setOnLongClickListener { // borrar contacto pulsando largo, modificar con boton???
-                    listener.onDeleteContacto(contactosEntity)
-                    true
+                            R.id.item_2 -> {
+                                // borrar
+                                listener.onDeleteContacto(contactosEntity)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }
+                    popupMenu.show()
                 }
             }
+
+            with(binding.root) {
+                binding.btnPopupMenu.setOnClickListener {
+                    view -> showPopUpMenu(view)
+                }
+                setOnClickListener { listener.onClick(contactosEntity) }
+
+            }
         }
+
+
+
     }
+
 
 
 
@@ -82,6 +111,7 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
             cotactos.set(index,contactosEntity)
             notifyItemChanged(index)
         }
+
     }
 
     fun delete(contactosEntity: ContactosEntity){
