@@ -14,4 +14,5 @@
     <string name="editar">Editar</string>
     <string name="borrar">Borrar</string>
     <string name="edit_message_update_sucess">Contacto actualizado</string>
+    <string name="edit_store_message_valid">Deves rellenar los campos requeridos</string>
 </resources>

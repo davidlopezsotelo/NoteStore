@@ -12,11 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.FragmentEditContactBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import java.util.concurrent.LinkedBlockingQueue
 
 @Suppress("DEPRECATION")
@@ -45,12 +47,10 @@ class EditContactFragment : Fragment() {
         if (id !=null && id != 0L){
             isEditMode=true
             getContacto(id)
-
         } else{
             isEditMode=false
             mContactosEntity =  ContactosEntity(name="", phone="", email = "")
         }
-
 
         /*
         * para que aparezca el action bar
@@ -66,6 +66,15 @@ class EditContactFragment : Fragment() {
 
         //mostrar menu
         setHasOptionsMenu(true)
+
+        setupTextfields()// validar texfields en tiempo real
+    }
+
+    private fun setupTextfields() {
+        with(mBinding) {
+            etName.addTextChangedListener { validateFields(tilName) }
+            etPhone.addTextChangedListener { validateFields(tilPhone) }
+        }
     }
 
     // actualizar contacto ------------------------------------------------------------------------
@@ -108,7 +117,7 @@ class EditContactFragment : Fragment() {
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
-                if (mContactosEntity !=null){
+                if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
@@ -134,7 +143,7 @@ class EditContactFragment : Fragment() {
                         }else{
                             mActivity?.addContact(this)
                             Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_LONG).show()
-                            //mActivity?.onBackPressedDispatcher?.onBackPressed()
+
                             requireActivity().onBackPressedDispatcher.onBackPressed()
                         }
                     }
@@ -145,8 +154,47 @@ class EditContactFragment : Fragment() {
         }
         //return super.onOptionsItemSelected(item) , se lo pasamos al else
     }
+//Validar los campos del edit text--------------------------------------------------------------------
 
-//ocultar el teclado------------------------------------------------------------------------
+    // sin parametros, hay que repetir mucho codigo
+    private fun validateFields(): Boolean {
+
+        var isValid = true
+
+        if (mBinding.etPhone.text.toString().trim().isEmpty()){
+            mBinding.tilPhone.error=getString(R.string.helper_required)
+            mBinding.tilPhone.requestFocus()
+            isValid=false
+        }
+
+        if (mBinding.etName.text.toString().trim().isEmpty()){
+            mBinding.tilName.error=getString(R.string.helper_required)
+            mBinding.tilName.requestFocus()
+            isValid=false
+        }
+        return isValid
+    }
+
+    //con parametros, codigo mas limpio y ampliable a mas texfields
+    private fun validateFields(vararg textFields: TextInputLayout): Boolean{
+        var isValid = true
+
+        for (textField in textFields){
+            if (textField.editText?.text.toString().trim().isEmpty()){
+                textField.error = getString(R.string.helper_required)
+                isValid = false
+            } else textField.error = null
+        }
+
+         if (!isValid) Snackbar.make(mBinding.root,
+            R.string.edit_store_message_valid,
+            Snackbar.LENGTH_SHORT).show()
+
+        return isValid
+    }
+
+
+    //ocultar el teclado------------------------------------------------------------------------
     private fun hideKeyboard(){
         val imm=mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE)as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken,0)
