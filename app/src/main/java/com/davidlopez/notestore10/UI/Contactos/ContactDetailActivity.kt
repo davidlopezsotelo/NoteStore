@@ -46,10 +46,13 @@ class ContactDetailActivity : AppCompatActivity() {
             requestPermission()
         }
 
-        // Boton editar
-        mBinding.btEditar.setOnClickListener {
+        // Boton sms
+        mBinding.btSMS.setOnClickListener {
             // accion
-
+        }
+        // Boton mail
+        mBinding.btEmail.setOnClickListener {
+            // accion
         }
     }
 
@@ -66,7 +69,7 @@ class ContactDetailActivity : AppCompatActivity() {
         mBinding.tvNombre.text=nombre.toString()
         mBinding.tvTelefono.text=phone.toString()
         mBinding.tvEmail.text=email.toString()
-        mBinding.tvid.text=id.toString()//eliminar el texfield !!!!!
+
     }
 
     //  funcion que otorga los permisos
