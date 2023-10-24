@@ -11,6 +11,7 @@ import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityContactosBinding
 import com.google.android.gms.common.internal.ServiceSpecificExtraArgs.CastExtraArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.LinkedBlockingQueue
 
 //main-----
@@ -127,13 +128,20 @@ import java.util.concurrent.LinkedBlockingQueue
      }
 
      override fun onDeleteContacto(contactosEntity: ContactosEntity) {
-         val queue=LinkedBlockingQueue<ContactosEntity>()
-         Thread{
 
-             ContactosApp.db.ContactosDao().deleteAllContacto(contactosEntity)
-             queue.add(contactosEntity)
-         }.start()
-         mAdapter.delete(queue.take())
+         MaterialAlertDialogBuilder(this)
+             .setTitle(R.string.dialog_delete_contact)
+             .setPositiveButton(R.string.dialog_delete_confirm) { dialogInterface, i ->
+                 val queue = LinkedBlockingQueue<ContactosEntity>()
+                 Thread {
+                     ContactosApp.db.ContactosDao().deleteAllContacto(contactosEntity)
+                     queue.add(contactosEntity)
+                 }.start()
+                 mAdapter.delete(queue.take())
+             }
+             .setNegativeButton(R.string.dialog_delete_cancel,null)
+             .show()
+
      }
 
      override fun onUpdateContacto(contactosId: Long) {

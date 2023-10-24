@@ -21,28 +21,34 @@
         <activity
             android:name=".UI.Contactos.ContactDetailActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
         <activity
             android:name=".UI.AboutActivity"
             android:exported="false"
+            android:theme="@style/Base.Theme.NoteStore10_sin_bar"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".UI.DocumentosActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
         <activity
             android:name=".UI.NotasActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
         <activity
             android:name=".UI.Contactos.ContactosActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+
            />
         <activity
             android:name=".UI.MenuPrincipalActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.NoteStore10_sin_bar"
            />
         <activity
             android:name=".Login.RegistroActivity"

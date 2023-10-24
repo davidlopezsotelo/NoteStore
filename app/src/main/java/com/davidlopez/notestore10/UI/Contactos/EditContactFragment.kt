@@ -58,16 +58,18 @@ class EditContactFragment : Fragment() {
         * y borrar donde pone NoActionBar, en la linea 3
         * */
 
+        setupActionBar()
+        setupTextfields()// validar texfields en tiempo real
+    }
+
+    private fun setupActionBar() {
         mActivity=activity as? ContactosActivity
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         //configuramos el titulo
-        mActivity?.supportActionBar?.title=getString(R.string.edit_title_add_contactos)//creamos el recurso
-
+        mActivity?.supportActionBar?.title= if (isEditMode) getString(R.string.edit_title_editar_contactos)//creamos el recurso
+        else getString(R.string.edit_title_add_contactos)
         //mostrar menu
         setHasOptionsMenu(true)
-
-        setupTextfields()// validar texfields en tiempo real
     }
 
     private fun setupTextfields() {

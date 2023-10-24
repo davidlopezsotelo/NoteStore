@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Grey_fondo"
     tools:context=".UI.MenuPrincipalActivity">
 
     <TextView
@@ -22,7 +23,7 @@
         android:id="@+id/button_salir3"
         android:layout_width="278dp"
         android:layout_height="65dp"
-        android:backgroundTint="@color/note_red"
+        android:backgroundTint="@color/Grey"
         android:text="SALIR"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
