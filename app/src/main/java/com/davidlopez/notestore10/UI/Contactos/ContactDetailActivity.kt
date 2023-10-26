@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Email
 import android.widget.Toast
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -43,18 +44,21 @@ class ContactDetailActivity : AppCompatActivity() {
 
         // boton llamar
         mBinding.btLlamar.setOnClickListener {
-            requestPermission()
+            requestPermissionTel()
         }
 
         // Boton sms
         mBinding.btSMS.setOnClickListener {
             // accion
+            requestPermissionSms()
+
         }
         // Boton mail
         mBinding.btEmail.setOnClickListener {
-            // accion
+          sendEmail()
         }
     }
+
 
 
     //funcion que muestra los datos recibidos del ...
@@ -74,22 +78,18 @@ class ContactDetailActivity : AppCompatActivity() {
 
     //  funcion que otorga los permisos
 
-    private fun requestPermission(){
+    private fun requestPermissionTel(){
 
         val phone=mBinding.tvTelefono.text.toString()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1){
-
-            when{
-
+            when (PackageManager.PERMISSION_GRANTED) {
                 ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED -> {
-                        call(phone)
-                    }
+                    Manifest.permission.CALL_PHONE) -> {
+                    call(phone)
+                }
                 else -> requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
             }
-
-
         }else{
             call(phone)
         }
@@ -97,6 +97,38 @@ class ContactDetailActivity : AppCompatActivity() {
 
     private fun call(phone:String) {
         startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$phone")))
+    }
+
+
+    private fun requestPermissionSms() {
+
+        val phone=mBinding.tvTelefono.text.toString()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1){
+            when (PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.SEND_SMS) -> {
+                    SendSms(phone)
+                }
+                else -> requestPermissionLauncher.launch(Manifest.permission.SEND_SMS)
+            }
+        }else{
+            SendSms(phone)
+        }
+    }
+
+    private fun SendSms(phone: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("tel:$phone")))
+
+    }
+
+    private fun sendEmail() {
+
+        val email=mBinding.tvEmail.text.toString()
+
+        val emailIntent = Intent(Intent.ACTION_SENDTO,
+            Uri.fromParts("mailto","$email",null))
+            startActivity(Intent.createChooser(emailIntent,"Enviar Correo..."))
 
     }
 
@@ -104,10 +136,6 @@ class ContactDetailActivity : AppCompatActivity() {
         super.onBackPressed()
         startActivity(Intent(this,ContactosActivity::class.java))
     }
-
-
-
-
 
 }
 
