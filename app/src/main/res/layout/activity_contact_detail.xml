@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/note_yelow"
+    android:background="@color/Grey_fondo"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,18 +10,13 @@
     tools:context=".UI.Contactos.ContactDetailActivity">
 
     <ImageView
-        android:background="@color/color_white_t"
         android:id="@+id/imageView"
-        android:layout_width="122dp"
-        android:layout_height="92dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_person"
-
-
-
-        />
+        android:layout_width="146dp"
+        android:layout_height="119dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
+        android:background="@color/color_white_t"
+        android:src="@drawable/ic_person" />
 
     <TextView
         android:id="@+id/tvNombre"
@@ -30,7 +25,7 @@
         android:text="nombre"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         />
 
     <TextView
@@ -54,25 +49,25 @@
 
     <Button
         android:id="@+id/btLlamar"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_padding_default"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
         android:text="LLAMAR"
         android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/btSMS"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_padding_default"
-        android:text="mensaje"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:text="MENSAJE"
         android:layout_gravity="center"/>
     <Button
         android:id="@+id/btEmail"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_padding_default"
-        android:text="correo"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:text="EMAIL"
         android:layout_gravity="center"/>
 
 </LinearLayout>
