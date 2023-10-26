@@ -67,7 +67,7 @@ class EditContactFragment : Fragment() {
             getContacto(id)
         } else{
             isEditMode=false
-            mContactosEntity =  ContactosEntity(name="", phone="", email = "", imagen = 0)
+            mContactosEntity =  ContactosEntity(name="", phone="", email = "", imagen = "")
         }
 
         /*
@@ -160,7 +160,8 @@ class EditContactFragment : Fragment() {
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
                         email = mBinding.etEmail.text.toString().trim()
-                        imagen=photoSelectUri.toString().toInt()// funciona??
+                        imagen= mBinding.imageViewPhoto.setImageURI(photoSelectUri).toString()
+
 
                         // guardar la imagen!!!!!!!!
 

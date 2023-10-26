@@ -20,7 +20,7 @@ class ContactosApp:Application() {
 
         val migration_1_2 = object :Migration(1,2){
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE ContactosEntity ADD COLUMN imagen TEXT NOT NULL DEFAULT 0")
+                database.execSQL("ALTER TABLE Contactos ADD COLUMN imagen TEXT NOT NULL DEFAULT 0")
             }
         }
 
