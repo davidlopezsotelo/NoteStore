@@ -1,9 +1,17 @@
 package com.davidlopez.notestore10.UI.Contactos
 
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
@@ -26,6 +34,7 @@ import java.util.concurrent.LinkedBlockingQueue
         super.onCreate(savedInstanceState)
         mBinding=ActivityContactosBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
 
 
 // FRAGMENT---------------------------------------------------------------------------
@@ -94,7 +103,7 @@ import java.util.concurrent.LinkedBlockingQueue
 
 //configuramos boton atras---------------------------------------
     override fun onBackPressed() {
-        super.onBackPressed()
+    super.onBackPressed()
         startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
 
@@ -153,6 +162,7 @@ import java.util.concurrent.LinkedBlockingQueue
          //llamamos al metodo que lanza el fragment
          launchEditFragment(args)
      }
+
 
 
  }

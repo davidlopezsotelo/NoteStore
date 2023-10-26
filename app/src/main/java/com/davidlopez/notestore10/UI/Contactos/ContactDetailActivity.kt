@@ -2,19 +2,15 @@ package com.davidlopez.notestore10.UI.Contactos
 
 
 import android.Manifest
-import android.app.Instrumentation.ActivityResult
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.widget.Toast
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-
 import com.davidlopez.notestore10.databinding.ActivityContactDetailBinding
 
 // CONVERTIR EN UN FRAGMENT PARA COMUNICARSE CON EL OTRO FRAGMENT
@@ -127,8 +123,9 @@ class ContactDetailActivity : AppCompatActivity() {
         val email=mBinding.tvEmail.text.toString()
 
         val emailIntent = Intent(Intent.ACTION_SENDTO,
-            Uri.fromParts("mailto","$email",null))
+            Uri.fromParts("mailto", email,null))
             startActivity(Intent.createChooser(emailIntent,"Enviar Correo..."))
+
 
     }
 

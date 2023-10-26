@@ -5,11 +5,22 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+
+    <!-- permiso para hacer llamadas  -->
+
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!-- permiso para mandar sms  -->
 
     <uses-permission android:name="android.permission.SEND_SMS"/>
 
+    <!-- permiso para aceder a internet y mandar correo  -->
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- permiso para aceder a almacenaje exterior, para poder acceder a galeria de imagenes -->
+    
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
         android:name=".App.ContactosApp"
@@ -28,7 +39,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
         <activity
-            android:name=".UI.AboutActivity"
+            android:name=".UI.CalendarActivity"
             android:exported="false"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar"
             android:screenOrientation="portrait"/>

@@ -8,7 +8,8 @@ data class ContactosEntity(@PrimaryKey(autoGenerate = true)
                             var id:Long=0,
                            var name:String,
                            var email:String="",//inicializamos el mail a vacio por si no se quiere ingresar
-                           var phone:String){
+                           var phone:String,
+                            var imagen:Int){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

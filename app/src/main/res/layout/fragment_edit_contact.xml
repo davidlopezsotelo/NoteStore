@@ -71,6 +71,25 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black">
             </com.google.android.material.textfield.TextInputEditText>
+
+            <ImageView
+                android:id="@+id/imageView_photo"
+                android:layout_width="146dp"
+                android:layout_height="119dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="36dp"
+                android:background="@color/color_white_t"
+                android:src="@drawable/ic_person" />
+
+            <Button
+                android:id="@+id/btn_selectImage"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:backgroundTint="@color/Grey"
+                android:text="@string/ad_image"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 

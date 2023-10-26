@@ -1,6 +1,10 @@
 package com.davidlopez.notestore10.UI.Contactos
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import androidx.fragment.app.Fragment
@@ -12,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
@@ -24,6 +29,7 @@ import java.util.concurrent.LinkedBlockingQueue
 @Suppress("DEPRECATION")
 class EditContactFragment : Fragment() {
 
+
     private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
 
@@ -35,6 +41,10 @@ class EditContactFragment : Fragment() {
         savedInstanceState: Bundle?): View {
        mBinding=FragmentEditContactBinding.inflate(inflater,container,false)
         return mBinding.root
+
+
+
+
     }
 
 
@@ -49,7 +59,7 @@ class EditContactFragment : Fragment() {
             getContacto(id)
         } else{
             isEditMode=false
-            mContactosEntity =  ContactosEntity(name="", phone="", email = "")
+            mContactosEntity =  ContactosEntity(name="", phone="", email = "", imagen = 0)
         }
 
         /*
@@ -94,9 +104,9 @@ class EditContactFragment : Fragment() {
     private fun setUiContacto(contactosEntity: ContactosEntity) {
         with(mBinding){
             etName.setText(contactosEntity.name)
-           // etPhone.setText(contactosEntity.phone)
             etPhone.text=contactosEntity.phone.editable()
             etEmail.setText(contactosEntity.email).toString()
+            // cargar la imagen !!!!!!!!!
         }
     }
     private fun String.editable():Editable=Editable.Factory.getInstance().newEditable(this)
@@ -116,14 +126,24 @@ class EditContactFragment : Fragment() {
                 true
             }
 
+
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
+
+                mBinding.btnSelectImage.setOnClickListener {
+
+                }
 
                 if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
                         email = mBinding.etEmail.text.toString().trim()
+
+                        // guardar la imagen!!!!!!!!
+
+
+
                     }
 
                     val queue = LinkedBlockingQueue<ContactosEntity>()
@@ -166,12 +186,17 @@ class EditContactFragment : Fragment() {
         if (mBinding.etPhone.text.toString().trim().isEmpty()){
             mBinding.tilPhone.error=getString(R.string.helper_required)
             mBinding.tilPhone.requestFocus()
+
+            // cargar la imagen !!!!!!!
+
             isValid=false
         }
 
         if (mBinding.etName.text.toString().trim().isEmpty()){
             mBinding.tilName.error=getString(R.string.helper_required)
             mBinding.tilName.requestFocus()
+
+            //cargar imagen !!!!
             isValid=false
         }
         return isValid
@@ -210,4 +235,12 @@ class EditContactFragment : Fragment() {
         setHasOptionsMenu(false)
         super.onDestroy()
     }
+
+// insertar imagenes
+
+
+
+
+
+
 }

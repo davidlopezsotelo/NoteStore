@@ -36,8 +36,8 @@ class MenuPrincipalActivity : AppCompatActivity() {
             finish()
         }
         // boton about-----------------------------------------------------
-        binding.btnAbout.setOnClickListener {
-            startActivity(Intent(this,AboutActivity::class.java))
+        binding.btnCalendar.setOnClickListener {
+            startActivity(Intent(this,CalendarActivity::class.java))
             finish()
         }
 
@@ -45,7 +45,8 @@ class MenuPrincipalActivity : AppCompatActivity() {
         //botn salir----------------------------------------------------------
         binding.buttonSalir3.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            onBackPressed() }
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
 
