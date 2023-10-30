@@ -4,18 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.NotasActivity">
+    tools:context=".UI.Notas.NotasActivity">
 
-    <TextView
-        android:id="@+id/tv_notasl"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSave"
+        android:layout_width="120dp"
+        android:layout_height="53dp"
+        android:layout_margin="@dimen/common_padding_default"
+        android:layout_marginHorizontal="@dimen/common_padding_default"
+        android:text="GUARDAR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="NOTAS"
-        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnSave"
+        app:layout_constraintTop_toTopOf="@id/btnSave"
+        app:layout_constraintBottom_toBottomOf="@id/btnSave"
+        android:hint="Nombre de la nota"/>
+
+    <!--boton flotante para crear nuevas notas-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reciclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/common_padding_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintTop_toBottomOf="@id/btnSave"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_nota" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

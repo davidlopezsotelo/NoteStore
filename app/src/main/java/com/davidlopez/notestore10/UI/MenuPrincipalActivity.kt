@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.davidlopez.notestore10.UI.Contactos.ContactosActivity
+import com.davidlopez.notestore10.UI.Notas.NotasActivity
 import com.davidlopez.notestore10.databinding.ActivityMenuPrincipalBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -27,7 +28,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
         }
         // boton notas-----------------------------------------------------
         binding.btnNotas.setOnClickListener {
-            startActivity(Intent(this,NotasActivity::class.java))
+            startActivity(Intent(this, NotasActivity::class.java))
             finish()
         }
         // boton documentos-----------------------------------------------------

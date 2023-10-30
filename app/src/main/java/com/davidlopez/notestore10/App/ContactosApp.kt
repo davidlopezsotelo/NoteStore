@@ -26,8 +26,6 @@ class ContactosApp:Application() {
         }
 */
 
-        db=Room.databaseBuilder(this,RoomDB::class.java,"NoteStoreDataBase")
-            //.addMigrations(migration_1_2)
-            .build()
+        db=Room.databaseBuilder(this,RoomDB::class.java,"NoteStoreDataBase").build()
     }
 }

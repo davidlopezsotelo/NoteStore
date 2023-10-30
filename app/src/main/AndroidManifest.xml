@@ -53,7 +53,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
         <activity
-            android:name=".UI.NotasActivity"
+            android:name=".UI.Notas.NotasActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
