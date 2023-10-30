@@ -18,15 +18,16 @@ class ContactosApp:Application() {
 
         //MIGRACION DE LA BASE DE DATOS
 
+        /*
         val migration_1_2 = object :Migration(1,2){
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE Contactos ADD COLUMN imagen TEXT NOT NULL DEFAULT 0")
             }
         }
-
+*/
 
         db=Room.databaseBuilder(this,RoomDB::class.java,"NoteStoreDataBase")
-            .addMigrations(migration_1_2)
+            //.addMigrations(migration_1_2)
             .build()
     }
 }

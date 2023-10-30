@@ -64,7 +64,7 @@ class EditContactFragment : Fragment() {
             getContacto(id)
         } else{
             isEditMode=false
-            mContactosEntity =  ContactosEntity(name ="", phone ="", email = "", imagen = "")
+            mContactosEntity =  ContactosEntity(name ="", phone ="", email = "") //imagen = "")
         }
 
         /*
@@ -124,7 +124,7 @@ class EditContactFragment : Fragment() {
             etPhone.text=contactosEntity.phone.editable()
             etEmail.setText(contactosEntity.email).toString()
             // cargar la imagen !!!!!!!!!
-            imageViewPhoto.setImageURI(Uri.parse(contactosEntity.imagen))
+           // imageViewPhoto.setImageURI(Uri.parse(contactosEntity.imagen))
 
         }
     }
@@ -153,18 +153,12 @@ class EditContactFragment : Fragment() {
 
                 }
 
-                //convertir Uri en un strig para poder guardarla en una base de datos
-                //val uriString=photoSelectUri.toString()
-
-
-
                 if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
                         email = mBinding.etEmail.text.toString().trim()
 
-                        //TODO GUARDAR
                         guardarImagen(id = mContactosEntity!!.id)
 
                     }
@@ -213,6 +207,7 @@ class EditContactFragment : Fragment() {
 //Validar los campos del edit text--------------------------------------------------------------------
 
     // sin parametros, hay que repetir mucho codigo
+    /*
     private fun validateFields(): Boolean {
 
         var isValid = true
@@ -234,7 +229,7 @@ class EditContactFragment : Fragment() {
             isValid=false
         }
         return isValid
-    }
+    }*/
 
     //con parametros, codigo mas limpio y ampliable a mas texfields
     private fun validateFields(vararg textFields: TextInputLayout): Boolean{

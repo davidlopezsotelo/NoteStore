@@ -129,7 +129,7 @@ class ContactDetailActivity : AppCompatActivity() {
         val emailIntent = Intent(Intent.ACTION_SENDTO,
             Uri.fromParts("mailto", email,null))
             startActivity(Intent.createChooser(emailIntent,"Enviar Correo..."))
-        
+
     }
 
     override fun onBackPressed() {
