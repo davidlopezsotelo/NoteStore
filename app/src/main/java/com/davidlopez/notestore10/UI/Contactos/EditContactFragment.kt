@@ -1,16 +1,11 @@
 package com.davidlopez.notestore10.UI.Contactos
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -19,8 +14,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
@@ -37,6 +32,8 @@ class EditContactFragment : Fragment() {
 
     private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
+
+
 
     // actualizar contacto--------------------------------------------------------------------------
     private var isEditMode:Boolean=false
@@ -67,7 +64,7 @@ class EditContactFragment : Fragment() {
             getContacto(id)
         } else{
             isEditMode=false
-            mContactosEntity =  ContactosEntity(name="", phone="", email = "", imagen = "")
+            mContactosEntity =  ContactosEntity(name ="", phone ="", email = "", imagen = "")
         }
 
         /*
@@ -127,6 +124,7 @@ class EditContactFragment : Fragment() {
             etPhone.text=contactosEntity.phone.editable()
             etEmail.setText(contactosEntity.email).toString()
             // cargar la imagen !!!!!!!!!
+            imageViewPhoto.setImageURI(Uri.parse(contactosEntity.imagen))
 
         }
     }
@@ -155,17 +153,19 @@ class EditContactFragment : Fragment() {
 
                 }
 
+                //convertir Uri en un strig para poder guardarla en una base de datos
+                //val uriString=photoSelectUri.toString()
+
+
+
                 if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
                         email = mBinding.etEmail.text.toString().trim()
-                        imagen= mBinding.imageViewPhoto.setImageURI(photoSelectUri).toString()
 
-
-                        // guardar la imagen!!!!!!!!
-
-
+                        //TODO GUARDAR
+                        guardarImagen(id = mContactosEntity!!.id)
 
                     }
 
@@ -198,6 +198,17 @@ class EditContactFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
         //return super.onOptionsItemSelected(item) , se lo pasamos al else
+    }
+
+
+    //funcion que guarda la foto segun el id
+
+    private fun guardarImagen(id: Long) {
+
+        photoSelectUri?.let {
+            this.context?.let { it1 -> ImageController.saveImage(it1,id,it) } //???????
+        }
+
     }
 //Validar los campos del edit text--------------------------------------------------------------------
 
@@ -264,8 +275,11 @@ class EditContactFragment : Fragment() {
     //seleccionar imagen---------------------------------------------
     private fun selectImage() {
 
-        val intent=Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent,RC_GALLERY)
+        /*val intent=Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent,RC_GALLERY)*/
+
+        ImageController.selectPhotoFromGallery(this,RC_GALLERY)
+
     }
 
 

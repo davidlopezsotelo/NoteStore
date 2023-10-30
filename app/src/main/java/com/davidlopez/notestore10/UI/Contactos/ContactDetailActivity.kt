@@ -65,11 +65,13 @@ class ContactDetailActivity : AppCompatActivity() {
         val phone= datos?.getString("telefono")
         val email=datos?.getString("email")
         val id=datos?.getLong("id")
-       // val imagen=datos?.getInt("UriFoto")//cargar la imagen
+
+        val imageUri= id?.let { ImageController.getImageUri(this, it) }
 
         mBinding.tvNombre.text=nombre.toString()
         mBinding.tvTelefono.text=phone.toString()
         mBinding.tvEmail.text=email.toString()
+        mBinding.imageView.setImageURI(imageUri)
 
 
     }
@@ -127,7 +129,7 @@ class ContactDetailActivity : AppCompatActivity() {
         val emailIntent = Intent(Intent.ACTION_SENDTO,
             Uri.fromParts("mailto", email,null))
             startActivity(Intent.createChooser(emailIntent,"Enviar Correo..."))
-
+        
     }
 
     override fun onBackPressed() {

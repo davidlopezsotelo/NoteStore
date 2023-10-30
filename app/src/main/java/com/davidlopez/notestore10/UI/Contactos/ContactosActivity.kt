@@ -131,6 +131,7 @@ import java.util.concurrent.LinkedBlockingQueue
          intent.putExtra("telefono",contactosEntity.phone)
          intent.putExtra("email",contactosEntity.email)
          intent.putExtra("id",contactosEntity.id)
+         intent.putExtra("UriFoto",contactosEntity.imagen)
          startActivity(intent)
          finish()
 
