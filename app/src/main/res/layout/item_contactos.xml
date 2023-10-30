@@ -36,8 +36,8 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="279dp"
-            android:layout_height="62dp"
+            android:layout_width="252dp"
+            android:layout_height="56dp"
             android:background="@color/note_green2"
             android:ellipsize="end"
             android:gravity="bottom"
@@ -56,17 +56,19 @@
 
         </TextView>
 
+
         <ImageView
             android:id="@+id/imageView_photo"
             android:layout_width="94dp"
             android:layout_height="77dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_person" />
 
+            app:layout_constraintVertical_bias="0.307"
+            app:srcCompat="@drawable/ic_person" />
 
         <Button
             android:id="@+id/btn_popup_menu"

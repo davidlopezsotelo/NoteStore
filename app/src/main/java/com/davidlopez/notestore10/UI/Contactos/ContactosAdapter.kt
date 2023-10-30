@@ -35,17 +35,13 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
                             R.id.item_1 -> {
                                 // editar
                                 listener.onUpdateContacto(contactosEntity.id)
-
                                 true
                             }
-
                             R.id.item_2 -> {
                                 // borrar
                                 listener.onDeleteContacto(contactosEntity)
                                 true
-                            }
-
-                            else -> false
+                            }  else -> false
                         }
                     }
                     popupMenu.show()
@@ -57,15 +53,9 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
                     view -> showPopUpMenu(view)
                 }
                 setOnClickListener { listener.onClick(contactosEntity) }
-
             }
         }
-
-
-
     }
-
-
 
 
 // Metodos sobreescritos del viewholder ----------------------------------------------------------------------------------------------
@@ -83,13 +73,17 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contactos=cotactos.get(position)
+
+        var idPhoto=contactos.id
+        val uriphoto = ImageController.getImageUri(mContex,idPhoto)
         with(holder){
             setListener(contactos)
             binding.tvName.text=contactos.name
+            binding.imageViewPhoto.setImageURI(uriphoto)//cargamos la imagen con el id para ponerla en el item:
         }
     }
-// End Methods-----------------------------------------------------------------------------------------------------------------
 
+// End Methods-----------------------------------------------------------------------------------------------------------------
 
 
     fun add (contacto:ContactosEntity){
@@ -104,16 +98,13 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
         this.cotactos=contactos
         notifyDataSetChanged()
     }
-
     fun update(contactosEntity: ContactosEntity){
         val index=cotactos.indexOf(contactosEntity)
         if (index !=-1){
             cotactos.set(index,contactosEntity)
             notifyItemChanged(index)
         }
-
     }
-
     fun delete(contactosEntity: ContactosEntity){
         val index=cotactos.indexOf(contactosEntity)
         if (index !=-1){
@@ -121,6 +112,5 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
             notifyItemRemoved(index)
         }
     }
-
 
 }

@@ -29,10 +29,10 @@ class EditContactFragment : Fragment() {
 
     private val RC_GALLERY=23
     private  var photoSelectUri: Uri?=null
-
     private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
 
+    private lateinit var mContex: Context
 
 
     // actualizar contacto--------------------------------------------------------------------------
@@ -49,30 +49,28 @@ class EditContactFragment : Fragment() {
 
     }
 
-
-    //creamos el menu-------------------------------------------------------------------------------
+//creamos el menu-------------------------------------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 //boton seleccionar imagen----------------------------------------------------------------------------
         mBinding.btnSelectImage.setOnClickListener { selectImage() }
 
-        //actualizar contacto -----------------------------------
+
+//actualizar contacto --------------------------------------------------------------------------------
         val id=arguments?.getLong(getString(R.string.arg_id),0)
         if (id !=null && id != 0L){
             isEditMode=true
             getContacto(id)
         } else{
             isEditMode=false
-            mContactosEntity =  ContactosEntity(name ="", phone ="", email = "") //imagen = "")
+            mContactosEntity =  ContactosEntity(name ="", phone ="", email = "")
         }
-
-        /*
-        * para que aparezca el action bar
-        * ir a la carpeta res/values/themes/themes.xml
-        * y borrar donde pone NoActionBar, en la linea 3
-        * */
-
+                        /*
+                        * para que aparezca el action bar
+                        * ir a la carpeta res/values/themes/themes.xml
+                        * y borrar donde pone NoActionBar, en la linea 3
+                        * */
         setupActionBar()
         setupTextfields()// validar texfields en tiempo real
     }
@@ -106,7 +104,7 @@ class EditContactFragment : Fragment() {
         }
     }
 
-    // actualizar contacto ------------------------------------------------------------------------
+// actualizar contacto -------------------------------------------------------------------------------
     private fun getContacto(id: Long) {
         val queue =LinkedBlockingQueue<ContactosEntity?>()
         Thread{
@@ -119,17 +117,20 @@ class EditContactFragment : Fragment() {
 
     //le pasamos los datos seleccionados del contacto
     private fun setUiContacto(contactosEntity: ContactosEntity) {
+        mContex= this.requireContext()
+        val idFoto=contactosEntity.id
+
         with(mBinding){
             etName.setText(contactosEntity.name)
             etPhone.text=contactosEntity.phone.editable()
             etEmail.setText(contactosEntity.email).toString()
             // cargar la imagen !!!!!!!!!
-           // imageViewPhoto.setImageURI(Uri.parse(contactosEntity.imagen))
 
+            imageViewPhoto.setImageURI(ImageController.getImageUri(mContex,idFoto))
         }
     }
-    private fun String.editable():Editable=Editable.Factory.getInstance().newEditable(this)
 
+    private fun String.editable():Editable=Editable.Factory.getInstance().newEditable(this)
 
     //sobreescribimos los metodos para el menu:
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -149,18 +150,14 @@ class EditContactFragment : Fragment() {
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
-                mBinding.btnSelectImage.setOnClickListener {
-
-                }
+                mBinding.btnSelectImage.setOnClickListener {      }//suprimir??
 
                 if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
                         email = mBinding.etEmail.text.toString().trim()
-
                         guardarImagen(id = mContactosEntity!!.id)
-
                     }
 
                     val queue = LinkedBlockingQueue<ContactosEntity>()
@@ -195,43 +192,17 @@ class EditContactFragment : Fragment() {
     }
 
 
-    //funcion que guarda la foto segun el id
+//funcion que guarda la foto segun el id--------------------------------------------------------------
 
     private fun guardarImagen(id: Long) {
-
         photoSelectUri?.let {
             this.context?.let { it1 -> ImageController.saveImage(it1,id,it) } //???????
         }
-
     }
+
+
 //Validar los campos del edit text--------------------------------------------------------------------
 
-    // sin parametros, hay que repetir mucho codigo
-    /*
-    private fun validateFields(): Boolean {
-
-        var isValid = true
-
-        if (mBinding.etPhone.text.toString().trim().isEmpty()){
-            mBinding.tilPhone.error=getString(R.string.helper_required)
-            mBinding.tilPhone.requestFocus()
-
-            // cargar la imagen !!!!!!!
-
-            isValid=false
-        }
-
-        if (mBinding.etName.text.toString().trim().isEmpty()){
-            mBinding.tilName.error=getString(R.string.helper_required)
-            mBinding.tilName.requestFocus()
-
-            //cargar imagen !!!!
-            isValid=false
-        }
-        return isValid
-    }*/
-
-    //con parametros, codigo mas limpio y ampliable a mas texfields
     private fun validateFields(vararg textFields: TextInputLayout): Boolean{
         var isValid = true
 
@@ -250,13 +221,14 @@ class EditContactFragment : Fragment() {
     }
 
 
-    //ocultar el teclado------------------------------------------------------------------------
+//ocultar el teclado--------------------------------------------------------------------------------------------
     private fun hideKeyboard(){
         val imm=mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE)as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken,0)
     }
 
-//ciclo de vida del fragment-----------------------------------------------------------------
+
+//ciclo de vida del fragment----------------------------------------------------------------------------------
     override fun onDestroy() {
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mActivity?.supportActionBar?.title=getString(R.string.app_name)
@@ -269,17 +241,7 @@ class EditContactFragment : Fragment() {
 
     //seleccionar imagen---------------------------------------------
     private fun selectImage() {
-
-        /*val intent=Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent,RC_GALLERY)*/
-
         ImageController.selectPhotoFromGallery(this,RC_GALLERY)
-
     }
-
-
-
-
-
 
 }

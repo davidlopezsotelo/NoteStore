@@ -25,7 +25,7 @@ object ImageController {
         file.writeBytes(bytes)
     }
 
-    fun getImageUri(context: Context,id: Long):Uri {
+    fun getImageUri(context: Context, id: Long):Uri {
         val file=File(context.filesDir,id.toString())
         return if (file.exists()) Uri.fromFile(file)
         else Uri.parse("android.resource://com.davidlopez.notestore10/drawable/ic_person.xml")
