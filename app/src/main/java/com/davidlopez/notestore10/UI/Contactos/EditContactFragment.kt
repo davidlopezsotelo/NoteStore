@@ -45,8 +45,6 @@ class EditContactFragment : Fragment() {
         return mBinding.root
 
 
-
-
     }
 
 //creamos el menu-------------------------------------------------------------------------------------
@@ -83,6 +81,7 @@ class EditContactFragment : Fragment() {
             if (requestCode == RC_GALLERY) {
                 photoSelectUri = data?.data
                 mBinding.imageViewPhoto.setImageURI(photoSelectUri)
+
             }
         }
     }
@@ -125,7 +124,6 @@ class EditContactFragment : Fragment() {
             etPhone.text=contactosEntity.phone.editable()
             etEmail.setText(contactosEntity.email).toString()
             // cargar la imagen !!!!!!!!!
-
             imageViewPhoto.setImageURI(ImageController.getImageUri(mContex,idFoto))
         }
     }
@@ -150,14 +148,13 @@ class EditContactFragment : Fragment() {
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
-                mBinding.btnSelectImage.setOnClickListener {      }//suprimir??
+               // mBinding.btnSelectImage.setOnClickListener {      }//suprimir??
 
                 if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
                         email = mBinding.etEmail.text.toString().trim()
-                        guardarImagen(id = mContactosEntity!!.id)
                     }
 
                     val queue = LinkedBlockingQueue<ContactosEntity>()
@@ -166,8 +163,11 @@ class EditContactFragment : Fragment() {
                         if (isEditMode){
                             ContactosApp.db.ContactosDao().updateContacto(mContactosEntity!!)
                             Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
+
                         } else mContactosEntity!!.id=ContactosApp.db.ContactosDao().addContacto(mContactosEntity!!)
+                        guardarImagen(id = mContactosEntity!!.id)
                         queue.add(mContactosEntity)
+
                     }.start()
 
                     with(queue.take()){
@@ -176,6 +176,7 @@ class EditContactFragment : Fragment() {
                         if (isEditMode){
                             mActivity?.updateContact(this)
                             Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
+
                         }else{
                             mActivity?.addContact(this)
                             Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_LONG).show()

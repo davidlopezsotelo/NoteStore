@@ -163,6 +163,4 @@ import java.util.concurrent.LinkedBlockingQueue
          launchEditFragment(args)
      }
 
-
-
  }

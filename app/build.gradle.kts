@@ -58,7 +58,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")// no cambiar para que funcionen los fragments 1.9.0!!!!!!!!!!
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth-ktx:22.2.0")
-    implementation("com.google.firebase:firebase-analytics-ktx:21.4.0")
+    implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")
 
     implementation ("androidx.cardview:cardview:1.0.0")
 
