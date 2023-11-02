@@ -2,6 +2,7 @@ package com.davidlopez.notestore10.UI.Contactos
 
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -124,13 +125,15 @@ class ContactDetailActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun sendEmail() {
 
         val email=mBinding.tvEmail.text.toString()
 
         val emailIntent = Intent(Intent.ACTION_SENDTO,
             Uri.fromParts("mailto", email,null))
-            startActivity(Intent.createChooser(emailIntent,"Enviar Correo..."))
+            startActivity(Intent.createChooser(emailIntent,"Enviar Correo"))
+
     }
 
     override fun onBackPressed() {

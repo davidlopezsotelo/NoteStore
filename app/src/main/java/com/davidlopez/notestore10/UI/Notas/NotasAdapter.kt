@@ -17,11 +17,14 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
         fun setListener(notasEntity: NotasEntity){
 
             with(binding.root) {
-                setOnClickListener { listener.onClick(notasEntity) }
+                setOnClickListener {
 
-                //TODO CAMBIAR PARA MENU TOAST CON OPCION BORRAR O ENVIAR
+                    listener.onClick(notasEntity) //TODO CAMBIAR PARA ACCEDER AL  FRAGMENT
+                }
+
+                //TODO CAMBIAR PARA BORRAR LA NOTA DESDE EL FRAGMENT
                 setOnLongClickListener {
-                    listener.onDeleteNota(notasEntity)
+                    listener.onDeleteNota(notasEntity) // cambiar la funcion delete al fragment
                     true
                 }
             }
@@ -47,26 +50,28 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
         }
     }
 
-
-
     fun add(nota: NotasEntity) {    //REPARAR O MEJORAR??????
         if (!notas.contains(nota))
         {notas.add(nota)
             notifyItemInserted(notas.size-1)}
     }
-
     fun setNotas(notas: MutableList<NotasEntity>) {
         this.notas=notas
         notifyDataSetChanged()
     }
 
+    // actualizar la nota --------------------------------------------------------------------------
     fun update(notasEntity: NotasEntity) {
+
         val index=notas.indexOf(notasEntity)
         if (index!=-1){
             notas.set(index,notasEntity)
             notifyItemChanged(index)
         }
     }
+
+    //TODO MOVER FUNCION AL FRAGMENT.
+//borrar nota-----------------------------------------------------------------------------------
 
     fun delete(notasEntity: NotasEntity) {
         val index=notas.indexOf(notasEntity)
@@ -75,10 +80,6 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
             notifyItemRemoved(index)
         }
     }
-
-
-
-
 
 
 }

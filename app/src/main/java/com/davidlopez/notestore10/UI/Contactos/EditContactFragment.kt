@@ -144,7 +144,6 @@ class EditContactFragment : Fragment() {
                 true
             }
 
-
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
@@ -165,6 +164,7 @@ class EditContactFragment : Fragment() {
                             Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
 
                         } else mContactosEntity!!.id=ContactosApp.db.ContactosDao().addContacto(mContactosEntity!!)
+
                         guardarImagen(id = mContactosEntity!!.id)
                         queue.add(mContactosEntity)
 
@@ -244,5 +244,7 @@ class EditContactFragment : Fragment() {
     private fun selectImage() {
         ImageController.selectPhotoFromGallery(this,RC_GALLERY)
     }
+
+
 
 }

@@ -1,18 +1,21 @@
 package com.davidlopez.notestore10.UI.Notas
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedDispatcher
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
+import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityNotasBinding
 import java.util.concurrent.LinkedBlockingQueue
 
 
 //class main...
-class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {// END CLASS
+class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
     private lateinit var mBinding: ActivityNotasBinding
     private lateinit var mAdapter: NotasAdapter
@@ -23,7 +26,8 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {// END 
         mBinding=ActivityNotasBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        //NOTAS--------------------------------------------------------------------------------------------
+
+//NOTAS--------------------------------------------------------------------------------------------
         mBinding.btnSave.setOnClickListener {
 
             //creamos la nota desde el editText
@@ -44,7 +48,8 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {// END 
 
     }
 
-    //RECYCLERVIEW------------------------------------------------------------------------------------
+
+//RECYCLERVIEW------------------------------------------------------------------------------------------
 
     private fun setupRecyclerView() {
         mAdapter= NotasAdapter(mutableListOf(),this)
@@ -82,7 +87,28 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {// END 
  * */
     override fun onClick(notasEntity: NotasEntity) {
 
+        // lanzamos el fragment al pulsar en la nota.
+        launchNotasfragment()
+
     }
+
+
+    //FRAGMENT----------------------------------------------------------------------------------------------
+    private fun launchNotasfragment() {
+        val fragment=NotaFragment()
+
+        val fragmentManager=supportFragmentManager
+        val fragmentTransaction=fragmentManager.beginTransaction()
+
+        fragmentTransaction.addToBackStack(null)//cambiar para guardar al ir atras??
+        fragmentTransaction.add(R.id.containerNotas,fragment)
+        fragmentTransaction.commit()
+
+    }
+
+
+
+
 
     //actualizar registro
     override fun onFavoriteNota(notasEntity: NotasEntity) {

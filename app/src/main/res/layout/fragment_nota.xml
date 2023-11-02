@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yelow"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Notas.NotaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@color/Grey_fondo"
+            android:text="Notas"
+            app:layout_constraintEnd_toEndOf="@id/tvTitulo"
+            app:layout_constraintStart_toStartOf="@id/tvTitulo"
+
+            />
+
+        <EditText
+            android:id="@+id/etTextoNota"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="escribe aqui el texto"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintEnd_toEndOf="@id/tvTitulo"
+            app:layout_constraintStart_toStartOf="@id/tvTitulo"
+            app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+
+
+    </LinearLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>
