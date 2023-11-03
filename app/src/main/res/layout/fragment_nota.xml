@@ -12,27 +12,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvTitulo"
+        <EditText
+            android:id="@+id/etTitulo_nota"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:background="@color/Grey_fondo"
-            android:text="Notas"
-            app:layout_constraintEnd_toEndOf="@id/tvTitulo"
-            app:layout_constraintStart_toStartOf="@id/tvTitulo"
+            android:hint="TITULO"
+            app:layout_constraintEnd_toEndOf="@id/etTitulo_nota"
+            app:layout_constraintStart_toStartOf="@id/etTitulo_nota"
 
             />
 
         <EditText
             android:id="@+id/etTextoNota"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:hint="escribe aqui el texto"
-            android:text=""
-            android:textAppearance="?attr/textAppearanceBody1"
-            app:layout_constraintEnd_toEndOf="@id/tvTitulo"
-            app:layout_constraintStart_toStartOf="@id/tvTitulo"
-            app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+
+            app:layout_constraintEnd_toEndOf="@id/etTitulo_nota"
+            app:layout_constraintStart_toStartOf="@id/etTitulo_nota"
+            app:layout_constraintTop_toBottomOf="@id/etTitulo_nota" />
 
 
     </LinearLayout>

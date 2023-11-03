@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class NotasEntity (@PrimaryKey(autoGenerate = true)
                         var id:Long=0,
                         var name:String,
+                        var texto:String="",
                         var isFaborite:Boolean=false)

@@ -47,6 +47,7 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
             setListener(notas)
             binding.tvName.text=notas.name
             binding.cbNotas.isChecked=notas.isFaborite
+            binding.tvNotaResum.text=notas.texto//TODO MEJORAR CRAGA DE TEXTO
         }
     }
 
@@ -70,7 +71,7 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
         }
     }
 
-    //TODO MOVER FUNCION AL FRAGMENT.
+    //TODO MOVER FUNCION AL FRAGMENT???.
 //borrar nota-----------------------------------------------------------------------------------
 
     fun delete(notasEntity: NotasEntity) {

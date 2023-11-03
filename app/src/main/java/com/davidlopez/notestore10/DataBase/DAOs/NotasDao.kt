@@ -17,7 +17,7 @@ interface NotasDao {
     fun getContactoById(id: Long):NotasEntity
 
     @Insert
-    fun addNota(notasEntity: NotasEntity):Long // contactosEntity :Long
+    fun addNota(notasEntity: NotasEntity):Long
 
     @Update
     fun updateNota(notasEntity: NotasEntity)

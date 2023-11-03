@@ -8,31 +8,36 @@
     tools:context=".UI.Notas.NotasActivity">
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSave"
-        android:layout_width="39dp"
-        android:layout_height="42dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabN"
+        android:layout_width="55dp"
+        android:layout_height="58dp"
         android:layout_margin="@dimen/common_padding_default"
-        android:layout_marginHorizontal="@dimen/common_padding_default"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:drawableBottom="@drawable/ic_note_add"
-        android:text=""
-        app:cornerRadius="5dp"
+        android:backgroundTint="@color/note_red"
+        android:contentDescription="@string/descripction_contact_add"
+        android:src="@drawable/ic_note_add"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnSave"
-        app:layout_constraintTop_toTopOf="@id/btnSave"
-        app:layout_constraintBottom_toBottomOf="@id/btnSave"
-        android:hint="Nombre de la nota"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <!--boton flotante para crear nuevas notas-->
+
+    <TextView
+        android:id="@+id/tv_notas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOTAS"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reciclerView"
@@ -43,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSave"
+        app:layout_constraintTop_toBottomOf="@id/fabN"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_nota" />
 

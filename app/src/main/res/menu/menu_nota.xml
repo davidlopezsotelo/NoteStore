@@ -7,11 +7,7 @@
         android:title="Borrar"
         android:icon="@drawable/ic_delete"
         app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/editar_nota"
-        android:title="Editar"
-        android:icon="@drawable/ic_edit"
-        app:showAsAction="ifRoom"/>
+
 
     <item
         android:id="@+id/save_nota"

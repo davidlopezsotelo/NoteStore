@@ -28,10 +28,14 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
 
 //NOTAS--------------------------------------------------------------------------------------------
-        mBinding.btnSave.setOnClickListener {
+        mBinding.fabN.setOnClickListener {
 
+            //TODO abrir fragment y crear la nota desde el fragmet al guardar o salir
+
+            launchNotasfragment()
+            /*
             //creamos la nota desde el editText
-            val nota= NotasEntity(name = mBinding.etName.text.toString())
+            val nota= NotasEntity(name = mBinding.tvNotas.text.toString())
 
             //INSERTAR EN BASE DE DATOS-----------------------------------------------------------------------
 
@@ -42,6 +46,7 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
                 ContactosApp.db.notasDao().addNota(nota)
             }.start()
             mAdapter.add(nota)// añadimos la nota con el adaptador
+            */
         }
 
         setupRecyclerView()
@@ -87,8 +92,8 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
  * */
     override fun onClick(notasEntity: NotasEntity) {
 
-        // lanzamos el fragment al pulsar en la nota.
-        launchNotasfragment()
+        //TODO  editar nota al pulsar en ella, se abre el fragment en modo edit
+        //launchNotasfragment()
 
     }
 
@@ -103,6 +108,13 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         fragmentTransaction.addToBackStack(null)//cambiar para guardar al ir atras??
         fragmentTransaction.add(R.id.containerNotas,fragment)
         fragmentTransaction.commit()
+
+        //retroceder al pulsar el boton atras
+        fragmentTransaction.addToBackStack(null)
+
+        // ocultamos el boton despues de pulsarlo
+        mBinding.fabN.hide()
+        hideFabN()//este metodo lo oculta y lo vuelve a mostrar al pulsar atras
 
     }
 
@@ -135,6 +147,9 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         mAdapter.delete(queue.take())
     }
 
+    override fun hideFabN(isVisible: Boolean) {
+        if (isVisible)mBinding.fabN.show() else mBinding.fabN.hide()
+    }
 
 
     override fun addNota(notasEntity: NotasEntity) {
