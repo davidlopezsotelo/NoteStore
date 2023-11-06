@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.ItemNotaBinding
-class NotasAdapter(private var notas:MutableList<NotasEntity>, private var listener: NotasActivity):
+class NotasAdapter(private var notas:MutableList<NotasEntity>,
+                   private var listener: OnClickListenerNotas):
     RecyclerView.Adapter<NotasAdapter.ViewHolder>() {
 
     private lateinit var mContex: Context
@@ -16,21 +18,40 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
         val binding=ItemNotaBinding.bind(view)
         fun setListener(notasEntity: NotasEntity){
 
-            with(binding.root) {
-                setOnClickListener {
-
-                    listener.onClick(notasEntity) //TODO CAMBIAR PARA ACCEDER AL  FRAGMENT
-                }
-
-                //TODO CAMBIAR PARA BORRAR LA NOTA DESDE EL FRAGMENT
-                setOnLongClickListener {
-                    listener.onDeleteNota(notasEntity) // cambiar la funcion delete al fragment
-                    true
+            //boton popup
+            fun showPopUpMenu(view: View?) {
+                val popupMenu = view?.let { PopupMenu(mContex, it) }
+                if (popupMenu != null) {
+                    popupMenu.inflate(R.menu.popup_menu_notas)
+                    popupMenu.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.item_1 -> {
+                                // enviar
+                               // listener.onUpdateNota(notasEntity.id)
+                                true
+                            }
+                            R.id.item_2 -> {
+                                // borrar
+                                listener.onDeleteNota(notasEntity)
+                                true
+                            }  else -> false
+                        }
+                    }
+                    popupMenu.show()
                 }
             }
-            binding.cbNotas.setOnClickListener { listener.onFavoriteNota(notasEntity) }
+
+            with(binding.root) {
+                binding.btnPopupMenu.setOnClickListener {
+                        view -> showPopUpMenu(view)
+                }
+                setOnClickListener { listener.onClick(notasEntity) }
+            }
         }
     }
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         mContex=parent.context
 
@@ -47,11 +68,12 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
             setListener(notas)
             binding.tvName.text=notas.name
             binding.cbNotas.isChecked=notas.isFaborite
-            binding.tvNotaResum.text=notas.texto//TODO MEJORAR CRAGA DE TEXTO
+            binding.tvNotaResum.text=notas.texto
         }
     }
 
-    fun add(nota: NotasEntity) {    //REPARAR O MEJORAR??????
+    fun add(nota: NotasEntity) {
+
         if (!notas.contains(nota))
         {notas.add(nota)
             notifyItemInserted(notas.size-1)}
@@ -70,8 +92,6 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>, private var liste
             notifyItemChanged(index)
         }
     }
-
-    //TODO MOVER FUNCION AL FRAGMENT???.
 //borrar nota-----------------------------------------------------------------------------------
 
     fun delete(notasEntity: NotasEntity) {

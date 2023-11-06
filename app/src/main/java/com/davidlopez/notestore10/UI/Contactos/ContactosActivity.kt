@@ -35,14 +35,11 @@ import java.util.concurrent.LinkedBlockingQueue
         mBinding=ActivityContactosBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-
-
 // FRAGMENT---------------------------------------------------------------------------
 
         mBinding.fab.setOnClickListener { launchEditFragment() }//creamos esta funcion en esta misma actividad.
         setupRecyclerView()
     }
-
     private fun launchEditFragment(args: Bundle?=null){
         // creamos una instancia al fragment
         val fragment= EditContactFragment()
@@ -55,10 +52,8 @@ import java.util.concurrent.LinkedBlockingQueue
         fragmentTransaction.add(R.id.containerContactos,fragment)
         fragmentTransaction.commit()
 
-
         //retroceder al pulsar el boton atras
         fragmentTransaction.addToBackStack(null)
-
         // ocultamos el boton despues de pulsarlo
          mBinding.fab.hide()
         hideFab()//este metodo lo oculta y lo vuelve a mostrar al pulsar atras
@@ -74,7 +69,6 @@ import java.util.concurrent.LinkedBlockingQueue
             layoutManager=mGridLayout
             adapter=mAdapter
         }
-
     }
 
 //funcion para llamar a la base de datos y consultar los contactos
@@ -89,16 +83,12 @@ import java.util.concurrent.LinkedBlockingQueue
     Thread{
         val contactos=ContactosApp.db.ContactosDao().getAllContactos()
         //añadimos las consultas a la cola
-
         queue.add(contactos)
     }.start()
 
     //mostramos los resultados
-
     mAdapter.setContactos(queue.take())
-
     }
-
 
 
 //configuramos boton atras---------------------------------------
@@ -107,8 +97,9 @@ import java.util.concurrent.LinkedBlockingQueue
         startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
 
-    override fun hideFab(isVisible: Boolean) {
+     //ocultar boton flotante
 
+    override fun hideFab(isVisible: Boolean) {
         if (isVisible)mBinding.fab.show() else mBinding.fab.hide()
     }
 
@@ -117,10 +108,7 @@ import java.util.concurrent.LinkedBlockingQueue
     }
 
      override fun updateContact(contactosEntity: ContactosEntity) {
-
          mAdapter.update(contactosEntity)
-
-
      }
 
      override fun onClick(contactosEntity: ContactosEntity) {
@@ -141,6 +129,7 @@ import java.util.concurrent.LinkedBlockingQueue
          MaterialAlertDialogBuilder(this)
              .setTitle(R.string.dialog_delete_contact)
              .setPositiveButton(R.string.dialog_delete_confirm) { dialogInterface, i ->
+
                  val queue = LinkedBlockingQueue<ContactosEntity>()
                  Thread {
                      ContactosApp.db.ContactosDao().deleteAllContacto(contactosEntity)
@@ -150,7 +139,6 @@ import java.util.concurrent.LinkedBlockingQueue
              }
              .setNegativeButton(R.string.dialog_delete_cancel,null)
              .show()
-
      }
 
      override fun onUpdateContacto(contactosId: Long) {
@@ -162,5 +150,4 @@ import java.util.concurrent.LinkedBlockingQueue
          //llamamos al metodo que lanza el fragment
          launchEditFragment(args)
      }
-
  }

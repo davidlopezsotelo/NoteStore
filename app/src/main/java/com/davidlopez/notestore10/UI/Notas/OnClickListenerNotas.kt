@@ -4,11 +4,9 @@ import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 
 interface OnClickListenerNotas {
 
-    fun onClick(notasEntity: NotasEntity)
-
+    fun onClick(notasId: NotasEntity)
     //actualizar registro
     fun onFavoriteNota(notasEntity: NotasEntity)
-
-    //borrar registri
+    //borrar registro
     fun onDeleteNota(notasDB: NotasEntity)
 }

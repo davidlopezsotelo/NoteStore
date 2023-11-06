@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.davidlopez.notestore10.databinding.ActivityContactDetailBinding
 
-// CONVERTIR EN UN FRAGMENT PARA COMUNICARSE CON EL OTRO FRAGMENT
+
 
 class ContactDetailActivity : AppCompatActivity() {
 

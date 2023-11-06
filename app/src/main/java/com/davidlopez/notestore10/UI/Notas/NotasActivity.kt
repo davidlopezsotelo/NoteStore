@@ -1,20 +1,20 @@
 package com.davidlopez.notestore10.UI.Notas
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.OnBackPressedDispatcher
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityNotasBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.LinkedBlockingQueue
 
 
 //class main...
+@Suppress("DEPRECATION")
 class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
     private lateinit var mBinding: ActivityNotasBinding
@@ -30,27 +30,10 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 //NOTAS--------------------------------------------------------------------------------------------
         mBinding.fabN.setOnClickListener {
 
-            //TODO abrir fragment y crear la nota desde el fragmet al guardar o salir
-
             launchNotasfragment()
-            /*
-            //creamos la nota desde el editText
-            val nota= NotasEntity(name = mBinding.tvNotas.text.toString())
-
-            //INSERTAR EN BASE DE DATOS-----------------------------------------------------------------------
-
-            //creamos un segundo hilo para la insercion de datos en la base de datos
-            Thread {
-
-                //hacemos que la nota creada se inserte en la base de datos
-                ContactosApp.db.notasDao().addNota(nota)
-            }.start()
-            mAdapter.add(nota)// añadimos la nota con el adaptador
-            */
         }
 
         setupRecyclerView()
-
     }
 
 
@@ -90,17 +73,23 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
     /*
  * OnClickListener
  * */
-    override fun onClick(notasEntity: NotasEntity) {
+    override fun onClick(notasId: NotasEntity) {
 
-        //TODO  editar nota al pulsar en ella, se abre el fragment en modo edit
-        //launchNotasfragment()
+        // editar nota al pulsar en ella, se abre el fragment en modo edit
+
+        val args=Bundle()
+        args.putLong(/* key = */ getString(R.string.arg_id_nota),/* value = */ notasId.id)
+
+        //enviamos los datos al fragment para poder actualizar------
+        launchNotasfragment(args)
 
     }
 
 
     //FRAGMENT----------------------------------------------------------------------------------------------
-    private fun launchNotasfragment() {
+    private fun launchNotasfragment(args: Bundle?=null) {
         val fragment=NotaFragment()
+        if (args!=null) fragment.arguments=args
 
         val fragmentManager=supportFragmentManager
         val fragmentTransaction=fragmentManager.beginTransaction()
@@ -125,42 +114,47 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
     //actualizar registro
     override fun onFavoriteNota(notasEntity: NotasEntity) {
         notasEntity.isFaborite=!notasEntity.isFaborite
-
         val queue=LinkedBlockingQueue<NotasEntity>()
-
         //insertar actualizacion en base de datos
         Thread{
             ContactosApp.db.notasDao().updateNota(notasEntity)
             queue.add(notasEntity)
         }.start()
-        mAdapter.update(queue.take())
+        updateNota(queue.take())
     }
+
     //borrar registro
-    override fun onDeleteNota(notasDB: NotasEntity) {
 
-        val queue=LinkedBlockingQueue<NotasEntity>()
 
-        Thread{
-            ContactosApp.db.notasDao().deleteAll(notasDB)
-            queue.add(notasDB)
-        }.start()
-        mAdapter.delete(queue.take())
+    override fun onDeleteNota(notasEntity: NotasEntity) {
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.dialog_delete_contact_nota)
+            .setPositiveButton(R.string.dialog_delete_confirm) { dialogInterface, i ->
+
+                val queue = LinkedBlockingQueue<NotasEntity>()
+                Thread {
+                    ContactosApp.db.notasDao().updateNota(notasEntity)
+                    queue.add(notasEntity)
+                }.start()
+                mAdapter.delete(queue.take())
+            }
+            .setNegativeButton(R.string.dialog_delete_cancel,null)
+            .show()
     }
+
+
 
     override fun hideFabN(isVisible: Boolean) {
         if (isVisible)mBinding.fabN.show() else mBinding.fabN.hide()
     }
-
-
     override fun addNota(notasEntity: NotasEntity) {
         mAdapter.add(notasEntity)
     }
-
     override fun updateNota(notasEntity: NotasEntity) {
 
+        mAdapter.update(notasEntity)
     }
-
-
     //configuramos boton atras---------------------------------------
     override fun onBackPressed() {
         super.onBackPressed()
@@ -169,16 +163,3 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

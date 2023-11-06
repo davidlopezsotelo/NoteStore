@@ -14,7 +14,7 @@ interface NotasDao {
 
     // para contactosEntity**********************************
     @Query("SELECT * FROM NotasEntity where id= :id")
-    fun getContactoById(id: Long):NotasEntity
+    fun getNotaById(id: Long):NotasEntity
 
     @Insert
     fun addNota(notasEntity: NotasEntity):Long

@@ -29,7 +29,7 @@ class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //list
             fun showPopUpMenu(view: View?) {
                 val popupMenu = view?.let { PopupMenu(mContex, it) }
                 if (popupMenu != null) {
-                    popupMenu.inflate(R.menu.popup_menu)
+                    popupMenu.inflate(R.menu.popup_menu_contact)
                     popupMenu.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.item_1 -> {

@@ -10,7 +10,6 @@ data class ContactosEntity(@PrimaryKey(autoGenerate = true)
                            var name:String,
                            var email:String="",//inicializamos el mail a vacio por si no se quiere ingresar
                            var phone:String
-                          // var imagen:String=""
 ){
 
     override fun equals(other: Any?): Boolean {

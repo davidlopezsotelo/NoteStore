@@ -103,7 +103,7 @@ class EditContactFragment : Fragment() {
         }
     }
 
-// actualizar contacto -------------------------------------------------------------------------------
+// actualizar contacto --------------------------------------------------------------------------------------
     private fun getContacto(id: Long) {
         val queue =LinkedBlockingQueue<ContactosEntity?>()
         Thread{
@@ -147,7 +147,6 @@ class EditContactFragment : Fragment() {
 // guardar en la base de datos--------------------------------------------------------------------------
             R.id.action_save -> {
 
-               // mBinding.btnSelectImage.setOnClickListener {      }//suprimir??
 
                 if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
@@ -181,7 +180,7 @@ class EditContactFragment : Fragment() {
                             mActivity?.addContact(this)
                             Toast.makeText(mActivity,R.string.edit_message_save_sucess,Toast.LENGTH_LONG).show()
 
-                            requireActivity().onBackPressedDispatcher.onBackPressed()
+                            requireActivity().onBackPressedDispatcher.onBackPressed()//retroceder al pulsar el boton guardar
                         }
                     }
                 }
@@ -228,6 +227,11 @@ class EditContactFragment : Fragment() {
         imm.hideSoftInputFromWindow(requireView().windowToken,0)
     }
 
+    override fun onDestroyView() {
+        hideKeyboard()
+        super.onDestroyView()
+    }//-----------------------------------------------------------------------------------------------------------------
+
 
 //ciclo de vida del fragment----------------------------------------------------------------------------------
     override fun onDestroy() {
@@ -244,7 +248,5 @@ class EditContactFragment : Fragment() {
     private fun selectImage() {
         ImageController.selectPhotoFromGallery(this,RC_GALLERY)
     }
-
-
 
 }
