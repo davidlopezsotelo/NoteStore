@@ -33,12 +33,8 @@ class LoginActivity : AppCompatActivity() {
 
         //inicializamos Firebase
         auth = Firebase.auth
-
         title = "Autenticacion"
 
-        //val botonSalir = findViewById<Button>(R.id.buttonSalir)
-       // val textEmail = findViewById<EditText>(R.id.editTextEmail)
-      //  val textContraseña = findViewById<EditText>(R.id.editTextContraseña)
 
         // Funcionalidad del boton REGISTRAR, que nos manda al registroActivity
 
@@ -98,7 +94,6 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, MenuPrincipalActivity::class.java))
                     finish()
                 }else{
-                    //Toast.makeText(this,"Registro fallido.", Toast.LENGTH_SHORT).show()
                     showRellenar()
                 }
             })
@@ -115,26 +110,4 @@ class LoginActivity : AppCompatActivity() {
         dialog.show()
 
     }
-
-    //creamos una funcion que mostrara un  mensaje de alerta mediante un cuadro de dialogo--------------------------
-   /* private fun showAlert() {
-
-        val builder = AlertDialog.Builder(this)// creamos un cuadro de dialogo
-
-        builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error autenticando al usuario.")
-        builder.setPositiveButton("aceptar", null)
-
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }*/
-
-
-    //creamos una funcion que dará acceso a la aplicacion-------------------------------------------------------
-    /*private fun showHome() {
-
-        val i = Intent(this, MenuPrincipalActivity::class.java).apply {
-        }
-        startActivity(i)
-    }*/
 }//END Class

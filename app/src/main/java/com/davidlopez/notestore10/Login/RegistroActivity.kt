@@ -47,10 +47,7 @@ class RegistroActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             //ocultar teclado ??
-
                             showRegistro()
-
-
 
                         } else {
                             showAlert()// mensaje de alerta
@@ -74,7 +71,7 @@ class RegistroActivity : AppCompatActivity() {
 
         botonSalir.setOnClickListener(){
             FirebaseAuth.getInstance().signOut()
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
             finish()
 
         }
@@ -114,7 +111,7 @@ class RegistroActivity : AppCompatActivity() {
         val builder= AlertDialog.Builder(this)// creamos un cuadro de dialogo
 
         builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error autenticando al usuario.")
+        builder.setMessage("Se ha producido un error REGISTRANDO al usuario.")
         builder.setPositiveButton("aceptar",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()

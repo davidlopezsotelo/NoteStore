@@ -17,6 +17,7 @@
     <color name="red">#D50000</color>
     <color name="orange">#FF6D00</color>
     <color name="purple">#9471D3</color>
-    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent">#B054AEB6</color>
+    <color name="transparent_full">#0054AEB6</color>
 
 </resources>

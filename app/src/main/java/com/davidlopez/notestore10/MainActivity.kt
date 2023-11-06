@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import com.davidlopez.notestore10.Login.LoginActivity
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
+import com.davidlopez.notestore10.databinding.ActivityMainBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
@@ -18,32 +19,27 @@ class MainActivity : AppCompatActivity() {
 
     // Declaramos Firebase Analytics
     lateinit var analytics: FirebaseAnalytics
-
     private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         // Inicializamos Firebase Analytics
         analytics = Firebase.analytics
-
         auth=Firebase.auth
 
-
-        val botonEntrar=findViewById<Button>(R.id.button_entrar)
-        val botonSalir=findViewById<Button>(R.id.button_salir_main)
-
-
         //inicializamos la app, llamando al login activity
-        botonEntrar.setOnClickListener {
+        binding.buttonEntrar.setOnClickListener {
             //verificar usuario
             VerificarUsuario()
        }
 
-        botonSalir.setOnClickListener{
+        binding.buttonSalirMain.setOnClickListener{
             //creamos el alert Dialog
             val dialog= AlertDialog.Builder(this)
             //creamos el mensaje que aparecera

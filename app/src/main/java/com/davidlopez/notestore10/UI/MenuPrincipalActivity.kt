@@ -10,11 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MenuPrincipalActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityMenuPrincipalBinding
 
-    //private lateinit var adapter: Adapter
-    //private lateinit var gridLayout: GridLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMenuPrincipalBinding.inflate(layoutInflater)
@@ -36,7 +33,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
             startActivity(Intent(this,DocumentosActivity::class.java))
             finish()
         }
-        // boton about-----------------------------------------------------
+        // boton calendario-----------------------------------------------------
         binding.btnCalendar.setOnClickListener {
             startActivity(Intent(this,CalendarActivity::class.java))
             finish()

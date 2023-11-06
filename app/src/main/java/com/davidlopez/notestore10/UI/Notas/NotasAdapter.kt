@@ -1,6 +1,7 @@
 package com.davidlopez.notestore10.UI.Notas
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
         val binding=ItemNotaBinding.bind(view)
         fun setListener(notasEntity: NotasEntity){
 
+
             //boton popup
             fun showPopUpMenu(view: View?) {
                 val popupMenu = view?.let { PopupMenu(mContex, it) }
@@ -26,8 +28,9 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
                     popupMenu.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.item_1 -> {
-                                // enviar
-                               // listener.onUpdateNota(notasEntity.id)
+
+                                //TODO añadir calendario
+
                                 true
                             }
                             R.id.item_2 -> {

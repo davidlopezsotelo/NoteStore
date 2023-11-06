@@ -4,38 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="136dp"
-        android:layout_height="60dp"
-        android:text="NOTESTORE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
+    android:background="@drawable/fondo_cuadernos"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/button_entrar"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="180dp"
-        android:backgroundTint="#FF018786"
+        android:layout_width="290dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/transparent"
         android:onClick="ejecutar_BotonRegistrar"
-        android:text="entrar"
-        app:cornerRadius="30dp"
+        android:text="ENTRAR"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/button_salir_main"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="115dp"
+        android:layout_height="51dp"
         android:backgroundTint="#9F9D9D"
         android:onClick="ejecutar_BotonSalir"
         android:text="Salir"
@@ -44,7 +39,22 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_entrar"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintVertical_bias="0.33" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="316dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_entrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.622"
+        app:srcCompat="@drawable/logo_app_ns" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

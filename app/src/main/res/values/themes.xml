@@ -1,12 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <!--tema predeterminado. -->
-    <style name="Base.Theme.NoteStore10" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.NoteStore10" parent="Theme.Material3.Light">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Base.Theme.NoteStore10_sin_bar" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NoteStore10_sin_bar" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>

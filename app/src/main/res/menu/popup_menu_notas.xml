@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_1"
-        android:title="ENVIAR"
+        android:title="ADD Calendario"
         android:icon="@drawable/ic_send"/>
     <item
         android:id="@+id/item_2"
