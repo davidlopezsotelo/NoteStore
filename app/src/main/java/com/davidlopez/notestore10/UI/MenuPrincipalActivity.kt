@@ -29,15 +29,17 @@ class MenuPrincipalActivity : AppCompatActivity() {
             startActivity(Intent(this, NotasActivity::class.java))
             finish()
         }
-        // boton documentos-----------------------------------------------------
+        // boton perfil usuario-----------------------------------------------------
         binding.btnDocs.setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
             finish()
         }
         // boton calendario-----------------------------------------------------
         binding.btnCalendar.setOnClickListener {
-            startActivity(Intent(this,CalendarActivity::class.java))
-            finish()
+            val calIntent = Intent(Intent.ACTION_MAIN)
+            calIntent.addCategory(Intent.CATEGORY_APP_CALENDAR)
+            startActivity(calIntent)
+
         }
 
 

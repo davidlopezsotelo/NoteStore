@@ -50,7 +50,7 @@
             android:id="@+id/tv_nota_resum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/note_green2"
+            android:background="@color/transparent_full"
             android:ellipsize="end"
             android:text="nota"
             android:textSize="24sp"
