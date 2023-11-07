@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.PerfilUser.PerfilActivity">
 
     <TextView
-        android:id="@+id/tv_documentos"
+        android:id="@+id/tv_perfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PERFIL DE USUARIO"
+        android:layout_gravity="center_horizontal"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,4 +22,97 @@
         app:layout_constraintVertical_bias="0.064" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="146dp"
+        android:layout_height="119dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
+        android:background="@color/color_white_t"
+        android:src="@drawable/ic_person" />
+
+    <TextView
+        android:id="@+id/tvNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nombre"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        />
+    <TextView
+        android:id="@+id/apellidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="apellidos"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/tvTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="telefono"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/tvAdress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="direccion"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/tvTrabajo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="lugar de trabajo"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/tvTfTrab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="telefono de trabajo"
+        android:textSize="24sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:id="@+id/btEditarContacto"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Editar contacto"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btn_restaurar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/transparent_full"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="Restablecer contraseña"
+        android:textColor="@color/blue"/>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -28,4 +28,6 @@
     <string name="edit_title_editar_nota">Editar nota</string>
     <string name="edit_title_add_nota">Crear nota</string>
     <string name="dialog_delete_contact_nota">Seguro que quieres eliminar la nota?</string>
+    <string name="hint_phone_work">Telefono del trabajo</string>
+    <string name="hint_adress">Direccion</string>
 </resources>

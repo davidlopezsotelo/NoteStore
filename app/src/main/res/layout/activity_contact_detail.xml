@@ -32,11 +32,11 @@
         android:id="@+id/tvTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="telefono"
-        android:textSize="24sp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        />
+        android:text="telefono"
+        android:textSize="24sp" />
+
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
