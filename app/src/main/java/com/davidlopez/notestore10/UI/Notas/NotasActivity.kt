@@ -3,6 +3,8 @@ package com.davidlopez.notestore10.UI.Notas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CalendarContract
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.davidlopez.notestore10.App.ContactosApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
@@ -160,6 +162,8 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         super.onBackPressed()
         startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
+
+
 
 
 }

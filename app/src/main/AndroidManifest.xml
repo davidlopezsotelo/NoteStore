@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- permiso para aceder a almacenaje exterior, para poder acceder a galeria de imagenes -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
 
     <application
         android:name=".App.ContactosApp"
@@ -35,7 +37,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar" />
         <activity
-            android:name=".UI.DocumentosActivity"
+            android:name=".UI.PerfilUser.PerfilActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar" />

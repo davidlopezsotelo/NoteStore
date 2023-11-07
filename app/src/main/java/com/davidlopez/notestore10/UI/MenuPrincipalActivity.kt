@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.davidlopez.notestore10.UI.Contactos.ContactosActivity
 import com.davidlopez.notestore10.UI.Notas.NotasActivity
+import com.davidlopez.notestore10.UI.PerfilUser.PerfilActivity
 import com.davidlopez.notestore10.databinding.ActivityMenuPrincipalBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -30,7 +31,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
         }
         // boton documentos-----------------------------------------------------
         binding.btnDocs.setOnClickListener {
-            startActivity(Intent(this,DocumentosActivity::class.java))
+            startActivity(Intent(this, PerfilActivity::class.java))
             finish()
         }
         // boton calendario-----------------------------------------------------

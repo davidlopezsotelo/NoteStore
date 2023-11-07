@@ -2,10 +2,12 @@ package com.davidlopez.notestore10.UI.Notas
 
 import android.content.Context
 import android.content.Intent
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
@@ -15,10 +17,10 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
     RecyclerView.Adapter<NotasAdapter.ViewHolder>() {
 
     private lateinit var mContex: Context
+
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding=ItemNotaBinding.bind(view)
         fun setListener(notasEntity: NotasEntity){
-
 
             //boton popup
             fun showPopUpMenu(view: View?) {
@@ -31,6 +33,16 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
 
                                 //TODO añadir calendario
 
+
+                                val posicion = adapterPosition
+                                        if (posicion != RecyclerView.NO_POSITION) {
+                                            val itemActual = notas[posicion]
+                                            val texto=binding.tvNotaResum.text.toString()
+                                            enviarTextoACalendario(
+                                                itemView.context,
+                                                texto
+                                            )
+                                        }
                                 true
                             }
                             R.id.item_2 -> {
@@ -106,4 +118,15 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
     }
 
 
+    private fun enviarTextoACalendario(context: Context, texto: String) {
+        val intent = Intent(Intent.ACTION_INSERT)
+            .setData(CalendarContract.Events.CONTENT_URI)
+            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, System.currentTimeMillis())
+            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, System.currentTimeMillis() + (60*60*1000))
+            .putExtra(CalendarContract.Events.TITLE, "Mi Evento")
+            .putExtra(CalendarContract.Events.DESCRIPTION, texto)
+        context.startActivity(intent)
+    }
 }
+
+

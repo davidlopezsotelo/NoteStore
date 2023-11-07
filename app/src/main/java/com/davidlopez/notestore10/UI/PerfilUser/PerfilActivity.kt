@@ -1,12 +1,13 @@
-package com.davidlopez.notestore10.UI
+package com.davidlopez.notestore10.UI.PerfilUser
 
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.davidlopez.notestore10.R
+import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 
-class DocumentosActivity : AppCompatActivity() {
+class PerfilActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,7 @@ class DocumentosActivity : AppCompatActivity() {
     //configuramos boton atras---------------------------------------
       override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this,MenuPrincipalActivity::class.java))
+        startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
 
 
