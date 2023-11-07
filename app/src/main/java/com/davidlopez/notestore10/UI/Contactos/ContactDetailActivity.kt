@@ -141,6 +141,7 @@ class ContactDetailActivity : AppCompatActivity() {
         startActivity(Intent(this,ContactosActivity::class.java))
     }
 
+
 }
 
 

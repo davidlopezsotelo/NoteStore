@@ -50,6 +50,13 @@ class LoginActivity : AppCompatActivity() {
             ValidarDatos()
         }// fin boton INICIAR
 
+        //Boton restablecer
+
+        binding.btnRestaurar.setOnClickListener {
+            startActivity(Intent(this,RestablecePassword::class.java))
+            finish()
+        }
+
         //Boton SALIR
         binding.buttonSalir.setOnClickListener() {
             FirebaseAuth.getInstance().signOut()
@@ -60,8 +67,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun ValidarDatos() {
 
-       // val TextoEmailLog = findViewById<EditText>(R.id.editTextEmail)
-       // val TextoContrasenaLog = findViewById<EditText>(R.id.editTextContraseña)
 
         Email=binding.editTextEmail.text.toString()
         Password=binding.editTextContraseA.text.toString()
