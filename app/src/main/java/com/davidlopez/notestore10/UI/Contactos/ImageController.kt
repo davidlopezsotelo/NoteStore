@@ -1,8 +1,12 @@
+@file:Suppress("DEPRECATION")
+
 package com.davidlopez.notestore10.UI.Contactos
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.davidlopez.notestore10.UI.PerfilUser.PerfilActivity
+import com.davidlopez.notestore10.UI.PerfilUser.PerfilFragment
 import java.io.File
 
 object ImageController {
@@ -14,6 +18,16 @@ object ImageController {
         activity.startActivityForResult(intent,code)
 
     }
+
+    fun selectPhotoFromGallery(activity: PerfilFragment, code:Int){
+
+        val intent=Intent(Intent.ACTION_PICK)
+        intent.type="image/*"
+        activity.startActivityForResult(intent,code)
+
+    }
+
+
 
 
     fun saveImage(context: Context,id:Long,uri: Uri){

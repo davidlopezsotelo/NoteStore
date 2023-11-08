@@ -43,8 +43,6 @@ class EditContactFragment : Fragment() {
         savedInstanceState: Bundle?): View {
        mBinding=FragmentEditContactBinding.inflate(inflater,container,false)
         return mBinding.root
-
-
     }
 
 //creamos el menu-------------------------------------------------------------------------------------
@@ -53,7 +51,6 @@ class EditContactFragment : Fragment() {
 
 //boton seleccionar imagen----------------------------------------------------------------------------
         mBinding.btnSelectImage.setOnClickListener { selectImage() }
-
 
 //actualizar contacto --------------------------------------------------------------------------------
         val id=arguments?.getLong(getString(R.string.arg_id),0)

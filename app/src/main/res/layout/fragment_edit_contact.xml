@@ -37,28 +37,6 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilSurname"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/common_padding_default"
-            android:hint="Apellidos"
-
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSurname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="@integer/counter_max_phone"
-                android:textColor="@color/black"
-                android:inputType="phone">
-            </com.google.android.material.textfield.TextInputEditText>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -85,8 +63,7 @@
             android:textColorHint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_alternate_email"
-            >
+            app:startIconDrawable="@drawable/ic_alternate_email">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
@@ -94,77 +71,6 @@
                 android:textColor="@color/black">
             </com.google.android.material.textfield.TextInputEditText>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAdress"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/common_padding_default"
-                android:hint="@string/hint_adress"
-
-                app:endIconMode="clear_text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/ic_adress">
-
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etAdress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLength="@integer/counter_max_phone"
-                    android:textColor="@color/black"
-                    android:inputType="phone">
-                </com.google.android.material.textfield.TextInputEditText>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilWork"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/common_padding_default"
-                    android:hint="Trabajo"
-
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:startIconDrawable="@drawable/ic_worksite">
-
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etWork"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="@integer/counter_max_phone"
-                        android:textColor="@color/black">
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilWorkPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/common_padding_default"
-                    android:hint="Telefono de trabajo"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:startIconDrawable="@drawable/ic_local_phone">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etWorkPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="@integer/counter_max_phone"
-                        android:textColor="@color/black"
-                        android:inputType="phone">
-                    </com.google.android.material.textfield.TextInputEditText>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:id="@+id/imageView_photo"

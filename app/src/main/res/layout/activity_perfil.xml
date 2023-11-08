@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/container_perfil"
     tools:context=".UI.PerfilUser.PerfilActivity">
 
     <TextView
@@ -27,7 +29,6 @@
         android:layout_width="146dp"
         android:layout_height="119dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="36dp"
         android:background="@color/color_white_t"
         android:src="@drawable/ic_person" />
 
@@ -38,7 +39,7 @@
         android:text="nombre"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         />
     <TextView
         android:id="@+id/apellidos"
@@ -47,7 +48,7 @@
         android:text="apellidos"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/tvTelefono"
@@ -56,7 +57,7 @@
         android:text="telefono"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         />
     <TextView
         android:id="@+id/tvEmail"
@@ -65,7 +66,7 @@
         android:text="email"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         />
     <TextView
         android:id="@+id/tvAdress"
@@ -74,31 +75,23 @@
         android:text="direccion"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         />
     <TextView
         android:id="@+id/tvTrabajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lugar de trabajo"
+        android:text="Ocupacion"
         android:textSize="24sp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         />
-    <TextView
-        android:id="@+id/tvTfTrab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="telefono de trabajo"
-        android:textSize="24sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        />
+
     <Button
         android:id="@+id/btEditarContacto"
         android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
         android:text="Editar contacto"
         android:layout_gravity="center"/>
 
@@ -106,7 +99,7 @@
         android:id="@+id/btn_restaurar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/transparent_full"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
