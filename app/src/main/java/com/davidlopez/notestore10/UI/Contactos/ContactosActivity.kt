@@ -1,24 +1,14 @@
 package com.davidlopez.notestore10.UI.Contactos
 
-import android.Manifest
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.davidlopez.notestore10.App.ContactosApp
+import com.davidlopez.notestore10.App.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityContactosBinding
-import com.google.android.gms.common.internal.ServiceSpecificExtraArgs.CastExtraArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.LinkedBlockingQueue
 
@@ -81,7 +71,7 @@ import java.util.concurrent.LinkedBlockingQueue
     //abrimos un segundo hilo para que la app no de fallos.
 
     Thread{
-        val contactos=ContactosApp.db.ContactosDao().getAllContactos()
+        val contactos=NoteStoreApp.db.ContactosDao().getAllContactos()
         //añadimos las consultas a la cola
         queue.add(contactos)
     }.start()
@@ -132,7 +122,7 @@ import java.util.concurrent.LinkedBlockingQueue
 
                  val queue = LinkedBlockingQueue<ContactosEntity>()
                  Thread {
-                     ContactosApp.db.ContactosDao().deleteAllContacto(contactosEntity)
+                     NoteStoreApp.db.ContactosDao().deleteAllContacto(contactosEntity)
                      queue.add(contactosEntity)
                  }.start()
                  mAdapter.delete(queue.take())

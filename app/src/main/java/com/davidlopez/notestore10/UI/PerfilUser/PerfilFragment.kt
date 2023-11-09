@@ -36,7 +36,7 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //boton seleccionar imagen----------------------------------------------------------------------------
-        mBinding.btnSelectImage.setOnClickListener { selectImage() }
+       // mBinding.btnSelectImage.setOnClickListener { selectImage() }
 
 
         //menu
@@ -64,9 +64,6 @@ class PerfilFragment : Fragment() {
     }
 
 
-    private fun selectImage() {
-        ImageController.selectPhotoFromGallery(this,RC_GALLERY)
-    }
 
 
 }

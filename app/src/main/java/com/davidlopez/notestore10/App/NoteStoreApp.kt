@@ -2,11 +2,9 @@ package com.davidlopez.notestore10.App
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.davidlopez.notestore10.DataBase.RoomDB
 
-class ContactosApp:Application() {
+class NoteStoreApp:Application() {
 
 // aplicacion del patron singleton , para poder acceder a la base de datos desde cualquier punto de la aplicacion.
     companion object{

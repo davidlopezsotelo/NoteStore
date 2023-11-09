@@ -3,10 +3,8 @@ package com.davidlopez.notestore10.UI.Notas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.CalendarContract
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.davidlopez.notestore10.App.ContactosApp
+import com.davidlopez.notestore10.App.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
@@ -62,7 +60,7 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
         //abrimos un segundo hilo para que la app no pete.
         Thread {
-            val notas = ContactosApp.db.notasDao().getAllNotas()// consultamos a la base de datos
+            val notas = NoteStoreApp.db.notasDao().getAllNotas()// consultamos a la base de datos
 
             // añadimos las consultas a la cola
             queue.add(notas)
@@ -119,7 +117,7 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         val queue=LinkedBlockingQueue<NotasEntity>()
         //insertar actualizacion en base de datos
         Thread{
-            ContactosApp.db.notasDao().updateNota(notasEntity)
+            NoteStoreApp.db.notasDao().updateNota(notasEntity)
             queue.add(notasEntity)
         }.start()
         updateNota(queue.take())
@@ -136,7 +134,7 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
                 val queue = LinkedBlockingQueue<NotasEntity>()
                 Thread {
-                    ContactosApp.db.notasDao().updateNota(notasEntity)
+                    NoteStoreApp.db.notasDao().updateNota(notasEntity)
                     queue.add(notasEntity)
                 }.start()
                 mAdapter.delete(queue.take())

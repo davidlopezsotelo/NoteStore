@@ -16,7 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.davidlopez.notestore10.App.ContactosApp
+import com.davidlopez.notestore10.App.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.FragmentEditContactBinding
@@ -31,9 +31,7 @@ class EditContactFragment : Fragment() {
     private  var photoSelectUri: Uri?=null
     private var mActivity: ContactosActivity?=null
     private lateinit var mBinding: FragmentEditContactBinding
-
     private lateinit var mContex: Context
-
 
     // actualizar contacto--------------------------------------------------------------------------
     private var isEditMode:Boolean=false
@@ -105,7 +103,7 @@ class EditContactFragment : Fragment() {
         val queue =LinkedBlockingQueue<ContactosEntity?>()
         Thread{
 
-            mContactosEntity=ContactosApp.db.ContactosDao().getContactoById(id)
+            mContactosEntity=NoteStoreApp.db.ContactosDao().getContactoById(id)
             queue.add(mContactosEntity)
         }.start()
         queue.take()?.let { setUiContacto(it) }
@@ -156,10 +154,10 @@ class EditContactFragment : Fragment() {
                     Thread{
 
                         if (isEditMode){
-                            ContactosApp.db.ContactosDao().updateContacto(mContactosEntity!!)
+                            NoteStoreApp.db.ContactosDao().updateContacto(mContactosEntity!!)
                             Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
 
-                        } else mContactosEntity!!.id=ContactosApp.db.ContactosDao().addContacto(mContactosEntity!!)
+                        } else mContactosEntity!!.id=NoteStoreApp.db.ContactosDao().addContacto(mContactosEntity!!)
 
                         guardarImagen(id = mContactosEntity!!.id)
                         queue.add(mContactosEntity)

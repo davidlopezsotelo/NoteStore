@@ -11,11 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import com.davidlopez.notestore10.App.ContactosApp
+import com.davidlopez.notestore10.App.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.Contactos.ContactosAdapter
-import com.davidlopez.notestore10.UI.Contactos.ImageController
 import com.davidlopez.notestore10.databinding.FragmentNotaBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.concurrent.LinkedBlockingQueue
@@ -78,7 +76,7 @@ class NotaFragment : Fragment() {
     private fun getNota(id:Long) {
         val queue=LinkedBlockingQueue<NotasEntity?>()
         Thread{
-            mNotasEntity=ContactosApp.db.notasDao().getNotaById(id)
+            mNotasEntity=NoteStoreApp.db.notasDao().getNotaById(id)
             queue.add(mNotasEntity)
         }.start()
         queue.take().let {
@@ -123,12 +121,12 @@ class NotaFragment : Fragment() {
                     Thread {
                         hideKeyboard()
                         if (mIsEditMode) {
-                            ContactosApp.db.notasDao().updateNota(mNotasEntity!!)
+                            NoteStoreApp.db.notasDao().updateNota(mNotasEntity!!)
                             Snackbar.make(mBinding.root, R.string.edit_message_update_sucess,
                                 Snackbar.LENGTH_SHORT
                             ).show()
                         } else mNotasEntity!!.id =
-                            ContactosApp.db.notasDao().addNota(mNotasEntity!!)
+                            NoteStoreApp.db.notasDao().addNota(mNotasEntity!!)
                         queue.add(mNotasEntity)
                     }.start()
 

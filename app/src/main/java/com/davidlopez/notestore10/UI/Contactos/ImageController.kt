@@ -5,6 +5,7 @@ package com.davidlopez.notestore10.UI.Contactos
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.davidlopez.notestore10.UI.PerfilUser.AddPerfilActivity
 import com.davidlopez.notestore10.UI.PerfilUser.PerfilActivity
 import com.davidlopez.notestore10.UI.PerfilUser.PerfilFragment
 import java.io.File
@@ -19,7 +20,7 @@ object ImageController {
 
     }
 
-    fun selectPhotoFromGallery(activity: PerfilFragment, code:Int){
+    fun selectPhotoFromGallery(activity: AddPerfilActivity, code:Int){
 
         val intent=Intent(Intent.ACTION_PICK)
         intent.type="image/*"
