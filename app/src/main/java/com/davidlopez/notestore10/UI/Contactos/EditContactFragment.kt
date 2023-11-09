@@ -159,6 +159,7 @@ class EditContactFragment : Fragment() {
 
                         } else mContactosEntity!!.id=NoteStoreApp.db.ContactosDao().addContacto(mContactosEntity!!)
 
+                        // guardar imagen------------------------------
                         guardarImagen(id = mContactosEntity!!.id)
                         queue.add(mContactosEntity)
 

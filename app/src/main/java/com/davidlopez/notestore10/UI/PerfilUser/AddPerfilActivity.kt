@@ -1,6 +1,8 @@
 package com.davidlopez.notestore10.UI.PerfilUser
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,18 +28,32 @@ class AddPerfilActivity : AppCompatActivity() {
     private  var photoSelectUri: Uri?=null
     private val RC_GALLERY=23
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding=ActivityAddPerfilBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
 
-        mBinding.btnSelectImage.setOnClickListener { selectImage() }
+        mBinding.btnSelectImage.setOnClickListener {
+            selectImage()
+        }
+
+
 
     }
+
+    //cargar la imagen al refrescar la vista
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== Activity.RESULT_OK){
+            if (requestCode == RC_GALLERY) {
+                photoSelectUri = data?.data
+                mBinding.imageViewPhoto.setImageURI(photoSelectUri)
+
+            }
+        }
+    }
+
 
     //Creamos el menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -75,7 +91,12 @@ class AddPerfilActivity : AppCompatActivity() {
 
                  Thread{
                      val id=NoteStoreApp.db.userDao().addUser(usuario)
+
+                     // guardar imagen
+                     guardarImagen(id= usuario.id)
                      queue.add(id)
+
+
                  }.start()
 
                  queue.take()?.let{

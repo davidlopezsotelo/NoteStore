@@ -35,11 +35,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.NoteStore10_sin_bar" />
         <activity
-            android:name=".UI.CalendarActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Base.Theme.NoteStore10_sin_bar" />
-        <activity
             android:name=".UI.PerfilUser.PerfilActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -52,7 +47,8 @@
         <activity
             android:name=".UI.Contactos.ContactosActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
         <activity
             android:name=".UI.MenuPrincipalActivity"
             android:exported="false"

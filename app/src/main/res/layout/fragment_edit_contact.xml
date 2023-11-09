@@ -17,7 +17,7 @@
             android:id="@+id/tilName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="380dp"
-            android:layout_height="67dp"
+            android:layout_height="wrap_content"
             android:hint="Nombre cotacto"
             app:counterEnabled="true"
             app:counterMaxLength="@integer/material_motion_duration_short_1"
@@ -49,11 +49,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:inputType="phone"
                 android:maxLength="@integer/counter_max_phone"
-                android:textColor="@color/black"
-                android:inputType="phone">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:textColor="@color/black"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,12 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_alternate_email">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:layout_height="65dp"
+                android:textColor="@color/black"></com.google.android.material.textfield.TextInputEditText>
 
 
             <ImageView

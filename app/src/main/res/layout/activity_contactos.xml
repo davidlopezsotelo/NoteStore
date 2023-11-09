@@ -26,23 +26,38 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reciclerView_contactos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/common_padding_default"
+        android:layout_width="399dp"
+        android:layout_height="557dp"
         android:layout_marginHorizontal="@dimen/common_padding_min"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_contactos"
+        app:layout_constraintTop_toTopOf="@+id/tv_contactos" />
+
+    <Button
+        android:id="@+id/buttonMenu"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:text="MENU PRINCIPAL"
+        android:backgroundTint="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reciclerView_contactos"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="55dp"
         android:layout_height="58dp"
         android:layout_margin="@dimen/common_padding_default"
-        android:backgroundTint="@color/purple"
         android:contentDescription="@string/descripction_contact_add"
         android:src="@drawable/ic_person_add"
+        app:backgroundTint="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.977"

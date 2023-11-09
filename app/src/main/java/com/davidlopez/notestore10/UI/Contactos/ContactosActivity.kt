@@ -25,6 +25,15 @@ import java.util.concurrent.LinkedBlockingQueue
         mBinding=ActivityContactosBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+        // boton menu
+
+        mBinding.buttonMenu.
+            setOnClickListener {
+                startActivity(Intent(this,MenuPrincipalActivity::class.java))
+                finish()
+            }
+
+
 // FRAGMENT---------------------------------------------------------------------------
 
         mBinding.fab.setOnClickListener { launchEditFragment() }//creamos esta funcion en esta misma actividad.
@@ -86,6 +95,8 @@ import java.util.concurrent.LinkedBlockingQueue
     super.onBackPressed()
         startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
+
+
 
      //ocultar boton flotante
 
