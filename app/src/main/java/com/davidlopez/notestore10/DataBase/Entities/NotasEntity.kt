@@ -8,7 +8,8 @@ data class NotasEntity (@PrimaryKey(autoGenerate = true)
                         var id:Long=0,
                         var name:String,
                         var texto:String="",
-                        var isFaborite:Boolean=false){
+                        var isFaborite:Boolean=false)
+{
 
     // metodos que fuerzan la carga de datos al actualizar la vista para que aparezcan los resultados actualizados
     override fun equals(other: Any?): Boolean {

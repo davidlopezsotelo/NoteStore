@@ -58,7 +58,7 @@ class ContactDetailActivity : AppCompatActivity() {
 
 
 
-    //funcion que muestra los datos recibidos del ...
+    //funcion que muestra los datos recibidos del onclick del activity...
 
     private fun datos(){
         val datos=intent.extras
@@ -70,11 +70,15 @@ class ContactDetailActivity : AppCompatActivity() {
  //cargar la imagen
 
         val imageUri= id?.let { ImageController.getImageUri(this, it) }
+        mBinding.imageView.setImageURI(imageUri)
+
+
 
         mBinding.tvNombre.text=nombre.toString()
         mBinding.tvTelefono.text=phone.toString()
         mBinding.tvEmail.text=email.toString()
-        mBinding.imageView.setImageURI(imageUri)
+
+
 
 
     }
@@ -137,7 +141,7 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        super.onBackPressed()//TODO cambiar por nuevo metodo
         startActivity(Intent(this,ContactosActivity::class.java))
     }
 

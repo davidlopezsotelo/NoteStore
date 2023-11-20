@@ -91,7 +91,7 @@ import java.util.concurrent.LinkedBlockingQueue
 
 
 //configuramos boton atras---------------------------------------
-    override fun onBackPressed() {
+    override fun onBackPressed() {//todo cambiar a nuevo
     super.onBackPressed()
         startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }

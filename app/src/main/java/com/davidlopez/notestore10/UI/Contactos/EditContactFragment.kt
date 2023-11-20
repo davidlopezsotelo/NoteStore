@@ -48,6 +48,7 @@ class EditContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //boton seleccionar imagen----------------------------------------------------------------------------
+
         mBinding.btnSelectImage.setOnClickListener { selectImage() }
 
 //actualizar contacto --------------------------------------------------------------------------------
@@ -101,6 +102,7 @@ class EditContactFragment : Fragment() {
 // actualizar contacto --------------------------------------------------------------------------------------
     private fun getContacto(id: Long) {
         val queue =LinkedBlockingQueue<ContactosEntity?>()
+
         Thread{
 
             mContactosEntity=NoteStoreApp.db.ContactosDao().getContactoById(id)

@@ -9,8 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.R
+import com.davidlopez.notestore10.UI.Contactos.ContactDetailActivity
+import com.davidlopez.notestore10.UI.PerfilUser.PerfilActivity
 import com.davidlopez.notestore10.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -60,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
         //Boton SALIR
         binding.buttonSalir.setOnClickListener() {
             FirebaseAuth.getInstance().signOut()
-            onBackPressed()
+            onBackPressedDispatcher
             finish()
         }
     }
@@ -70,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
 
         Email=binding.editTextEmail.text.toString()
         Password=binding.editTextContraseA.text.toString()
+
 
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){// verifica que se introduce un correo
             Toast.makeText(this,"Correo no valido.", Toast.LENGTH_SHORT).show()

@@ -6,16 +6,22 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.davidlopez.notestore10.App.NoteStoreApp
+import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.Contactos.ContactosActivity
 import com.davidlopez.notestore10.UI.Contactos.ImageController
 import com.davidlopez.notestore10.databinding.ActivityAddPerfilBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.LinkedBlockingQueue
 
 
@@ -24,9 +30,15 @@ class AddPerfilActivity : AppCompatActivity() {
     lateinit var mBinding:ActivityAddPerfilBinding
     private var mActivity: AddPerfilActivity?=null
 
-    private lateinit var mContex: Context
+    private var mUserEntity: UserEntity?=null
+
+    lateinit var  mContex: Context
     private  var photoSelectUri: Uri?=null
     private val RC_GALLERY=23
+
+
+    private lateinit var auth: FirebaseAuth
+    var emailUser = ""//insertar email de usuario registrado aqui
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +46,58 @@ class AddPerfilActivity : AppCompatActivity() {
         setContentView(mBinding.root)
 
 
+        //lamar firebase
+
+        auth = Firebase.auth
+
+        //insertamos el valor del campo email obtenido desde el usuario autenticado enfirebase
+
+        val user=FirebaseAuth.getInstance().currentUser
+        emailUser= user?.email.toString()
+
+
         mBinding.btnSelectImage.setOnClickListener {
             selectImage()
         }
 
+        //caargar usuario de la base de datos
+
+        if(mUserEntity !=null) getUser(emailUser)// editar usuario
+        else mBinding.etEmail.text=emailUser.editable() // añadir usuario
+
+    }
+
+    private fun getUser(email:String){
+        val queue =LinkedBlockingQueue<UserEntity?>()
 
 
+        Thread{
+
+
+            mUserEntity=NoteStoreApp.db.userDao().getUserByMail(email)
+
+            queue.add(mUserEntity)
+        }.start()
+        queue.take()?.let { cargarUser(it) }
+
+    }
+
+    private fun cargarUser(usuarioEntity: UserEntity) {
+       mContex=this
+        val idFoto=usuarioEntity.id
+
+                with(mBinding){
+                    etName.setText(usuarioEntity.name)
+                    etSurname.setText(usuarioEntity.surname)
+                    etPhone.setText(usuarioEntity.phone)
+                    etWork.setText(usuarioEntity.work)
+                    etAdress.setText(usuarioEntity.adress)
+                    etEmail.setText(emailUser)
+
+                //cargamos la imagen con el id para ponerla en el item:
+                    imageViewPhoto.setImageURI(ImageController.getImageUri(mContex,idFoto))
+
+                }
     }
 
     //cargar la imagen al refrescar la vista
@@ -77,48 +135,48 @@ class AddPerfilActivity : AppCompatActivity() {
                 true
             }
 
+
+
             // guardar en base de datos
              R.id.action_save ->{
+
+                 //Todo modo editar usuario existente
+
                  val usuario=UserEntity(
+
                      name = mBinding.etName.text.toString(),
                      surname = mBinding.etSurname.text.toString(),
                      phone = mBinding.etPhone.text.toString(),
-                     email = mBinding.etEmail.text.toString(),
+                     email = emailUser,
                      adress = mBinding.etAdress.text.toString(),
                      work = mBinding.etWork.text.toString())
 
-                 val queue=LinkedBlockingQueue<Long?>()
-
                  Thread{
-                     val id=NoteStoreApp.db.userDao().addUser(usuario)
+
+                     NoteStoreApp.db.userDao().addUser(usuario)
 
                      // guardar imagen
                      guardarImagen(id= usuario.id)
-                     queue.add(id)
-
 
                  }.start()
 
-                 queue.take()?.let{
                      Snackbar.make(mBinding.root,
                          "Usuario añadido",
                          Snackbar.LENGTH_SHORT).show()
-                 }
-
                  true
              }
 
             else -> super.onOptionsItemSelected(item)
         }
-
     }
-
 
     // insertar imagenes
 
+    //TODO arreglar foto y despues continuar con carga de datos
     private fun guardarImagen(id: Long) {
+        mContex=this
         photoSelectUri?.let {
-            this.mContex.let { it1 -> ImageController.saveImage(it1,id,it) } //???????
+            this.mContex.let { it1 -> ImageController.saveImageUser(it1,id,it) } //???????
         }
     }
 
@@ -126,5 +184,7 @@ class AddPerfilActivity : AppCompatActivity() {
     private fun selectImage() {
         ImageController.selectPhotoFromGallery(this,RC_GALLERY)
     }
+
+    private fun String.editable(): Editable = Editable.Factory.getInstance().newEditable(this)
 
 }

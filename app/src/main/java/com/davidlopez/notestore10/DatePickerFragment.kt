@@ -8,6 +8,9 @@ import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import java.util.Calendar
 
+
+//TODO ELIMINAR ESTA CLASE PORQUE NO SE USA O utilizarla para poner fecha a las notas!!!!!!!
+
 class DatePickerFragment (val listener: (dia:Int,mes:Int,year:Int)->Unit): DialogFragment()
 , DatePickerDialog.OnDateSetListener{
 

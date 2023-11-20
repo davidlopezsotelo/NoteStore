@@ -6,8 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.davidlopez.notestore10.UI.PerfilUser.AddPerfilActivity
-import com.davidlopez.notestore10.UI.PerfilUser.PerfilActivity
-import com.davidlopez.notestore10.UI.PerfilUser.PerfilFragment
 import java.io.File
 
 object ImageController {
@@ -30,6 +28,7 @@ object ImageController {
     }
 
 
+    // guardar imagen por id
 
 
     fun saveImage(context: Context,id:Long,uri: Uri){
@@ -40,6 +39,16 @@ object ImageController {
 
         file.writeBytes(bytes)
     }
+
+    fun saveImageUser(context: Context,id:Long,uri: Uri){
+
+        val file= File(context.filesDir,id.toString())
+
+        val bytes=context.contentResolver.openInputStream(uri)?.readBytes()!!
+
+        file.writeBytes(bytes)
+    }
+
 
     fun getImageUri(context: Context, id: Long):Uri {
         val file=File(context.filesDir,id.toString())

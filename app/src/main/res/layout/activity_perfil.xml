@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="nombre"
         android:textSize="24sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         />
     <TextView
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:text="apellidos"
         android:textSize="24sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"/>
 
     <TextView
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="telefono"
         android:textSize="24sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         />
     <TextView
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:text="email"
         android:textSize="24sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         />
     <TextView
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:text="direccion"
         android:textSize="24sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         />
     <TextView
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:text="Ocupacion"
         android:textSize="24sp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         />
 
