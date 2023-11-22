@@ -195,7 +195,10 @@ class EditContactFragment : Fragment() {
     private fun guardarImagen(id: Long) {
         photoSelectUri?.let {
             this.context?.let { it1 -> ImageController.saveImage(it1,id,it) } //???????
+
         }
+
+        Snackbar.make(mBinding.root,"el id de la foto es:$id",Snackbar.LENGTH_LONG).show()
     }
 
 

@@ -48,7 +48,7 @@
             android:name=".UI.Contactos.ContactosActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Base.Theme.NoteStore10_sin_bar"/>
+            android:theme="@style/Base.Theme.NoteStore10"/>
         <activity
             android:name=".UI.MenuPrincipalActivity"
             android:exported="false"

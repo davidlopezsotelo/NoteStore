@@ -11,14 +11,14 @@ import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 interface UserDao {
 
 
-   @Query("SELECT * FROM user where name= :id")
-    fun getUserById(id: Long): UserEntity
+   @Query("SELECT * FROM user ")
+    fun getAllUser(): MutableList<UserEntity>
 
     @Query("SELECT * FROM user WHERE email= :email")
     fun getUserByMail(email:String):UserEntity?
 
     @Insert
-    fun addUser(user: UserEntity):Long
+    fun addUser(user: UserEntity)
 
     @Update
     fun updateUser(user: UserEntity)

@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre Usuario"
-            app:helperText="@string/helper_required"
             app:endIconMode="clear_text"
             app:counterMaxLength="@integer/material_motion_duration_short_1"
             app:counterEnabled="true"
@@ -59,7 +58,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/common_padding_default"
             android:hint="@string/hint_phone"
-            app:helperText="@string/helper_required"
             app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/ic_local_phone">
@@ -77,22 +75,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:visibility="invisible">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
             android:layout_marginTop="@dimen/common_padding_default"
-            android:hint="Email"
-            android:textColorHint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_alternate_email"
             >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black">
-            </com.google.android.material.textfield.TextInputEditText>
-
 
 
             <com.google.android.material.textfield.TextInputLayout

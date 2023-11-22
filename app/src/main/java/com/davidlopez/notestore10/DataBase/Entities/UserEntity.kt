@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 import org.checkerframework.common.aliasing.qual.Unique
 
 @Entity(tableName = "User")
-data class UserEntity(@PrimaryKey(autoGenerate = true)
-                      var id:Long=0,
-                      var email:String="",
+data class UserEntity(@PrimaryKey var email:String,
+                     // var id:Long=0,
                       var name:String="",
                       var surname:String="",
                       var phone:String="",
@@ -24,13 +23,13 @@ data class UserEntity(@PrimaryKey(autoGenerate = true)
 
         other as UserEntity
 
-        if (id != other.id) return false
+        if (email != other.email) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return id.hashCode()
+        return email.hashCode()
     }
 }
 
