@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.davidlopez.notestore10.UI.PerfilUser.AddPerfilActivity
+import com.davidlopez.notestore10.UI.PerfilUser.PerfilFragment
 import java.io.File
 
 object ImageController {
@@ -18,7 +19,7 @@ object ImageController {
 
     }
 
-    fun selectPhotoFromGallery(activity: AddPerfilActivity, code:Int){
+    fun selectPhotoFromGallery(activity: PerfilFragment, code:Int){
 
         val intent=Intent(Intent.ACTION_PICK)
         intent.type="image/*"

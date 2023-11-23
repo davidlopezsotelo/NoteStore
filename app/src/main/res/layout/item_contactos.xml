@@ -16,8 +16,6 @@
         android:layout_height="match_parent">
 
 
-        <!--añadir info del contacto-->
-
 
         <!--añadir boton enviar y guardar y cambio de color-->
 
@@ -42,7 +40,6 @@
             android:background="@color/note_green2"
             android:ellipsize="end"
             android:gravity="bottom"
-
             android:padding="@dimen/common_padding_min"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textSize="24sp"

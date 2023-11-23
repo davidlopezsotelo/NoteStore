@@ -20,6 +20,8 @@ class ContactDetailActivity : AppCompatActivity() {
 
     lateinit var mBinding: ActivityContactDetailBinding
 
+    //permisos necesarios----------------------------------------------------------------------------
+
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -72,14 +74,9 @@ class ContactDetailActivity : AppCompatActivity() {
         val imageUri= id?.let { ImageController.getImageUri(this, it) }
         mBinding.imageView.setImageURI(imageUri)
 
-
-
         mBinding.tvNombre.text=nombre.toString()
         mBinding.tvTelefono.text=phone.toString()
         mBinding.tvEmail.text=email.toString()
-
-
-
 
     }
 
@@ -139,6 +136,8 @@ class ContactDetailActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(emailIntent,"Enviar Correo"))
 
     }
+
+
 
     override fun onBackPressed() {
         super.onBackPressed()//TODO cambiar por nuevo metodo

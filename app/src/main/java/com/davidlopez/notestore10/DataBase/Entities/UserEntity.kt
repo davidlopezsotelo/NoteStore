@@ -7,8 +7,9 @@ import androidx.room.PrimaryKey
 import org.checkerframework.common.aliasing.qual.Unique
 
 @Entity(tableName = "User")
-data class UserEntity(@PrimaryKey var email:String,
-                     // var id:Long=0,
+data class UserEntity(@PrimaryKey (autoGenerate = true)
+                      var id:Long=0,
+                      var email:String,
                       var name:String="",
                       var surname:String="",
                       var phone:String="",

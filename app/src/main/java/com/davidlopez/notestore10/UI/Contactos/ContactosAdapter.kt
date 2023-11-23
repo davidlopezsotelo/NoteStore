@@ -14,10 +14,10 @@ import com.davidlopez.notestore10.databinding.ItemContactosBinding
 
 // RECYCLERVIEW==================================================================================
 
-class ContactosAdapter(private var cotactos:MutableList<ContactosEntity>, //lista de contactos
-                       private var listener: OnClickListenerContactos):
-        RecyclerView.Adapter<ContactosAdapter.ViewHolder>(){
-
+class ContactosAdapter(
+    private var cotactos:MutableList<ContactosEntity>, //lista de contactos
+    private var listener: OnClickListenerContactos):
+    RecyclerView.Adapter<ContactosAdapter.ViewHolder>(){
 
     private lateinit var mContex: Context
 

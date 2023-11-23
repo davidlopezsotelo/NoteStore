@@ -33,12 +33,13 @@ import java.util.concurrent.LinkedBlockingQueue
                 finish()
             }
 
-
 // FRAGMENT---------------------------------------------------------------------------
-
         mBinding.fab.setOnClickListener { launchEditFragment() }//creamos esta funcion en esta misma actividad.
         setupRecyclerView()
     }
+
+
+
     private fun launchEditFragment(args: Bundle?=null){
         // creamos una instancia al fragment
         val fragment= EditContactFragment()
@@ -69,6 +70,7 @@ import java.util.concurrent.LinkedBlockingQueue
             adapter=mAdapter
         }
     }
+
 
 //funcion para llamar a la base de datos y consultar los contactos
     private fun getContactos(){

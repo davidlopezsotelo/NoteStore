@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".UI.Contactos.EditContactFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/common_padding_default">
+
+
+
+        <Button
+            android:id="@+id/btn_popup_menu"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:backgroundTint="@color/transparent_full"
+            android:drawableBottom="@drawable/ic_menu"
+            android:gravity="center"
+            android:layout_gravity="right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PERFIL DE USUARIO"
+            android:layout_gravity="center_horizontal"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.064" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="146dp"
+            android:layout_height="119dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/color_white_t"
+            android:src="@drawable/ic_person"
+            android:layout_marginTop="36dp"/>
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nombre"
+            android:textSize="24sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            />
+        <TextView
+            android:id="@+id/apellidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="apellidos"
+            android:textSize="24sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/tvTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="telefono"
+            android:textSize="24sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            />
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:textSize="24sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            />
+        <TextView
+            android:id="@+id/tvAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="direccion"
+            android:textSize="24sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            />
+        <TextView
+            android:id="@+id/tvTrabajo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ocupacion"
+            android:textSize="24sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

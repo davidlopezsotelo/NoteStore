@@ -26,7 +26,7 @@
         <EditText
             android:id="@+id/etTextoNota"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:hint="escribe aqui el texto"
 
             app:layout_constraintEnd_toEndOf="@id/etTitulo_nota"

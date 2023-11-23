@@ -6,42 +6,38 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
 import com.davidlopez.notestore10.App.NoteStoreApp
+import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 import com.davidlopez.notestore10.DataBase.RoomDB
+import com.davidlopez.notestore10.R
+import com.davidlopez.notestore10.UI.Contactos.EditContactFragment
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityPerfilBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
+import java.util.concurrent.LinkedBlockingQueue
 
 //Main.....
 
-class PerfilActivity : AppCompatActivity(){
+class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
 
-    lateinit var mBinding: ActivityPerfilBinding
+    private lateinit var mBinding: ActivityPerfilBinding
+    private lateinit var mAdapter: PerfilAdapter
+    private lateinit var mGridLayout: GridLayoutManager
 
     //cargar usuario identificado desde firebase
     private lateinit var auth: FirebaseAuth
-
     //obtener email de usuario identificado
     lateinit var emailUser:String
 
-    //Lista de usuarios
-    private var userList:MutableList<UserEntity> = mutableListOf()
-
-    // inicializamos el adaptador
-    lateinit var mAdapter: PerfilAdapter
-
-    lateinit var room:RoomDB
+        //????¿?¿?¿??borrar
     lateinit var usuario:UserEntity
-
-    //Todo seguir en : https://www.youtube.com/watch?v=gztLyRShg2I&t=585s
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,82 +45,70 @@ class PerfilActivity : AppCompatActivity(){
         mBinding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        //lamar firebase
-        auth = Firebase.auth
+        //lamar firebase---pasar al fragment??
+                     /*
+                         auth = Firebase.auth
+                            //insertamos el valor del campo email obtenido desde el usuario autenticado enfirebase
 
-        //insertamos el valor del campo email obtenido desde el usuario autenticado enfirebase
+                             val user=FirebaseAuth.getInstance().currentUser
 
-        val user=FirebaseAuth.getInstance().currentUser
-
-        emailUser= user?.email.toString()
-
+                            emailUser= user?.email.toString()// enviar al fragment????????????????????????????????
+                        */
 
         //boton editar contacto
-        mBinding.btEditarContacto.setOnClickListener {
-            startActivity(Intent(this, AddPerfilActivity::class.java))
-        }
-
-        // instanciamos la base de datos
-        room=Room.databaseBuilder(this,RoomDB::class.java,"NoteStoreDataBase").build()
-
-
-
-        cargarUsuarios(room)
-
-        cagardatos()
-
-
+        // lanza el fragment-------------------------
+        mBinding.btEditarContacto.setOnClickListener {launchEditFragment() }//creamos esta funcion en esta misma actividad.
+        setupRecyclerView()
     }
 
-    private fun cargarUsuarios(room: RoomDB) {
-        lifecycleScope.launch {
-            userList=room.userDao().getAllUser()
-            mAdapter=PerfilAdapter(userList,this)
+// FRAGMENT---------------------------------------------------------------------------
 
+    private fun launchEditFragment(args:Bundle?=null) {
+        // creamos una instancia al fragment
+        val fragment= PerfilFragment()
+
+        if (args!=null) fragment.arguments=args//verificar el id
+
+        val fragmentManager =supportFragmentManager
+        val fragmentTransaction=fragmentManager.beginTransaction()
+
+        fragmentTransaction.add(R.id.container_perfil,fragment)
+        fragmentTransaction.commit()
+
+        //retroceder al pulsar el boton atras
+        fragmentTransaction.addToBackStack(null)
+
+    }// End ------------------------------------------
+
+    private fun setupRecyclerView() {
+        mAdapter= PerfilAdapter(mutableListOf(),this)
+        mGridLayout= GridLayoutManager(this,1)//numero de elementos por columna
+
+        getUsuarios()
+        mBinding.reciclerViewPerfil.apply {
+            setHasFixedSize(true)//le indicamos que no va a cambiar de tamaño, asi optimizará recursos.
+            layoutManager=mGridLayout
+            adapter=mAdapter
         }
+    }//END-----
 
+//funcion para llamar a la base de datos y consultar los contactos
+    private fun getUsuarios() {
+    //configuramos una cola "queue"para aceptar los tipos de datos
+
+        val queue=LinkedBlockingQueue<MutableList<UserEntity>>()
+
+    //abrimos un segundo hilo para que la app no de fallos.
+
+    Thread{
+        val usuarios=NoteStoreApp.db.userDao().getAllUser() // recibe una lista con todos los contactos, cambiar a recibir solo el contacto por email?????
+        //añadimos las consultas a la cola
+        queue.add(usuarios)
+    }.start()
+
+    //mostramos los resultados
+    mAdapter.setUsers(queue.take())
     }
-
-    private fun cagardatos() {
-
-
-
-        Thread{
-
-
-            val usuario=NoteStoreApp.db.userDao().getUserByMail(emailUser)
-
-
-
-            //si el campo email esta vacio significa que no hay datos en la base de datos
-            if ( usuario?.email.isNullOrBlank() ){
-                Log.d("PERFIL DE USUARIO.","No hay datos de usuario")
-
-                // habilitamos el modo de creacion de usuario
-
-            }else {
-                //de lo contrario habilitamos el modo de actualizacion de usuario
-
-
-                // carga los datos
-                mBinding.tvNombre.text = usuario?.name
-                mBinding.apellidos.text = usuario?.surname
-                mBinding.tvTelefono.text = usuario?.phone
-                mBinding.tvEmail.text = emailUser
-                mBinding.tvTrabajo.text = usuario?.work
-                mBinding.tvAdress.text = usuario?.adress
-
-                //cargamos la imagen con el id para ponerla en el item:
-
-                //TODO CARGAR LA IMAGEN
-                //val uriphoto = idPhoto?.let { ImageController.getImageUri(this, it) }
-               // mBinding.imageView.setImageURI(uriphoto)
-
-                }
-
-            }.start()
-
-        }
 
 
         //configuramos boton atras---------------------------------------
@@ -133,7 +117,43 @@ class PerfilActivity : AppCompatActivity(){
             startActivity(Intent(this, MenuPrincipalActivity::class.java))
         }
 
+    override fun addUser(userEntity: UserEntity) {
+        mAdapter.add(userEntity)
+    }
 
+    override fun updateUser(userEntity: UserEntity) {
+        mAdapter.update(userEntity)
+    }
+
+    override fun onClick(userEntity: UserEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDeleteUser(userEntity: UserEntity) {
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.dialog_delete_contact)
+            .setPositiveButton(R.string.dialog_delete_confirm) { dialogInterface, i ->
+
+                val queue = LinkedBlockingQueue<UserEntity>()
+                Thread {
+                    NoteStoreApp.db.userDao().deleteAllUser(userEntity)
+                    queue.add(userEntity)
+                }.start()
+                mAdapter.delete(queue.take())
+            }
+            .setNegativeButton(R.string.dialog_delete_cancel,null)
+            .show()
+    }
+
+    override fun onUpdateUser(usuarioId: Long) {
+        // pasamos los datos al fragment
+        val args=Bundle()
+        args.putLong(getString(R.string.arg_id),usuarioId)
+
+        //llamamos al metodo que lanza el fragment
+        launchEditFragment(args)
+    }
 
 }
 

@@ -115,9 +115,7 @@ class NotaFragment : Fragment() {
                         name = mBinding.etTituloNota.text.toString().trim()
                         texto = mBinding.etTextoNota.text.toString().trim()
                     }
-
                     val queue = LinkedBlockingQueue<NotasEntity>()
-
                     Thread {
                         hideKeyboard()
                         if (mIsEditMode) {
@@ -160,12 +158,10 @@ class NotaFragment : Fragment() {
         imm.hideSoftInputFromWindow(requireView().windowToken,0)
     }
 
-
     override fun onDestroyView() {
         hideKeyboard()
         super.onDestroyView()
     }
-
     override fun onDestroy() {
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mActivity?.supportActionBar?.title=getString(R.string.app_name)
@@ -173,11 +169,4 @@ class NotaFragment : Fragment() {
         setHasOptionsMenu(false)
         super.onDestroy()
     }
-
-
-
-
-
-
-
 }

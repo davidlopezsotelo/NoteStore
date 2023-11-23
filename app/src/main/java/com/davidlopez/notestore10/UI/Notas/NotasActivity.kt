@@ -28,7 +28,7 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
 
 //NOTAS--------------------------------------------------------------------------------------------
-        mBinding.fabN.setOnClickListener {
+        mBinding.fabN.setOnClickListener {//boton flotante
 
             launchNotasfragment()
         }
@@ -108,9 +108,6 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
     }
 
 
-
-
-
     //actualizar registro
     override fun onFavoriteNota(notasEntity: NotasEntity) {
         notasEntity.isFaborite=!notasEntity.isFaborite
@@ -124,7 +121,6 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
     }
 
     //borrar registro
-
 
     override fun onDeleteNota(notasEntity: NotasEntity) {
 

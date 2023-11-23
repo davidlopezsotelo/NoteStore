@@ -52,7 +52,9 @@
                 android:layout_height="70dp"
                 android:inputType="phone"
                 android:maxLength="@integer/counter_max_phone"
-                android:textColor="@color/black"></com.google.android.material.textfield.TextInputEditText>
+                android:textColor="@color/black">
+
+            </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +70,9 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
-                android:textColor="@color/black"></com.google.android.material.textfield.TextInputEditText>
+                android:textColor="@color/black">
+
+            </com.google.android.material.textfield.TextInputEditText>
 
 
             <ImageView

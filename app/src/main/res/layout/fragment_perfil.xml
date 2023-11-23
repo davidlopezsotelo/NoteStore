@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".UI.Contactos.EditContactFragment">
+    tools:context=".UI.PerfilUser.PerfilFragment">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -19,8 +19,7 @@
         android:layout_height="wrap_content"
         android:hint="Nombre Usuario"
         app:endIconMode="clear_text"
-        app:counterMaxLength="@integer/material_motion_duration_short_1"
-        app:counterEnabled="true"
+
         app:startIconDrawable="@drawable/ic_person"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
@@ -41,7 +40,8 @@
         android:hint="Apellidos Usuario"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_person">
+        app:startIconDrawable="@drawable/ic_person"
+        android:layout_marginTop="@dimen/common_padding_min">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSurname"
@@ -78,30 +78,30 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Email"
         android:textColorHint="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconDrawable="@drawable/ic_alternate_email"
-        >
+        app:startIconDrawable="@drawable/ic_alternate_email">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black">
-        </com.google.android.material.textfield.TextInputEditText>
 
+        </com.google.android.material.textfield.TextInputEditText>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilAdress"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:hint="Direccion"
             app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/ic_adress">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,17 +109,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black">
+
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilWork"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:hint="Ocupacion"
             app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/ic_worksite">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -127,9 +128,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black">
+
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
         <ImageView
@@ -137,7 +138,7 @@
             android:layout_width="146dp"
             android:layout_height="119dp"
             android:layout_gravity="center"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="16dp"
             android:background="@color/color_white_t"
             android:src="@drawable/ic_person" />
 
@@ -146,12 +147,11 @@
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/black"
             android:layout_marginTop="@dimen/common_padding_min"
-            android:backgroundTint="@color/Grey"
-            android:text="@string/ad_image"/>
+            android:backgroundTint="@color/transparent"
+            android:text="@string/ad_image"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
 </LinearLayout>

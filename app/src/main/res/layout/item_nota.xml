@@ -12,9 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--convertir en un editext para anotar cosas-->
-
-        <!--añadir boton enviar y guardar y cambio de color-->
 
         <ImageView
             android:id="@+id/imageView2"
@@ -66,7 +63,6 @@
             android:layout_width="36dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-
             android:backgroundTint="@color/transparent_full"
             android:drawableBottom="@drawable/ic_menu"
             android:gravity="center"

@@ -26,6 +26,8 @@ import com.google.firebase.ktx.Firebase
 import java.util.concurrent.LinkedBlockingQueue
 
 
+// TODO ELIMINAR ESTA ACTIVITY , sustituida por fragment!!!!!!!!!!!!
+
 class AddPerfilActivity : AppCompatActivity() {
 
     lateinit var mBinding:ActivityAddPerfilBinding
@@ -110,8 +112,10 @@ class AddPerfilActivity : AppCompatActivity() {
     private fun cargarUser(usuarioEntity: UserEntity) {
 
        mContex=this
-     //   val id=usuarioEntity.id
+
+       val id=usuarioEntity.id
                 with(mBinding){
+
                     etName.setText(usuarioEntity.name)
                     etSurname.setText(usuarioEntity.surname)
                     etPhone.setText(usuarioEntity.phone)
@@ -225,7 +229,7 @@ class AddPerfilActivity : AppCompatActivity() {
 
     //seleccionar imagen---------------------------------------------
     private fun selectImage() {
-        ImageController.selectPhotoFromGallery(this,RC_GALLERY)
+        //ImageController.selectPhotoFromGallery(this,RC_GALLERY)
     }
 
     private fun String.editable(): Editable = Editable.Factory.getInstance().newEditable(this)
