@@ -38,7 +38,7 @@
             android:name=".UI.PerfilUser.PerfilActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Base.Theme.NoteStore10_sin_bar" />
+            android:theme="@style/Base.Theme.NoteStore10" />
         <activity
             android:name=".UI.Notas.NotasActivity"
             android:exported="false"
