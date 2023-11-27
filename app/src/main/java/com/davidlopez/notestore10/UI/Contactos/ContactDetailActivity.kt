@@ -9,9 +9,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.davidlopez.notestore10.ImageController
+import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityContactDetailBinding
 
 
@@ -33,11 +36,21 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding=ActivityContactDetailBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+
+        // pulsar el boton atras-------------------------------
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Aquí va el código que quires ejecutar cuando se presiona el botón de atrás
+                val intent=Intent(this@ContactDetailActivity, ContactosActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
 
         datos()
 
@@ -126,7 +139,6 @@ class ContactDetailActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SuspiciousIndentation")
     private fun sendEmail() {
 
         val email=mBinding.tvEmail.text.toString()
@@ -134,16 +146,7 @@ class ContactDetailActivity : AppCompatActivity() {
         val emailIntent = Intent(Intent.ACTION_SENDTO,
             Uri.fromParts("mailto", email,null))
             startActivity(Intent.createChooser(emailIntent,"Enviar Correo"))
-
     }
-
-
-
-    override fun onBackPressed() {
-        super.onBackPressed()//TODO cambiar por nuevo metodo
-        startActivity(Intent(this,ContactosActivity::class.java))
-    }
-
 
 }
 

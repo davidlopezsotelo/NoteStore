@@ -53,6 +53,7 @@ dependencies {
     // optional - Test helpers
     //testImplementation("androidx.room:room-testing:$room_version")
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")// no cambiar para que funcionen los fragments 1.9.0!!!!!!!!!!

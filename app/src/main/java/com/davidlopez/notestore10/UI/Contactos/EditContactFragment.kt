@@ -14,17 +14,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.davidlopez.notestore10.App.NoteStoreApp
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
+import com.davidlopez.notestore10.ImageController
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.FragmentEditContactBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import java.util.concurrent.LinkedBlockingQueue
 
-@Suppress("DEPRECATION")
+//@Suppress("DEPRECATION")
 class EditContactFragment : Fragment() {
 
     private val RC_GALLERY=23
@@ -39,13 +42,40 @@ class EditContactFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
+
+        // Mostrar el ActionBar
+        (activity as AppCompatActivity).supportActionBar?.show()
+
        mBinding=FragmentEditContactBinding.inflate(inflater,container,false)
         return mBinding.root
+
+
+
     }
 
 //creamos el menu-------------------------------------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+//TODO REVISAR BOTON ATRAS EN FRAGMENT
+
+
+    // Esto es necesario para que el fragmento intercepte el evento de pulsación del botón de atrás antes que la actividad.
+    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // Aquí puedes manejar el evento de pulsación del botón de atrás como quieras.
+            // Por ejemplo, si quieres mostrar un mensaje, puedes hacerlo así:
+            Toast.makeText(context, "Botón de atrás pulsado", Toast.LENGTH_SHORT).show()
+
+            // Si quieres que el botón de atrás tenga el comportamiento por defecto (es decir, que quite el fragmento de la pila de retroceso),
+            // puedes llamar a isEnabled = false antes de llamar a requireActivity().onBackPressedDispatcher.onBackPressed()
+            isEnabled = false
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+    })
+
+
 
 //boton seleccionar imagen----------------------------------------------------------------------------
 
@@ -71,6 +101,7 @@ class EditContactFragment : Fragment() {
 
 
 
+    @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode==Activity.RESULT_OK){
@@ -89,6 +120,7 @@ class EditContactFragment : Fragment() {
         mActivity?.supportActionBar?.title= if (isEditMode) getString(R.string.edit_title_editar_contactos)//creamos el recurso
         else getString(R.string.edit_title_add_contactos)
         //mostrar menu
+        @Suppress("DEPRECATION")
         setHasOptionsMenu(true)
     }
 
@@ -105,7 +137,7 @@ class EditContactFragment : Fragment() {
 
         Thread{
 
-            mContactosEntity=NoteStoreApp.db.ContactosDao().getContactoById(id)
+            mContactosEntity= NoteStoreApp.db.ContactosDao().getContactoById(id)
             queue.add(mContactosEntity)
         }.start()
         queue.take()?.let { setUiContacto(it) }
@@ -128,11 +160,13 @@ class EditContactFragment : Fragment() {
     private fun String.editable():Editable=Editable.Factory.getInstance().newEditable(this)
 
     //sobreescribimos los metodos para el menu:
+    @Suppress("DEPRECATION")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_save_contactos,menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Suppress("DEPRECATION")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             android.R.id.home -> {
@@ -145,13 +179,20 @@ class EditContactFragment : Fragment() {
             R.id.action_save -> {
 
 
-                if (mContactosEntity !=null && validateFields(mBinding.tilPhone,mBinding.tilName)){//le pasamos los campos como parametro para veificar
+                if (mContactosEntity !=null &&
+                    validateFields(mBinding.tilPhone,mBinding.tilName)){
+                    
+                    //le pasamos los campos como parametro para veificar
                     with(mContactosEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
-                        email = mBinding.etEmail.text.toString().trim()
-                    }
 
+                        if (isValidEmail(email))
+                        email = mBinding.etEmail.text.toString().trim()
+                        else Toast.makeText(mActivity,"Formato de email, incorrecto.",Toast.LENGTH_LONG).show()
+
+
+                    }
                     val queue = LinkedBlockingQueue<ContactosEntity>()
                     Thread{
 
@@ -159,7 +200,7 @@ class EditContactFragment : Fragment() {
                             NoteStoreApp.db.ContactosDao().updateContacto(mContactosEntity!!)
                             Snackbar.make(mBinding.root,R.string.edit_message_update_sucess,Snackbar.LENGTH_SHORT).show()
 
-                        } else mContactosEntity!!.id=NoteStoreApp.db.ContactosDao().addContacto(mContactosEntity!!)
+                        } else mContactosEntity!!.id= NoteStoreApp.db.ContactosDao().addContacto(mContactosEntity!!)
 
                         // guardar imagen------------------------------
                         guardarImagen(id = mContactosEntity!!.id)
@@ -187,6 +228,11 @@ class EditContactFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
         //return super.onOptionsItemSelected(item) , se lo pasamos al else
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = "^A-Za-z([@]{1})(.{1,})(\\.)(.{1,})".toRegex()
+        return emailRegex.matches(email)
     }
 
 
@@ -230,11 +276,16 @@ class EditContactFragment : Fragment() {
 
     override fun onDestroyView() {
         hideKeyboard()
+
+        // Ocultar el ActionBar
+        (activity as AppCompatActivity).supportActionBar?.hide()
+
         super.onDestroyView()
     }//-----------------------------------------------------------------------------------------------------------------
 
 
 //ciclo de vida del fragment----------------------------------------------------------------------------------
+    @Suppress("DEPRECATION")
     override fun onDestroy() {
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mActivity?.supportActionBar?.title=getString(R.string.app_name)

@@ -1,24 +1,16 @@
 package com.davidlopez.notestore10.Login
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.davidlopez.notestore10.R
+import androidx.appcompat.app.AppCompatActivity
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityRegistroBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.concurrent.thread
 
 class RegistroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistroBinding
-    private var mActivity:RegistroActivity?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityRegistroBinding.inflate(layoutInflater)
@@ -31,18 +23,18 @@ class RegistroActivity : AppCompatActivity() {
     private fun setup(){
 
         val textEmail = binding.email
-        val textContraseña = binding.contraseA
+        val textContrasena = binding.contraseA
         val botonAceptar=binding.buttonAceptar
         val botonLogin=binding.buttonAtrasLog
         val botonSalir=binding.buttonSalir2
 
         //Funciones de boton REGISTRARSE
         botonAceptar.setOnClickListener {
-            if (textEmail.text!!.isNotEmpty() && textContraseña.text!!.isNotEmpty()) {
+            if (textEmail.text!!.isNotEmpty() && textContrasena.text!!.isNotEmpty()) {
                 FirebaseAuth.getInstance()
                     .createUserWithEmailAndPassword(
                         textEmail.text.toString(),
-                        textContraseña.text.toString()
+                        textContrasena.text.toString()
                     )
                     .addOnCompleteListener {
                         if (it.isSuccessful) {

@@ -4,26 +4,16 @@ package com.davidlopez.notestore10.UI.PerfilUser
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.Room
-import com.davidlopez.notestore10.App.NoteStoreApp
-import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.UserEntity
-import com.davidlopez.notestore10.DataBase.RoomDB
 import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.Contactos.EditContactFragment
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityPerfilBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.launch
 import java.util.concurrent.LinkedBlockingQueue
-
-//Main.....
 
 class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
 
@@ -54,6 +44,17 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
 
                             emailUser= user?.email.toString()// enviar al fragment????????????????????????????????
                         */
+
+
+        // pulsar el boton atras-------------------------------
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Aquí va el código que quires ejecutar cuando se presiona el botón de atrás
+                val intent=Intent(this@PerfilActivity,MenuPrincipalActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
 
         //boton editar contacto
         // lanza el fragment-------------------------
@@ -101,7 +102,7 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
     //abrimos un segundo hilo para que la app no de fallos.
 
     Thread{
-        val usuarios=NoteStoreApp.db.userDao().getAllUser() // recibe una lista con todos los contactos, cambiar a recibir solo el contacto por email?????
+        val usuarios= NoteStoreApp.db.userDao().getAllUser() // recibe una lista con todos los contactos, cambiar a recibir solo el contacto por email?????
         //añadimos las consultas a la cola
         queue.add(usuarios)
     }.start()
@@ -110,19 +111,12 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
     mAdapter.setUsers(queue.take())
     }
 
-
-        //configuramos boton atras---------------------------------------
-        override fun onBackPressed() {
-            super.onBackPressed()
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-        }
-
     override fun addUser(userEntity: UserEntity) {
         mAdapter.add(userEntity)
     }
 
-    override fun updateUser(userEntity: UserEntity) {
-        mAdapter.update(userEntity)
+    override fun updateUser(cuserEntity: UserEntity) {
+        mAdapter.update(cuserEntity)
     }
 
     override fun onClick(userEntity: UserEntity) {

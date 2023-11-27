@@ -3,8 +3,9 @@ package com.davidlopez.notestore10.UI.Contactos
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.GridLayoutManager
-import com.davidlopez.notestore10.App.NoteStoreApp
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
@@ -12,33 +13,39 @@ import com.davidlopez.notestore10.databinding.ActivityContactosBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.LinkedBlockingQueue
 
-//main-----
-
  class ContactosActivity : AppCompatActivity() , ContactosAux, OnClickListenerContactos {
-
     private lateinit var mBinding: ActivityContactosBinding
     private lateinit var mAdapter: ContactosAdapter
     private lateinit var mGridLayout: GridLayoutManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding=ActivityContactosBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        // boton menu
+        // pulsar el boton atras-------------------------------
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Aquí va el código que quires ejecutar cuando se presiona el botón de atrás
+                val intent=Intent(this@ContactosActivity,MenuPrincipalActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
 
+
+        //metodo que oculta el action bar
+        supportActionBar?.hide()
+
+        // boton menu
         mBinding.buttonMenu.
             setOnClickListener {
                 startActivity(Intent(this,MenuPrincipalActivity::class.java))
                 finish()
             }
-
 // FRAGMENT---------------------------------------------------------------------------
         mBinding.fab.setOnClickListener { launchEditFragment() }//creamos esta funcion en esta misma actividad.
         setupRecyclerView()
     }
-
-
 
     private fun launchEditFragment(args: Bundle?=null){
         // creamos una instancia al fragment
@@ -71,7 +78,6 @@ import java.util.concurrent.LinkedBlockingQueue
         }
     }
 
-
 //funcion para llamar a la base de datos y consultar los contactos
     private fun getContactos(){
 
@@ -82,7 +88,7 @@ import java.util.concurrent.LinkedBlockingQueue
     //abrimos un segundo hilo para que la app no de fallos.
 
     Thread{
-        val contactos=NoteStoreApp.db.ContactosDao().getAllContactos()
+        val contactos= NoteStoreApp.db.ContactosDao().getAllContactos()
         //añadimos las consultas a la cola
         queue.add(contactos)
     }.start()
@@ -90,15 +96,6 @@ import java.util.concurrent.LinkedBlockingQueue
     //mostramos los resultados
     mAdapter.setContactos(queue.take())
     }
-
-
-//configuramos boton atras---------------------------------------
-    override fun onBackPressed() {//todo cambiar a nuevo
-    super.onBackPressed()
-        startActivity(Intent(this, MenuPrincipalActivity::class.java))
-    }
-
-
 
      //ocultar boton flotante
 
@@ -143,7 +140,6 @@ import java.util.concurrent.LinkedBlockingQueue
              .setNegativeButton(R.string.dialog_delete_cancel,null)
              .show()
      }
-
      override fun onUpdateContacto(contactosId: Long) {
 
          // pasamos los datos al fragment

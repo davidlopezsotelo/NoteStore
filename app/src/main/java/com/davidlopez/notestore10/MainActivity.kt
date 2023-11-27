@@ -2,10 +2,9 @@ package com.davidlopez.notestore10
 
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.davidlopez.notestore10.Login.LoginActivity
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityMainBinding
@@ -18,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
 
     // Declaramos Firebase Analytics
-    lateinit var analytics: FirebaseAnalytics
+    private lateinit var analytics: FirebaseAnalytics
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
 
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 //si el dialog es cancelable
                 .setCancelable(false)
                 //accion y texto del boton positivo
-                .setPositiveButton("SI", DialogInterface.OnClickListener{ dialog, id->salir()})
+                .setPositiveButton("SI") { _, _ -> salir() }
                 //texto y accion del boton negativo
                 .setNegativeButton("NO", DialogInterface.OnClickListener{ dialog, id -> dialog.cancel()})
             //creamos la caja de dialogo

@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.ItemNotaBinding
+
 class NotasAdapter(private var notas:MutableList<NotasEntity>,
                    private var listener: OnClickListenerNotas):
     RecyclerView.Adapter<NotasAdapter.ViewHolder>() {
@@ -30,9 +30,6 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
                     popupMenu.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.item_1 -> {
-
-                                //TODO añadir calendario
-
 
                                 val posicion = adapterPosition
                                         if (posicion != RecyclerView.NO_POSITION) {
@@ -116,7 +113,6 @@ class NotasAdapter(private var notas:MutableList<NotasEntity>,
             notifyItemRemoved(index)
         }
     }
-
 
     private fun enviarTextoACalendario(context: Context, texto: String) {
         val intent = Intent(Intent.ACTION_INSERT)

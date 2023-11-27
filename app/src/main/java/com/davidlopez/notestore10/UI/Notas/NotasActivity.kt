@@ -3,8 +3,9 @@ package com.davidlopez.notestore10.UI.Notas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.GridLayoutManager
-import com.davidlopez.notestore10.App.NoteStoreApp
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
@@ -12,9 +13,6 @@ import com.davidlopez.notestore10.databinding.ActivityNotasBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.LinkedBlockingQueue
 
-
-//class main...
-@Suppress("DEPRECATION")
 class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
     private lateinit var mBinding: ActivityNotasBinding
@@ -25,6 +23,17 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         super.onCreate(savedInstanceState)
         mBinding=ActivityNotasBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+
+        // pulsar el boton atras-------------------------------
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Aquí va el código que quires ejecutar cuando se presiona el botón de atrás
+                val intent=Intent(this@NotasActivity,MenuPrincipalActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
 
 
 //NOTAS--------------------------------------------------------------------------------------------
@@ -156,8 +165,4 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         super.onBackPressed()
         startActivity(Intent(this, MenuPrincipalActivity::class.java))
     }
-
-
-
-
 }

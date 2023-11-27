@@ -1,5 +1,6 @@
 package com.davidlopez.notestore10.UI.Notas
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import com.davidlopez.notestore10.App.NoteStoreApp
+import androidx.activity.OnBackPressedCallback
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.NotasEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.databinding.FragmentNotaBinding
@@ -37,6 +39,7 @@ class NotaFragment : Fragment() {
 
     private var mIsEditMode: Boolean = false
     private var mNotasEntity:NotasEntity?=null
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View
     {
@@ -76,7 +79,7 @@ class NotaFragment : Fragment() {
     private fun getNota(id:Long) {
         val queue=LinkedBlockingQueue<NotasEntity?>()
         Thread{
-            mNotasEntity=NoteStoreApp.db.notasDao().getNotaById(id)
+            mNotasEntity= NoteStoreApp.db.notasDao().getNotaById(id)
             queue.add(mNotasEntity)
         }.start()
         queue.take().let {
@@ -143,8 +146,7 @@ class NotaFragment : Fragment() {
                             ).show()
 
                      requireActivity().
-                     onBackPressedDispatcher.
-                     onBackPressed()//retroceder al pulsar el boton guardar
+                     onBackPressedDispatcher.onBackPressed()//retroceder al pulsar el boton guardar
                         }
                     }
                 }

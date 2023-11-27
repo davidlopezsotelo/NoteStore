@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
 import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.Contactos.ImageController
+import com.davidlopez.notestore10.ImageController
 import com.davidlopez.notestore10.databinding.ItemRvUserBinding
-import kotlinx.coroutines.CoroutineScope
 
 class PerfilAdapter(
     private var users: MutableList<UserEntity>,

@@ -15,11 +15,10 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.davidlopez.notestore10.App.NoteStoreApp
-import com.davidlopez.notestore10.DataBase.Entities.ContactosEntity
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.Contactos.ImageController
+import com.davidlopez.notestore10.ImageController
 import com.davidlopez.notestore10.databinding.FragmentPerfilBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.concurrent.LinkedBlockingQueue
@@ -164,7 +163,7 @@ class PerfilFragment:Fragment() {
                             Snackbar.make(mBinding.root,"Usuario actualizado",
                                 Snackbar.LENGTH_SHORT).show()
 
-                        } else mUserEntity!!.id=NoteStoreApp.db.userDao().addUser(mUserEntity!!)
+                        } else mUserEntity!!.id= NoteStoreApp.db.userDao().addUser(mUserEntity!!)
 
                         // guardar imagen------------------------------
                         guardarImagen(id = mUserEntity!!.id)

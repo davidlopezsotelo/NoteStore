@@ -1,11 +1,11 @@
 @file:Suppress("DEPRECATION")
 
-package com.davidlopez.notestore10.UI.Contactos
+package com.davidlopez.notestore10
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.davidlopez.notestore10.UI.PerfilUser.AddPerfilActivity
+import com.davidlopez.notestore10.UI.Contactos.EditContactFragment
 import com.davidlopez.notestore10.UI.PerfilUser.PerfilFragment
 import java.io.File
 

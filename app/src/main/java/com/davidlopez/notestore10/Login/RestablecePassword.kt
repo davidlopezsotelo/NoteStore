@@ -21,7 +21,6 @@ class RestablecePassword : AppCompatActivity() {
         setContentView(mBinding.root)
 
 
-
         val txtmail=mBinding.etEmailCambio
 
         mBinding.buttonSave.setOnClickListener {
