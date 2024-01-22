@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import com.davidlopez.notestore10.DataBase.Entities.PerfilEntity
 import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
@@ -30,7 +30,7 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
 
      */
 
-    lateinit var usuario:UserEntity
+    lateinit var usuario:PerfilEntity
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,7 +100,7 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
     private fun getUsuarios() {
     //configuramos una cola "queue"para aceptar los tipos de datos
 
-        val queue=LinkedBlockingQueue<MutableList<UserEntity>>()
+        val queue=LinkedBlockingQueue<MutableList<PerfilEntity>>()
 
     //abrimos un segundo hilo para que la app no de fallos.
 
@@ -114,28 +114,28 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
     mAdapter.setUsers(queue.take())
     }
 
-    override fun addUser(userEntity: UserEntity) {
-        mAdapter.add(userEntity)
+    override fun addUser(perfilEntity: PerfilEntity) {
+        mAdapter.add(perfilEntity)
     }
 
-    override fun updateUser(cuserEntity: UserEntity) {
+    override fun updateUser(cuserEntity: PerfilEntity) {
         mAdapter.update(cuserEntity)
     }
 
-    override fun onClick(userEntity: UserEntity) {
+    override fun onClick(perfilEntity: PerfilEntity) {
         TODO("Not yet implemented")
     }
 
-    override fun onDeleteUser(userEntity: UserEntity) {
+    override fun onDeleteUser(perfilEntity: PerfilEntity) {
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.dialog_delete_contact)
             .setPositiveButton(R.string.dialog_delete_confirm) { _, _ ->
 
-                val queue = LinkedBlockingQueue<UserEntity>()
+                val queue = LinkedBlockingQueue<PerfilEntity>()
                 Thread {
-                    NoteStoreApp.db.userDao().deleteAllUser(userEntity)
-                    queue.add(userEntity)
+                    NoteStoreApp.db.userDao().deleteAllUser(perfilEntity)
+                    queue.add(perfilEntity)
                 }.start()
                 mAdapter.delete(queue.take())
             }

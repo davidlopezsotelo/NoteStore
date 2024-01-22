@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import com.davidlopez.notestore10.DataBase.Entities.PerfilEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.ImageController
 import com.davidlopez.notestore10.databinding.ItemRvUserBinding
 
 class PerfilAdapter(
-    private var users: MutableList<UserEntity>,
+    private var users: MutableList<PerfilEntity>,
     private var listener: OnClickListenerPerfil)
     :RecyclerView.Adapter<PerfilAdapter.ViewHolder>(){
 
@@ -20,7 +20,7 @@ class PerfilAdapter(
     inner class ViewHolder (view:View) :RecyclerView.ViewHolder(view) {
         val binding=ItemRvUserBinding.bind(view)
 
-        fun setListener(userEntity: UserEntity){
+        fun setListener(perfilEntity: PerfilEntity){
 
             //boton popup
             fun showPopUpMenu(view: View?) {
@@ -31,12 +31,12 @@ class PerfilAdapter(
                         when (item.itemId) {
                             R.id.item_1 -> {
                                 // editar
-                                listener.onUpdateUser(userEntity.id)
+                                listener.onUpdateUser(perfilEntity.id)
                                 true
                             }
                             R.id.item_2 -> {
                                 // borrar
-                                listener.onDeleteUser(userEntity)
+                                listener.onDeleteUser(perfilEntity)
                                 true
                             }  else -> false
                         }
@@ -48,7 +48,7 @@ class PerfilAdapter(
                 binding.btnPopupMenu.setOnClickListener {
                         view -> showPopUpMenu(view)
                 }
-                setOnClickListener { listener.onClick(userEntity) }
+                setOnClickListener { listener.onClick(perfilEntity) }
             }
 
         }
@@ -84,28 +84,28 @@ class PerfilAdapter(
         }
     }
 
-    fun add (user: UserEntity){
+    fun add (user: PerfilEntity){
         if (!users.contains(user)){
             users.add(user)
             notifyItemInserted(users.size-1)
         }
     }
 
-    fun setUsers(user: MutableList<UserEntity>) {
+    fun setUsers(user: MutableList<PerfilEntity>) {
         this.users=user
         notifyDataSetChanged()
     }
 
-    fun update(userEntity: UserEntity){
-        val index=users.indexOf(userEntity)
+    fun update(perfilEntity: PerfilEntity){
+        val index=users.indexOf(perfilEntity)
         if(index!=-1){
-            users[index] = userEntity
+            users[index] = perfilEntity
             notifyItemChanged(index)
         }
     }
 
-    fun delete(userEntity: UserEntity){
-        val index=users.indexOf(userEntity)
+    fun delete(perfilEntity: PerfilEntity){
+        val index=users.indexOf(perfilEntity)
         if (index !=-1){
             users.removeAt(index)
             notifyItemRemoved(index)

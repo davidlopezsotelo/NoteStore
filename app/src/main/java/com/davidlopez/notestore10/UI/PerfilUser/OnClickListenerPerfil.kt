@@ -1,9 +1,9 @@
 package com.davidlopez.notestore10.UI.PerfilUser
 
-import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import com.davidlopez.notestore10.DataBase.Entities.PerfilEntity
 
 interface OnClickListenerPerfil {
-    fun onClick(userEntity: UserEntity)
-    fun onDeleteUser(userEntity: UserEntity)
+    fun onClick(perfilEntity: PerfilEntity)
+    fun onDeleteUser(perfilEntity: PerfilEntity)
     fun onUpdateUser(usuarioId: Long)
 }

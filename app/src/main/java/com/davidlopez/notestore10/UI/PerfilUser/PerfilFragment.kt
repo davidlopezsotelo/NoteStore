@@ -16,7 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.davidlopez.notestore10.NoteStoreApp
-import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import com.davidlopez.notestore10.DataBase.Entities.PerfilEntity
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.ImageController
 import com.davidlopez.notestore10.databinding.FragmentPerfilBinding
@@ -34,7 +34,7 @@ class PerfilFragment:Fragment() {
 
     // actualizar usuario--------------------------------------------------------------------------
     private var isEditMode:Boolean=false
-    private var mUserEntity: UserEntity?=null
+    private var mPerfilEntity: PerfilEntity?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -56,8 +56,8 @@ class PerfilFragment:Fragment() {
             getUser(id)
         } else {
             isEditMode = false
-            mUserEntity =
-                UserEntity(name = "", surname = "", phone = "", email = "", adress = "", work = "")
+            mPerfilEntity =
+                PerfilEntity(name = "", surname = "", phone = "", email = "", adress = "", work = "")
         }
         /*
         * para que aparezca el action bar
@@ -88,28 +88,28 @@ class PerfilFragment:Fragment() {
     }
 
     private fun getUser(id: Long) {
-        val queue = LinkedBlockingQueue<UserEntity?>()
+        val queue = LinkedBlockingQueue<PerfilEntity?>()
 
         Thread{
 
-            mUserEntity= NoteStoreApp.db.userDao().getUserById(id)
-            queue.add(mUserEntity)
+            mPerfilEntity= NoteStoreApp.db.userDao().getUserById(id)
+            queue.add(mPerfilEntity)
         }.start()
         queue.take()?.let { setUiUser(it) }
     }
 
     //le pasamos los datos seleccionados del usuario
-    private fun setUiUser(userEntity: UserEntity) {
+    private fun setUiUser(perfilEntity: PerfilEntity) {
         mContext= this.requireContext()
-        val idFoto=userEntity.id
+        val idFoto=perfilEntity.id
 
         with(mBinding){
-            etName.setText(userEntity.name)
-            etPhone.text=userEntity.phone.editable()
-            etEmail.setText(userEntity.email).toString()
-            etSurname.setText(userEntity.surname)
-            etAdress.setText(userEntity.adress)
-            etWork.setText(userEntity.work)
+            etName.setText(perfilEntity.name)
+            etPhone.text=perfilEntity.phone.editable()
+            etEmail.setText(perfilEntity.email).toString()
+            etSurname.setText(perfilEntity.surname)
+            etAdress.setText(perfilEntity.adress)
+            etWork.setText(perfilEntity.work)
             // cargar la imagen !!!!!!!!!
             imageViewPhoto.setImageURI(ImageController.getImageUri(mContext,idFoto))
         }
@@ -146,7 +146,7 @@ class PerfilFragment:Fragment() {
 
 
                 if (mActivity !=null ){//le pasamos los campos como parametro para veificar
-                    with(mUserEntity!!){
+                    with(mPerfilEntity!!){
                         name = mBinding.etName.text.toString().trim()
                         surname=mBinding.etSurname.text.toString().trim()
                         phone = mBinding.etPhone.text.toString().trim()
@@ -155,19 +155,19 @@ class PerfilFragment:Fragment() {
                         work=mBinding.etWork.text.toString().trim()
                     }
 
-                    val queue = LinkedBlockingQueue<UserEntity>()
+                    val queue = LinkedBlockingQueue<PerfilEntity>()
                     Thread{
 
                         if (isEditMode){
-                            NoteStoreApp.db.userDao().updateUser(mUserEntity!!)
+                            NoteStoreApp.db.userDao().updateUser(mPerfilEntity!!)
                             Snackbar.make(mBinding.root,"Usuario actualizado",
                                 Snackbar.LENGTH_SHORT).show()
 
-                        } else mUserEntity!!.id= NoteStoreApp.db.userDao().addUser(mUserEntity!!)
+                        } else mPerfilEntity!!.id= NoteStoreApp.db.userDao().addUser(mPerfilEntity!!)
 
                         // guardar imagen------------------------------
-                        guardarImagen(id = mUserEntity!!.id)
-                        queue.add(mUserEntity)
+                        guardarImagen(id = mPerfilEntity!!.id)
+                        queue.add(mPerfilEntity)
 
                     }.start()
 

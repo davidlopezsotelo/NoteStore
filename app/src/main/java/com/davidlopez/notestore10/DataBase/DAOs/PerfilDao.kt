@@ -5,29 +5,29 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import com.davidlopez.notestore10.DataBase.Entities.PerfilEntity
 
 @Dao
-interface UserDao {
+interface PerfilDao {
 
 
    @Query("SELECT * FROM user ")
-    fun getAllUser(): MutableList<UserEntity>
+    fun getAllUser(): MutableList<PerfilEntity>
 
  @Query("SELECT * FROM user where id= :id")
- fun getUserById(id: Long): UserEntity
+ fun getUserById(id: Long): PerfilEntity
 
     @Query("SELECT * FROM user WHERE email= :email")
-    fun getUserByMail(email:String):UserEntity?
+    fun getUserByMail(email:String):PerfilEntity?
 
     @Insert
-    fun addUser(user: UserEntity):Long
+    fun addUser(user: PerfilEntity):Long
 
     @Update
-    fun updateUser(user: UserEntity)
+    fun updateUser(user: PerfilEntity)
 
     @Delete
-    fun deleteAllUser(user: UserEntity)
+    fun deleteAllUser(user: PerfilEntity)
 
 
 

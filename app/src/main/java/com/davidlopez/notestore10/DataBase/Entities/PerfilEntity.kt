@@ -4,14 +4,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "User")
-data class UserEntity(@PrimaryKey (autoGenerate = true)
+data class PerfilEntity(@PrimaryKey (autoGenerate = true)
                       var id:Long=0,
-                      var email:String,
-                      var name:String="",
-                      var surname:String="",
-                      var phone:String="",
-                      var adress:String="",
-                      var work:String="")
+                        var email:String,
+                        var name:String="",
+                        var surname:String="",
+                        var phone:String="",
+                        var adress:String="",
+                        var work:String="")
 {
 
     // metodos que fuerzan la carga de datos al actualizar la vista para que aparezcan los resultados actualizados
@@ -19,7 +19,7 @@ data class UserEntity(@PrimaryKey (autoGenerate = true)
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as UserEntity
+        other as PerfilEntity
 
         if (email != other.email) return false
 
