@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     //si el usuario tiene sesion abierta, te manda al menu principal
 
     fun VerificarUsuario(){
+
         //FirebaseUser = FirebaseAuth.getInstance().currentUser!!
 
         val user = Firebase.auth.currentUser

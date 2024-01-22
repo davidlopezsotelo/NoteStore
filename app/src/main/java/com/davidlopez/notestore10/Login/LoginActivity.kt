@@ -1,21 +1,14 @@
 package com.davidlopez.notestore10.Login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import androidx.appcompat.app.AppCompatActivity
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
-import com.davidlopez.notestore10.R
-import com.davidlopez.notestore10.UI.Contactos.ContactDetailActivity
-import com.davidlopez.notestore10.UI.PerfilUser.PerfilActivity
 import com.davidlopez.notestore10.databinding.ActivityLoginBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,8 +18,8 @@ class LoginActivity : AppCompatActivity() {
     //Creamos variable Firebase
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
-    var Email=""
-    var Password = ""
+    private var Email=""
+    private var Password = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonIniciar.setOnClickListener {
             //hacer login en firebase
-            ValidarDatos()
+            validarDatos()
         }// fin boton INICIAR
 
         //Boton restablecer
@@ -61,14 +54,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //Boton SALIR
-        binding.buttonSalir.setOnClickListener() {
+        binding.buttonSalir.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             onBackPressedDispatcher
             finish()
         }
     }
 
-    private fun ValidarDatos() {
+    private fun validarDatos() {
 
 
         Email=binding.editTextEmail.text.toString()
@@ -82,30 +75,31 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this,"Ingrese contraseña.", Toast.LENGTH_SHORT).show()
         }
         else{//si las dos anteriores condiciones se cumplen ejecuta la funcion
-            LoginUsuario()
+            loginUsuario()
         }
 
     }
 
     //Funcion que verifica si el usuario tiene cuenta.
-    private fun LoginUsuario() {
+    private fun loginUsuario() {
 
         //comprovar conexion internet.
 
         //Iniciamos sesion con firebase
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(Email,Password)
-            .addOnCompleteListener(this, OnCompleteListener { task ->
+            .addOnCompleteListener(this) { task ->
 
-                if (task.isSuccessful){
+                if (task.isSuccessful) {
                     auth.currentUser
-                    Toast.makeText(this,"Te has identificado correctamente.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Te has identificado correctamente.", Toast.LENGTH_SHORT)
+                        .show()
                     startActivity(Intent(this, MenuPrincipalActivity::class.java))
                     finish()
-                }else{
+                } else {
                     showRellenar()
                 }
-            })
+            }
     }
     //creamos una funcion que mostrara un  mensaje de alerta mediante un cuadro de dialogo--------------------
     private fun showRellenar() {

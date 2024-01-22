@@ -11,7 +11,7 @@ import com.davidlopez.notestore10.DataBase.Entities.UserEntity
 
 //
 
-@Database( entities = arrayOf(ContactosEntity::class,NotasEntity::class,UserEntity::class),
+@Database( entities = [ContactosEntity::class, NotasEntity::class, UserEntity::class],
                       version =1)
 
 abstract class RoomDB : RoomDatabase(){

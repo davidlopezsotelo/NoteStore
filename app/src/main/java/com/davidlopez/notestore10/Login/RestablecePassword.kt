@@ -37,7 +37,7 @@ class RestablecePassword : AppCompatActivity() {
 
     private fun sendPasswordReset(email:String?){
         firebaseAuth.sendPasswordResetEmail(email!!)
-            .addOnCompleteListener(){ task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful)
                 {
                     Toast.makeText(baseContext,"Correo de cambio de contraseña,enviado.",Toast.LENGTH_SHORT).show()

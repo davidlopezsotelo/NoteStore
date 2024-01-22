@@ -2,17 +2,16 @@ package com.davidlopez.notestore10.UI.PerfilUser
 
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.DataBase.Entities.UserEntity
+import com.davidlopez.notestore10.NoteStoreApp
 import com.davidlopez.notestore10.R
 import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityPerfilBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.LinkedBlockingQueue
 
 class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
@@ -21,12 +20,16 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
     private lateinit var mAdapter: PerfilAdapter
     private lateinit var mGridLayout: GridLayoutManager
 
+
+    /* ELIMINAR ESTO
     //cargar usuario identificado desde firebase
     private lateinit var auth: FirebaseAuth
     //obtener email de usuario identificado
     lateinit var emailUser:String
 
-        //????¿?¿?¿??borrar
+
+     */
+
     lateinit var usuario:UserEntity
 
 
@@ -127,7 +130,7 @@ class PerfilActivity : AppCompatActivity(),PerfilAux,OnClickListenerPerfil{
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.dialog_delete_contact)
-            .setPositiveButton(R.string.dialog_delete_confirm) { dialogInterface, i ->
+            .setPositiveButton(R.string.dialog_delete_confirm) { _, _ ->
 
                 val queue = LinkedBlockingQueue<UserEntity>()
                 Thread {

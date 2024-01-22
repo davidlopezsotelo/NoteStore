@@ -131,16 +131,16 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
 
     //borrar registro
 
-    override fun onDeleteNota(notasEntity: NotasEntity) {
+    override fun onDeleteNota(notasDB: NotasEntity) {
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.dialog_delete_contact_nota)
-            .setPositiveButton(R.string.dialog_delete_confirm) { dialogInterface, i ->
+            .setPositiveButton(R.string.dialog_delete_confirm) { _, _ ->
 
                 val queue = LinkedBlockingQueue<NotasEntity>()
                 Thread {
-                    NoteStoreApp.db.notasDao().updateNota(notasEntity)
-                    queue.add(notasEntity)
+                    NoteStoreApp.db.notasDao().updateNota(notasDB)
+                    queue.add(notasDB)
                 }.start()
                 mAdapter.delete(queue.take())
             }
@@ -161,6 +161,8 @@ class NotasActivity : AppCompatActivity(),OnClickListenerNotas,NotasAux {
         mAdapter.update(notasEntity)
     }
     //configuramos boton atras---------------------------------------
+
+    //TODO CAMBIAR
     override fun onBackPressed() {
         super.onBackPressed()
         startActivity(Intent(this, MenuPrincipalActivity::class.java))

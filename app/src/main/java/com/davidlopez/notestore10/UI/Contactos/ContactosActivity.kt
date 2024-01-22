@@ -25,7 +25,9 @@ import java.util.concurrent.LinkedBlockingQueue
         // pulsar el boton atras-------------------------------
         onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Aquí va el código que quires ejecutar cuando se presiona el botón de atrás
+
+                //  código que quires ejecutar cuando se presiona el botón de atrás
+
                 val intent=Intent(this@ContactosActivity,MenuPrincipalActivity::class.java)
                 startActivity(intent)
                 finish()

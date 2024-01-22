@@ -14,9 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.davidlopez.notestore10.ImageController
-import com.davidlopez.notestore10.UI.MenuPrincipalActivity
 import com.davidlopez.notestore10.databinding.ActivityContactDetailBinding
-
 
 
 class ContactDetailActivity : AppCompatActivity() {
@@ -139,6 +137,7 @@ class ContactDetailActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun sendEmail() {
 
         val email=mBinding.tvEmail.text.toString()

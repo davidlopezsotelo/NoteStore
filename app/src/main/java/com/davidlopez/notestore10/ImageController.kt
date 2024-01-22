@@ -41,6 +41,7 @@ object ImageController {
         file.writeBytes(bytes)
     }
 
+
     fun saveImageUser(context: Context,id:Long,uri: Uri){
 
         val file= File(context.filesDir,id.toString())

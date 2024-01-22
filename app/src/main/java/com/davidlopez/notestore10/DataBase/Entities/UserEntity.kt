@@ -1,10 +1,7 @@
 package com.davidlopez.notestore10.DataBase.Entities
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import org.checkerframework.common.aliasing.qual.Unique
 
 @Entity(tableName = "User")
 data class UserEntity(@PrimaryKey (autoGenerate = true)

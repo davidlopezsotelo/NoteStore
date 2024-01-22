@@ -73,9 +73,9 @@ class ContactosAdapter(
     override fun getItemCount(): Int =cotactos.size  // metodo que devuelve el tamaño del listado
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val contactos=cotactos.get(position)
+        val contactos= cotactos[position]
 
-        var idPhoto=contactos.id
+        val idPhoto=contactos.id
         val uriphoto = ImageController.getImageUri(mContex,idPhoto)
         with(holder){
             setListener(contactos)

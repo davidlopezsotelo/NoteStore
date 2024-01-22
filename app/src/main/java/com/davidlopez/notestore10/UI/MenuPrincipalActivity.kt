@@ -41,14 +41,10 @@ class MenuPrincipalActivity : AppCompatActivity() {
             startActivity(calIntent)
 
         }
-
-
         //botn salir----------------------------------------------------------
         binding.buttonSalir3.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             onBackPressedDispatcher.onBackPressed()
         }
     }
-
-
-}//end class
+}

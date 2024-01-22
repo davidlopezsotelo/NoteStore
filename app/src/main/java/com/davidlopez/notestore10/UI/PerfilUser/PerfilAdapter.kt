@@ -67,9 +67,9 @@ class PerfilAdapter(
     override fun getItemCount(): Int= users.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val usuario=users.get(position)
+        val usuario= users[position]
 
-        var idPhoto=usuario.id
+        val idPhoto=usuario.id
         val uriphoto = ImageController.getImageUri(mContex,idPhoto)
         with(holder){
             setListener(usuario)
@@ -99,7 +99,7 @@ class PerfilAdapter(
     fun update(userEntity: UserEntity){
         val index=users.indexOf(userEntity)
         if(index!=-1){
-            users.set(index,userEntity)
+            users[index] = userEntity
             notifyItemChanged(index)
         }
     }

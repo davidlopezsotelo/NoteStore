@@ -1,6 +1,5 @@
 package com.davidlopez.notestore10.DataBase.Entities
 
-import android.net.Uri
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

@@ -35,8 +35,6 @@ class NotaFragment : Fragment() {
     private lateinit var mBinding: FragmentNotaBinding
     private var mActivity:NotasActivity?=null
 
-    private lateinit var mAdapter: NotasAdapter
-
     private var mIsEditMode: Boolean = false
     private var mNotasEntity:NotasEntity?=null
 
@@ -83,7 +81,7 @@ class NotaFragment : Fragment() {
             queue.add(mNotasEntity)
         }.start()
         queue.take().let {
-            //rellenamos les editText
+            //rellenamos los editText
             setUiNota(it)
         }
     }

@@ -53,7 +53,7 @@ class RegistroActivity : AppCompatActivity() {
 
         // funciones del boton LOGIN.........
 
-        botonLogin.setOnClickListener(){
+        botonLogin.setOnClickListener {
             val logIntent= Intent(this, LoginActivity::class.java)
             startActivity(logIntent)
             finish()
@@ -61,7 +61,7 @@ class RegistroActivity : AppCompatActivity() {
 
         //Boton Salir
 
-        botonSalir.setOnClickListener(){
+        botonSalir.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             onBackPressedDispatcher.onBackPressed()
             finish()
